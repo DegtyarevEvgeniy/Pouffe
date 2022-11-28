@@ -1,0 +1,647 @@
+{% extends "base.html" %} {% block content %}
+
+
+<style>
+    .smallPad {
+        padding-bottom: 50px;
+    }
+
+    .twoBut {
+        position: relative;
+        height: 60px;
+        width: 200px;
+        border: none;
+        outline: none;
+        color: white;
+        background: #ccc;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 18px;
+        font-family: 'Raleway', sans-serif;
+        color: black;
+    }
+
+    .twoBut:before {
+        position: absolute;
+        content: '';
+        top: -2px;
+        left: -2px;
+        height: calc(100% + 4px);
+        width: calc(100% + 4px);
+        border-radius: 5px;
+        z-index: -1;
+        opacity: 0;
+        filter: blur(5px);
+        background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+        background-size: 400%;
+        transition: opacity .3s ease-in-out;
+        animation: animate 20s linear infinite;
+    }
+
+    .twoBut:hover:before {
+        opacity: 1;
+    }
+
+    .twoBut:hover:active {
+        background: none;
+    }
+
+    .twoBut:hover:active:before {
+        filter: blur(2px);
+    }
+
+    @keyframes animate {
+        0% {
+            background-position: 0 0;
+        }
+        50% {
+            background-position: 400% 0;
+        }
+        100% {
+            background-position: 0 0;
+        }
+    }
+
+    .wrapper,
+    .wrapper .img-area,
+    .social-icons a,
+    .buttons button {
+        background: #ecf0f3;
+        box-shadow: -3px -3px 7px #ffffff, 3px 3px 5px #ceced1;
+    }
+
+    .wrapper {
+        position: relative;
+        width: 50%;
+        padding: 30px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .wrapper .icon {
+        font-size: 17px;
+        color: #31344b;
+        position: absolute;
+        cursor: pointer;
+        opacity: 0.7;
+        top: 15px;
+        height: 35px;
+        width: 35px;
+        text-align: center;
+        line-height: 35px;
+        border-radius: 50%;
+        font-size: 16px;
+
+    }
+
+    .wrapper .icon i {
+        position: relative;
+        z-index: 9;
+    }
+
+    .wrapper .icon.arrow {
+        left: 15px;
+    }
+
+    .wrapper .icon.dots {
+        right: 15px;
+    }
+
+    .wrapper .img-area {
+        height: 150px;
+        width: 150px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    .img-area .inner-area {
+        height: calc(100% - 25px);
+        width: calc(100% - 25px);
+        border-radius: 50%;
+    }
+
+    .inner-area img {
+        height: 100%;
+        width: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    .wrapper .name {
+        font-size: 23px;
+        font-weight: 500;
+        color: #31344b;
+        margin: 10px 0 5px 0;
+    }
+
+    .wrapper .about {
+        color: #44476a;
+        font-weight: 400;
+        font-size: 16px;
+    }    
+
+
+
+    .wrapper .social-icons {
+        margin: 15px 0 25px 0;
+    }
+
+    .social-icons .roundedSocialBtn {
+        position: relative;
+        height: 40px;
+        width: 40px;
+        margin: 0 5px;
+        display: inline-flex;
+        text-decoration: none;
+        border-radius: 50%;
+    }
+
+    .social-icons .roundedSocialBtn:hover::before,
+    .wrapper .icon:hover::before,
+    .buttons button:hover:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        border-radius: 50%;
+        background: #ecf0f3;
+        box-shadow: inset -3px -3px 7px #ffffff, inset 3px 3px 5px #ceced1;
+    }
+
+    .buttons button:hover:before {
+        z-index: -1;
+        border-radius: 5px;
+    }
+
+    .social-icons a i {
+        position: relative;
+        z-index: 3;
+        text-align: center;
+        width: 100%;
+        height: 100%;
+        line-height: 40px;
+    }
+
+    .social-icons a.fb i {
+        color: #4267B2;
+    }
+
+    .social-icons a.twitter i {
+        color: #1DA1F2;
+    }
+
+    .social-icons a.insta i {
+        color: #E1306C;
+    }
+
+    .social-icons a.yt i {
+        color: #ff0000;
+    }
+
+    .wrapper .buttons {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+
+
+    .buttons button {
+        position: relative;
+        width: 100%;
+        border: none;
+        outline: none;
+        padding: 12px 0;
+        color: #31344b;        
+        font-size: 17px;
+        font-weight: 400;
+        border-radius: 5px;
+        cursor: pointer;
+        z-index: 4;
+    }
+
+    .buttons button:first-child {
+        margin-right: 10px;
+    }
+
+    .buttons button:last-child {
+        margin-left: 10px;
+    }
+
+    .wrapper .social-share {
+        display: flex;
+        width: 100%;
+        margin-top: 30px;
+        padding: 0 5px;
+        justify-content: space-between;
+    }
+
+    .social-share .row {
+        color: #31344b;
+        font-size: 17px;
+        cursor: pointer;
+        position: relative;
+    }
+
+    .social-share .row::before {
+        position: absolute;
+        content: "";
+        height: 100%;
+        width: 2px;
+        background: #e0e6eb;
+        margin-left: -25px;
+    }
+
+    .row:first-child::before {
+        background: none;
+    }
+
+    .social-share .row i.icon-2 {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        color: #31344b;
+        transform: translateY(-50%);
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.3s ease;
+    }
+
+    .row:nth-child(1):hover i.fa-heart,
+    .row:nth-child(2):hover i.fa-comment {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .snip1418 {
+        font-family: 'Raleway', Arial, sans-serif;
+        position: relative;
+        overflow: hidden;
+        margin: 10px;
+        min-width: 230px;
+        max-width: 315px;
+        width: 100%;
+        background: #ffffff;
+        text-align: left;
+        color: #000000;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+        font-size: 16px;
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        -webkit-perspective: 20em;
+        perspective: 20em;
+    }
+
+    .snip1418 * {
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        -webkit-transition: all 0.3s ease-out;
+        transition: all 0.3s ease-out;
+    }
+
+    .snip1418 img {
+        max-width: 100%;
+        vertical-align: top;
+        position: relative;
+    }
+
+    .snip1418 .add-to-cart {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding-right: 10px;
+        color: #ffffff;
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 0.9em;
+        opacity: 0;
+        background-color: #409ad5;
+        -webkit-transform: rotateX(-90deg);
+        transform: rotateX(-90deg);
+        -webkit-transform-origin: 100% 0;
+        -ms-transform-origin: 100% 0;
+        transform-origin: 100% 0;
+    }
+
+    .snip1418 .add-to-cart i {
+        display: inline-block;
+        margin-right: 10px;
+        width: 40px;
+        line-height: 40px;
+        text-align: center;
+        background-color: #164666;
+        color: #ffffff;
+        font-size: 1.4em;
+    }
+
+    .snip1418 figcaption {
+        padding: 20px;
+    }
+
+    .snip1418 h3,
+    .snip1418 p {
+        margin: 0;
+    }
+
+    .snip1418 h3 {
+        font-size: 1.5em;
+        font-weight: 700;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+    }
+
+    .snip1418 p {
+        font-size: 0.9em;
+        letter-spacing: 1px;
+        font-weight: 400;
+    }
+
+    .snip1418 .price {
+        font-weight: 500;
+        font-size: 1.5em;
+        line-height: 48px;
+        letter-spacing: 1px;
+    }
+
+    .snip1418 .price s {
+        margin-right: 5px;
+        opacity: 0.5;
+        font-size: 0.9em;
+    }
+
+    .snip1418 a {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+
+    .snip1418:hover .add-to-cart,
+    .snip1418.hover .add-to-cart {
+        opacity: 1;
+        -webkit-transform: rotateX(0deg);
+        transform: rotateX(0deg);
+    }
+
+    .snip1418:hover .add-to-cart i,
+    .snip1418.hover .add-to-cart i {
+        background-color: #2980b9;
+    }
+
+    /* ------------ */
+
+    .wrapper {
+        width: 50rem;
+        margin: 100px auto 40px auto;
+        padding: 0px;
+    }
+
+    .wrapper .search-input {
+        background: #fff;
+        width: 100%;
+        border-radius: 5px;
+        position: relative;
+    }
+
+    .search-input input {
+        height: 55px;
+        width: 100%;
+        outline: none;
+        border: none;
+        border-radius: 5px;
+        padding: 0 60px 0 20px;
+        font-size: 18px;
+        box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .search-input.active input {
+        border-radius: 5px 5px 0 0;
+    }
+
+    .search-input .autocom-box {
+        padding: 0;
+        opacity: 0;
+        pointer-events: none;
+        max-height: 280px;
+        overflow-y: auto;
+    }
+
+    .search-input.active .autocom-box {
+        padding: 10px 8px;
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .autocom-box li {
+        list-style: none;
+        padding: 8px 12px;
+        display: none;
+        width: 100%;
+        cursor: default;
+        border-radius: 3px;
+    }
+
+    .search-input.active .autocom-box li {
+        display: block;
+    }
+
+    .autocom-box li:hover {
+        background: #efefef;
+    }
+
+    .search-input .icon {
+        position: absolute;
+        right: 0px;
+        top: 0px;
+        height: 55px;
+        width: 55px;
+        text-align: center;
+        line-height: 55px;
+        font-size: 20px;
+        color: #644bff;
+        cursor: pointer;
+    }
+</style>
+
+<body style="margin: auto;">
+<div id="carouselExampleSlidesOnly" class="carousel slide smallPad" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="https://avatars.mds.yandex.net/get-market_banners/1523118/4733548_4.09ad065ab7da3f95401400482b860252.jpg.4733548/orig"
+                class="d-block w-100" alt="...">
+        </div>
+    </div>
+</div>
+
+<div class="position-relative">
+    <div class="position-absolute top-50 start-50 translate-middle">
+        <div>
+            <button class="twoBut" id="showContent1">Резюме</button>
+            <button class="twoBut" id="showContent2">Товар</button>
+            <br>
+        </div>
+    </div>
+</div>
+
+<div class="wrapper">
+    <div class="search-input">
+        <a href="" target="_blank" hidden></a>
+        <input type="text" placeholder="Type to search..">
+        <div class="autocom-box">
+            <!-- here list are inserted from javascript -->
+        </div>
+        <div class="icon"><i class="fas fa-search"></i></div>
+    </div>
+</div>
+
+
+<div id="content" class="row">
+    {% include "baseProductCard.html" %}
+
+</div>
+<br>
+<br>
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.13.7/dist/js/uikit.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.13.7/dist/js/uikit-icons.min.js"></script>
+<script>
+    $(function () {
+        var xhr = new XMLHttpRequest()
+        xhr.open('GET', 'baseResumeCard ')
+        xhr.onload = function () {
+
+            $('#content').html(xhr.response)
+        }
+        xhr.send()
+    });
+
+    $('#showContent1').on('click', {
+        title: 'Заголовок 1',
+        content: 'Содержимое 1...'
+    }, function (inBody) {
+
+        var xhr = new XMLHttpRequest()
+        xhr.open('GET', 'baseResumeCard')
+        xhr.onload = function () {
+
+            $('#content').html(xhr.response)
+        }
+        xhr.send()
+    });
+
+    $('#showContent2').on('click', {
+        title: 'Заголовок 2',
+        content: 'Содержимое 2...'
+    }, function (inBody) {
+
+        var xhr = new XMLHttpRequest()
+        xhr.open('GET', 'baseProductCard')
+        xhr.onload = function () {
+
+            $('#content').html(xhr.response)
+        }
+        xhr.send()
+
+    });
+</script>
+<script>
+    let suggestions = [
+        "Channel",
+        "CodingLab",
+        "CodingNepal",
+        "YouTube",
+        "YouTuber",
+        "YouTube Channel",
+        "Blogger",
+        "Bollywood",
+        "Vlogger",
+        "Vechiles",
+        "Facebook",
+        "Freelancer",
+        "Facebook Page",
+        "Designer",
+        "Developer",
+        "Web Designer",
+        "Web Developer",
+        "Login Form in HTML & CSS",
+        "How to learn HTML & CSS",
+        "How to learn JavaScript",
+        "How to became Freelancer",
+        "How to became Web Designer",
+        "How to start Gaming Channel",
+        "How to start YouTube Channel",
+        "What does HTML stands for?",
+        "What does CSS stands for?",
+    ];
+
+    // getting all required elements
+    const searchWrapper = document.querySelector(".search-input");
+    const inputBox = searchWrapper.querySelector("input");
+    const suggBox = searchWrapper.querySelector(".autocom-box");
+    const icon = searchWrapper.querySelector(".icon");
+    let linkTag = searchWrapper.querySelector("a");
+    let webLink;
+
+    // if user press any key and release
+    inputBox.onkeyup = (e) => {
+        let userData = e.target.value; //user enetered data
+        let emptyArray = [];
+        if (userData) {
+            icon.onclick = () => {
+                webLink = `https://www.google.com/search?q=${userData}`;
+                linkTag.setAttribute("href", webLink);
+                linkTag.click();
+            }
+            emptyArray = suggestions.filter((data) => {
+                //filtering array value and user characters to lowercase and return only those words which are start with user enetered chars
+                return data.toLocaleLowerCase().startsWith(userData.toLocaleLowerCase());
+            });
+            emptyArray = emptyArray.map((data) => {
+                // passing return data inside li tag
+                return data = `<li>${data}</li>`;
+            });
+            searchWrapper.classList.add("active"); //show autocomplete box
+            showSuggestions(emptyArray);
+            let allList = suggBox.querySelectorAll("li");
+            for (let i = 0; i < allList.length; i++) {
+                //adding onclick attribute in all li tag
+                allList[i].setAttribute("onclick", "select(this)");
+            }
+        } else {
+            searchWrapper.classList.remove("active"); //hide autocomplete box
+        }
+    }
+
+    function select(element) {
+        let selectData = element.textContent;
+        inputBox.value = selectData;
+        icon.onclick = () => {
+            webLink = `https://www.google.com/search?q=${selectData}`;
+            linkTag.setAttribute("href", webLink);
+            linkTag.click();
+        }
+        searchWrapper.classList.remove("active");
+    }
+
+    function showSuggestions(list) {
+        let listData;
+        if (!list.length) {
+            userValue = inputBox.value;
+            listData = `<li>${userValue}</li>`;
+        } else {
+            listData = list.join('');
+        }
+        suggBox.innerHTML = listData;
+    }
+</script>
+{% endblock %}

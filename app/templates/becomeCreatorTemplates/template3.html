@@ -1,0 +1,222 @@
+<style>
+    * {
+        transition: 0.2s;
+    }
+
+    #shop_backgound_image {
+        background-color: #cccccc;
+        /* background-image: url(https://html5css.ru/css/img_lights.jpg); */
+        background-image: url(https://images.unsplash.com/photo-1453728013993-6d66e9c9123a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8cGhvdG9ncmFwaGVyfGVufDB8fDB8fA%3D%3D&w=1000&q=80);
+        background-repeat: none;
+        background-position: center;
+        background-size: cover;
+        display: flex;
+        align-items: flex-end;
+        justify-content: left;
+    }
+
+    form {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        width: 100%;
+    }
+
+    .category {
+        border: 1px solid #E9E9E9;
+        background-color: #E9E9E9;
+        margin: 1% 2%;
+        padding: 1%;
+    }
+
+    .chosen {
+        background-color: #1e87f0;
+        color: white;
+        border: 1px solid #1e87f0;
+    }
+</style>
+
+<body>
+    <form method="post" action="/becomeCreator/" enctype="multipart/form-data" style="margin-bottom: 10%">
+        {% csrf_token %}
+
+        <div class="uk-flex uk-flex-middle uk-flex-around uk-width-4-5" style="margin: 2% auto;">
+            <div class="uk-width-2-5 uk-flex uk-flex-row">
+                <div class="uk-width-4-5 uk-flex uk-flex-row">
+                    <div class="uk-flex uk-flex-column uk-width-1" uk-width-auto">
+                        <div data-src="{{shop.logoImage}}"
+                            class="uk-height-medium uk-flex uk-flex-center uk-flex-middle uk-background-cover" uk-img>
+
+                        </div>
+                        <br>
+                        <div class="uk-flex uk-flex-middle uk-flex-left">
+                            <div uk-form-custom class="uk-width-3-5 uk-margin-medium-right">
+                                <input name="logoImage" type="file" accept="image/*" id="logoImage">
+                                <button class="uk-button uk-width-1" type="button" tabindex="-1">Изменить
+                                    фото</button>
+                            </div>
+                            <i uk-tooltip="Выберите логотип магазина" uk-icon="question"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="uk-width-3-5 uk-flex uk-flex-row">
+                <div class="uk-flex uk-flex-column uk-width-1" uk-width-auto>
+                    <div data-src="{{shop.bgImage}}"
+                        class="uk-height-medium uk-flex uk-flex-center uk-flex-middle uk-background-cover" uk-img>
+                    </div>
+                    <br>
+                    <div class="uk-flex uk-flex-middle uk-flex-left">
+                        <div uk-form-custom class="uk-width-2-5 uk-margin-medium-right">
+                            <input name="bgImage" type="file" accept="image/*" id="bgImage">
+                            <button class="uk-button uk-width-1" type="button" tabindex="-1">Изменить
+                                фото</button>
+                        </div>
+                        <i uk-tooltip="Выберите фон для профиля магазина" uk-icon="question"></i>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <br>
+
+
+        <div class="uk-width-4-5 uk-flex uk-flex-between" style="margin: 2% auto;">
+            <div class="uk-width-2-5">
+                <label> Описание магазина </label>
+                <br>
+                <br>
+                <textarea name="description" class="uk-textarea uk-width-4-5" style="height: 100%"
+                    placeholder="{{shop.description}}">{{shop.description}}</textarea>
+            </div>
+            <div class="uk-width-3-5 uk-flex-row">
+                <div class="uk-flex uk-flex-between">
+                    <div class="uk-width-2-5 uk-flex-column">
+                        <div class="uk-width-1">
+                            <label>Название магазина</label>
+                            <br>
+                            <input class="uk-input" type="text" placeholder="{{shop.name}}" value="{{shop.name}}"
+                                name="name">
+                        </div>
+                        <br>
+                        <div class="uk-width-1">
+                            <label> Статус магазина </label>
+                            <br>
+                            {% if shop.status == 'work' %}
+
+                            <select class="uk-select" name="status">
+                                <option value="work">Работает</option>
+                                <option value="freez">Заморожен</option>
+                                <option value="not-work">Не работает</option>
+                            </select>
+
+                            {% elif shop.status == 'freez' %}
+
+                            <select class="uk-select" name="status">
+                                <option value="freez">Заморожен</option>
+                                <option value="work">Работает</option>
+                                <option value="not-work">Не работает</option>
+                            </select>
+
+                            {% else %}
+
+                            <select class="uk-select" name="status">
+                                <option value="not-work">Не работает</option>
+                                <option value="work">Работает</option>
+                                <option value="freez">Заморожен</option>
+                            </select>
+
+                            {% endif %}
+
+                        </div>
+                    </div>
+                    <div class="uk-width-2-5">
+                        <label> Категории </label>
+                        <br>
+                        <div class="uk-flex uk-flex-wrap uk-flex-wrap-around">
+
+                            <a class="uk-button uk-text-bold uk-button-link category"
+                                onclick="selectCategory(this)">Одежда</a>
+                            <a class="uk-button uk-text-bold uk-button-link category"
+                                onclick="selectCategory(this)">Обувь</a>
+                            <a class="uk-button uk-text-bold uk-button-link category"
+                                onclick="selectCategory(this)">сумки</a>
+                            <a class="uk-button uk-text-bold uk-button-link category"
+                                onclick="selectCategory(this)">Интерьер</a>
+                            <a class="uk-button uk-text-bold uk-button-link category"
+                                onclick="selectCategory(this)">Аксессуары</a>
+                        </div>
+                        <input type="text" name="chosenCategoties" id="chosenCategoties"
+                            placeholder="{{categorys_saver}}" value="{{categorys_saver}}" style="display: none;"
+                            readonly>
+                        <br>
+                        <br>
+                        {% if categorys %}
+                        <label> Выбрано </label>
+                        {% endif %}
+                        <br>
+                        <div class="uk-flex uk-flex-wrap uk-flex-wrap-around new_ategories">
+
+                            {% for category in categorys %}
+
+                            <a class="uk-button uk-text-bold uk-button-link category chosen"
+                                onclick="removeNewElement(this)">{{category}}</a>
+
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="uk-width-1 uk-text-right uk-margin-medium-top">
+                    <button class="uk-button uk-button-primary" type="submit" name="profile_saver2">Сохранить</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</body>
+<script>
+    function selectCategory(el) {
+        let classes = el.className.split(' ')
+        if (classes[classes.length - 1] == 'category' && !document.getElementById("chosenCategoties").value.includes(el
+                .innerHTML)) {
+            addElement(el);
+        } else if (classes[classes.length - 1] == 'chosen') {
+            removeElement(el)
+        } else {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Упс',
+                text: `Похоже что вы уже выбрали эту категорию`,
+            })
+            alert("WARNING \n Упс, похоже что вы уже выбрали эту категорию")
+        }
+    }
+
+    function addElement(el) {
+        el.classList.add("chosen");
+        document.getElementById("chosenCategoties").value
+        if (!document.getElementById("chosenCategoties").value.includes(el.innerHTML)) {
+            document.getElementById("chosenCategoties").value += `${el.innerHTML} `;
+        }
+
+    }
+
+    function removeElement(el) {
+        let input = document.getElementById("chosenCategoties")
+        el.classList.remove("chosen");
+        input.value = input.value.replace(`${el.innerHTML} `, '')
+    }
+
+    function removeNewElement(el) {
+        let input = document.getElementById("chosenCategoties")
+        el.classList.remove("chosen");
+        input.value = input.value.replace(`${el.innerHTML} `, '')
+        el.remove()
+    }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.13.7/dist/js/uikit.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.13.7/dist/js/uikit-icons.min.js"></script>

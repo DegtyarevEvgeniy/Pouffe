@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<div style="margin:auto; width: 100%">
+
+    <div
+        uk-slideshow="animation: push; ratio: 7:3; autoplay: true; pause-on-hover: true; min-height: 300; max-height: 500">
+
+        <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1">
+
+            <ul class="uk-slideshow-items">
+                <li>
+                    <img src="../../../media/media/main_baner3.png" alt="" uk-cover>
+
+                </li>
+                <li>
+                    <img src="../../../media/media/main_baner2.png" alt="" uk-cover>
+                </li>
+                <li>
+                    <img src="../../../media/media/main_baner1.png" alt="" uk-cover>
+                </li>
+            </ul>
+
+            <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous
+                uk-slideshow-item="previous"></a>
+            <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next
+                uk-slideshow-item="next"></a>
+
+        </div>
+
+    </div>
+</div>
+
+<div class="uk-section uk-section-default uk-width-4-5" style="margin: 0 auto">
+    <div class="uk-grid uk-width-1 uk-felx uk-flex-left" uk-grid>
+        {% for items in prom_items %}
+        {% for item in items %}
+        <a href="/goods/{{item.id}}" class="uk-width-1-4 uk-link-reset">
+            <div class="uk-card uk-card-default uk-border-rounded uk-padding-small">
+                <div class="uk-card-title ">
+                    <h3 class="uk-text-truncate">{{item.product_name}}</h3>
+                </div>
+                <div class="uk-card-body">
+                    <div class="uk-height-small uk-flex uk-flex-center uk-flex-middle uk-background-cover uk-light"
+                        data-src="{{item.picture1}}" uk-img>
+                    </div>
+                </div>
+                <div class="uk-footer uk-flex uk-flex-between">
+                    <p class="uk-margin-remove">{{item.show_price}} руб.</p>
+                    <p class="uk-margin-remove">{{item.category}}</p>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+        {% endfor %}
+    </div>
+</div>
+
+
+<div class="uk-section uk-section-default uk-width-4-5" style="margin: 0 auto">
+    <h2>Бренды:</h2>
+    <div class="uk-grid uk-width-1 " uk-grid>
+        {% for shops in prom_shops %}
+        {% for shop in shops %}
+        <a href="/brands/{{shop.name}}" class="uk-text-center uk-width-1-3">
+            <div data-src="{{shop.logoImage}}"
+                class="uk-height-medium uk-flex uk-flex-center uk-flex-middle uk-background-cover uk-inline-clip uk-transition-toggle"
+                style="border: 3px solid black;" tabindex="0" uk-img>
+
+                <div class="uk-transition-fade uk-position-cover uk-overlay uk-overlay-default uk-flex uk-flex-center uk-flex-middle"
+                    style="background-color: #0a3644e6;height: 100%; width: 100%; margin: 0 auto; padding: 10%;">
+
+                    <div class="uk-width-1" style="padding: 1%;">
+                        <h1 style="color: white;" class="uk-article-title">{{shop.name}}</h1>
+
+                        <p style="color: white; font-size: 1.2em;" class="uk-text-center uk-text-break">
+                            {{shop.category}}</p>
+                    </div>
+
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+        {% endfor %}
+    </div>
+</div>
+
+<script>
+    search_pole = document.getElementById('search_pole')
+    search_pole1 = document.getElementById('search_pole')
+    if (search_pole != null) {
+
+        document.getElementById('search_pole').addEventListener('keyup', function (event) {
+            document.getElementById('searchBtn').href = "/goods/search/" + document.getElementById(
+                'search_pole').value;
+            if (event.keyCode == 13) {
+                document.getElementById('searchBtn').click();
+            }
+        });
+
+    } else {
+        document.getElementById('search_pole1').addEventListener('keyup', function (event) {
+            document.getElementById('searchBtn1').href = "/goods/search/" + document.getElementById(
+                'search_pole1').value;
+            if (event.keyCode == 13) {
+                document.getElementById('searchBtn1').click();
+            }
+        });
+    }
+</script>
+
+{% include "footer.html" %}
+{% endblock %}

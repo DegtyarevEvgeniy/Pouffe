@@ -1,0 +1,170 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+    body {
+        background: #eee
+    }
+    
+    #regForm {
+        background-color: #ffffff;
+        margin: 0px auto;
+        font-family: Raleway;
+        padding: 40px;
+        border-radius: 10px
+    }
+    
+    #register {
+        color: #6A1B9A
+    }
+    
+    h1 {
+        text-align: center
+    }
+    
+    input {
+        padding: 10px;
+        width: 100%;
+        font-size: 17px;
+        font-family: Raleway;
+        border: 1px solid #aaaaaa;
+        border-radius: 10px;
+        -webkit-appearance: none
+    }
+    
+    .tab input:focus {
+        border: 1px solid #6a1b9a !important;
+        outline: none
+    }
+    
+    input.invalid {
+        border: 1px solid #e03a0666;
+    }
+    
+    .tab {
+        display: none
+    }
+    
+    button {
+        background-color: #6A1B9A;
+        color: #ffffff;
+        border: none;
+        border-radius: 50%;
+        padding: 10px 20px;
+        font-size: 17px;
+        font-family: Raleway;
+        cursor: pointer
+    }
+    
+    button:hover {
+        opacity: 0.8
+    }
+    
+    button:focus {
+        outline: none !important
+    }
+    
+    #prevBtn {
+        background-color: #bbbbbb
+    }
+    
+    .all-steps {
+        text-align: center;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        width: 100%;
+        display: inline-flex;
+        justify-content: center
+    }
+    
+    .step {
+        height: 40px;
+        width: 40px;
+        margin: 0 2px;
+        background-color: #bbbbbb;
+        border: none;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 15px;
+        color: #6a1b9a;
+        opacity: 0.5
+    }
+    
+    .step.active {
+        opacity: 1
+    }
+    
+    .step.finish {
+        color: #fff;
+        background: #6a1b9a;
+        opacity: 1
+    }
+    
+    .all-steps {
+        text-align: center;
+        margin-top: 30px;
+        margin-bottom: 30px
+    }
+</style>
+<body style="width: 80%; margin: auto;">
+    <div class="container mt-5">
+        <div class="row d-flex justify-content-center align-items-center">
+            <div class="col-md-8">
+                <form id="regForm" method="POST">
+                    <h1 id="register">Signin Form</h1>
+                    <div class="all-steps" id="all-steps">
+                        <a onclick="surTab(0)">
+                            <span class="step">
+								<i class="fa fa-user"></i>
+							</span>
+                        </a>    
+                    </div>
+                    <div class="tab">
+                        <label>Почта</label>
+                        <input type="text" class="form-control">
+                        <br>
+                        <br> 
+                        <label>Пароль</label>
+                        <input type="password" class="form-control">
+                        <br>
+                        <br>
+                        <label>Пароль</label>
+                        <input type="password" class="form-control">
+                        <br>
+                        <br>
+                    </div>
+
+                    {% csrf_token %} {% if form.errors %} {% for field in form %} {% for error in field.errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{ error|escape }}</strong>
+                    </div>
+                    {% endfor %} {% endfor %} {% endif %}
+                    <div style="overflow:auto;" id="next-previous">
+                        <div style="float:right;">
+                            <button type="button" id="prevBtn" onclick="nextPrev(-1)">
+								<i class="fa fa-angle-double-left"></i>
+							</button>
+                            <button type="button" id="nextBtn" onclick="nextPrev(1)">
+								<i class="fa fa-angle-double-right"></i>
+							</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+<script  src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js'></script>
+<script>
+    let currentTab = 0; document.addEventListener("DOMContentLoaded", function(event) { showTab(currentTab); }); function showTab(n) { let x = document.getElementsByClassName("tab"); x[n].style.display = "block"; if (n === 0) { document.getElementById("prevBtn").style.display
+    = "none"; } else { document.getElementById("prevBtn").style.display = "inline"; } if (n === (x.length - 1)) { document.getElementById("nextBtn").innerHTML = '<i class="fa fa-angle-double-right"></i>'; } else { document.getElementById("nextBtn").innerHTML
+    = '<i class="fa fa-angle-double-right"></i>'; } fixStepIndicator(n) } function nextPrev(n) { let x = document.getElementsByClassName("tab"); x[currentTab].style.display = "none"; currentTab = currentTab + n; if (currentTab === x.length) { document.getElementById('nextBtn').type
+    = "submit" } showTab(currentTab); } function surTab(n) { let x = document.getElementsByClassName("tab"); x[currentTab].style.display = "none"; currentTab = n; showTab(currentTab); } function fixStepIndicator(n) { let i, x = document.getElementsByClassName("step");
+    for (i = 0; i
+    < x.length; i++) { x[i].className=x [i].className.replace( " active", ""); } x[n].className +=" active" ; } </script>
+
+</html>
+{% endblock %}

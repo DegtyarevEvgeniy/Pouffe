@@ -1,0 +1,181 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+    body {
+        background: #eee
+    }
+
+    #regForm {
+        background-color: #ffffff;
+        margin: 0px auto;
+        font-family: Raleway;
+        padding: 40px;
+        border-radius: 10px
+    }
+
+    #register {
+        color: #6A1B9A
+    }
+
+    h1 {
+        text-align: center
+    }
+
+    input {
+        padding: 10px;
+        width: 100%;
+        font-size: 17px;
+        font-family: Raleway;
+        border: 1px solid #aaaaaa;
+        border-radius: 10px;
+        -webkit-appearance: none
+    }
+
+    .tab input:focus {
+        border: 1px solid #6a1b9a !important;
+        outline: none
+    }
+
+    input.invalid {
+        border: 1px solid #e03a0666
+    }
+
+    button {
+        background-color: #6A1B9A;
+        color: #ffffff;
+        border: none;
+        border-radius: 50%;
+        padding: 10px 20px;
+        font-size: 17px;
+        font-family: Raleway;
+        cursor: pointer
+    }
+
+    button:hover {
+        opacity: 0.8
+    }
+
+    button:focus {
+        outline: none !important
+    }
+
+    #prevBtn {
+        background-color: #bbbbbb
+    }
+
+    .all-steps {
+        text-align: center;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        width: 100%;
+        display: inline-flex;
+        justify-content: center
+    }
+
+    .step {
+        height: 40px;
+        width: 40px;
+        margin: 0 2px;
+        background-color: #bbbbbb;
+        border: none;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 15px;
+        color: #6a1b9a;
+        opacity: 0.5
+    }
+
+    .step.active {
+        opacity: 1
+    }
+
+    .step.finish {
+        color: #fff;
+        background: #6a1b9a;
+        opacity: 1
+    }
+
+    .all-steps {
+        text-align: center;
+        margin-top: 30px;
+        margin-bottom: 30px
+    }
+
+    .thanks-message {
+        display: none
+    }
+</style>
+
+<body>
+
+    <div class="container mt-5">
+        <div class="row d-flex justify-content-center align-items-center">
+            <div class="col-md-8">
+                <form method="post" id="regForm" action="{% url 'login' %}">
+                    <h1 id="redistration"> Login here</h1>
+                    <div class="all-steps" id="all-steps">
+                        <a href="">
+                            <span class="step">
+                                <i class="fa fa-user"></i>
+                            </span>
+                        </a>
+                    </div>
+
+                    <div class="tab">
+                        <p>
+                            <label>Почта</label>
+                            <input type="text" class="form-control">
+                            <br>
+                            <br>
+                            <label>Пароль</label>
+                            <input type="password" class="form-control">
+                            <br>
+                            <br>
+                        </p>
+                        {% if form.errors %}
+                        <div class="alert alert-danger" id="loginError" role="alert">
+                            Your username and password didn't match. Please try again.
+                        </div>
+                        {% endif %}
+
+                        {% if next %}
+                        {% if user.is_authenticated %}
+                        <div class="alert alert-warning" id="loginError" role="alert">
+                            Your account doesn't have access to this page. To proceed,
+                            please login with an account that has access.
+                        </div>
+                        {% else %}
+                        <div class="alert alert-warning" id="loginError" role="alert">
+                            Please login to see this page.
+                        </div>
+                        {% endif %}
+                        {% endif %}
+                        <p style="font-size: small;">Забыли пароль? <a href="/restorePassword">востановите
+                                его</a></p>
+                        <h7>Еще нет аккаунта? <a href="/signin">создай его</a></h7>
+                    </div>
+
+                    <div style="overflow: auto;" id="nextprevious">
+                        <div style="float: right;">
+                            {% csrf_token %}
+                            <button type="submit" id="nextBtn" value="login">
+                                <i class="fa fa-angle-double-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+    {# Assumes you setup the password_reset view in your URLconf #}
+</body>
+</script>
+
+{% endblock %}

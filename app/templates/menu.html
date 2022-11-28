@@ -1,0 +1,151 @@
+<div style="width: 90%; margin: 0 auto">
+    <nav class="uk-navbar-container" style="margin-bottom: 0; background-color: white;" uk-navbar>
+        <div class="uk-navbar-left">
+            <a href="#main-menuL" uk-toggle>
+                <span style="color: black" uk-icon="menu"></span>
+            </a>
+        </div>
+        <div class="uk-navbar-center uk-margin-right">
+
+            <ul class="uk-navbar-nav">
+                <li>
+                    <a href="/" class="uk-width-expand uk-padding-remove uk-flex uk-flex-middle">
+                        <img src="../../../media/logoImage/logo.svg" alt="" width="40">
+                        <img src="../../../media/logoImage/logo_text.svg" alt=""
+                            class="uk-width-small uk-margin-small-left">
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+        <div class="uk-navbar-right">
+
+            <ul class="uk-navbar-nav">
+                <li>
+                <li class="uk-flex uk-flex-middle">
+                    <div class="uk-search uk-search-default" style="width: 30vh; margin: auto">
+                        <a type="submit" href="" id="searchBtn" uk-search-icon></a>
+                        <input class="uk-search-input" type="search" placeholder="Search" id="search_pole"
+                            style="font-size: 25px; padding: 2% auto">
+                    </div>
+                </li>
+                <ul class="uk-navbar-nav uk-width-auto">
+                    <li class="uk-active">
+                        <a href="/becomeCreator/" uk-icon="icon: database"></a>
+                    </li>
+                    <li class="uk-active">
+                        <a href="/cart/" uk-icon="icon: cart"></a>
+                    </li>
+                    <li class="uk-active">
+                        <a href="/orders/" uk-icon="icon: bag"></a>
+                    </li>
+                    <li class="uk-active">
+                        <a uk-icon="icon: user"></a>
+                        <div class="uk-navbar-dropdown">
+                            <ul class="uk-nav uk-navbar-dropdown-nav">
+                                <li class="uk-active">
+                                    <a href="/partners/" class="uk-button uk-button-link uk-text-normal"
+                                        style="text-transform: none;">Стать партнером</a>
+                                </li>
+                                <li class="uk-nav-divider"></li>
+                                <li class="uk-active"><a href="/edit/">Настройки профиля</a></li>
+                                <!-- <li class="uk-active"><a href="/chats">Чаты</a></li> -->
+                                <li class="uk-active"><a href="/logout/">Выйти</a></li>
+                                <li class="uk-active"><a href="/admin/">Админка</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+<!-- 
+    <nav class="uk-navbar-container" style="margin-bottom: 0; height: 10vh; width: 100%; background-color: white"
+        uk-navbar>
+        <div class="uk-navbar-left">
+            <a href="#main-menuL" uk-toggle>
+                <span style="color: black" uk-icon="menu"></span>
+            </a>
+        </div>
+        <div class="uk-navbar-center">
+
+            <ul class="uk-navbar-nav">
+                <li>
+                    <a href="/" class="uk-width-expand uk-padding-remove uk-flex uk-flex-middle">
+                        <img src="../../../media/logoImage/logo.svg" alt="" width="40">
+                        <img src="../../../media/logoImage/logo_text.svg" alt=""
+                            class="uk-width-small uk-margin-small-left">
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+        <div class="uk-navbar-right">
+
+            <ul class="uk-navbar-nav">
+                <li>
+                <li class="uk-flex uk-flex-middle">
+                    <div class="uk-search uk-search-default uk-width-4-5">
+                        <a type="submit" href="" id="searchBtn" uk-search-icon></a>
+                        <input class="uk-search-input" type="search" placeholder="Search" id="search_pole"
+                            style="font-size: 25px; padding: 2% auto">
+                    </div>
+                </li>
+                <ul class="uk-navbar-nav uk-width-auto">
+                    {% if user.is_partner %}
+                    <li class="uk-active">
+                        <a href="/becomeCreator/" uk-icon="icon: database"></a>
+                    </li>
+                    {% endif %}
+                
+                    <li class="uk-active">
+                        <a href="/orders/" uk-icon="icon: bag"></a>
+                    </li>
+                    <li class="uk-active">
+                        <a uk-icon="icon: user" href="/login/"></a>
+                    </li>
+                </ul>
+
+                </li>
+            </ul>
+        </div>
+    </nav> -->
+
+
+    <!-- start of main-menuL -->
+    <div id="main-menuL" uk-offcanvas>
+        <div class="uk-offcanvas-bar">
+            <ul class="uk-nav uk-nav-default">
+                <li class="uk-active">
+                    <a href="/goods/category/Clothing" class="uk-button uk-button-text">Одежда </a>
+                </li>
+                <li class="uk-active">
+                    <a href="/goods/category/Shoes" class="uk-button uk-button-text">Обувь</a>
+                </li>
+                <li class="uk-active">
+                    <a href="/goods/category/Bags" class="uk-button uk-button-text">Сумки</a>
+                </li>
+                <li class="uk-active">
+                    <a href="/goods/category/Interior" class="uk-button uk-button-text">Интерьер</a>
+                </li>
+                <li class="uk-active">
+                    <a href="/goods/category/Accessories" class="uk-button uk-button-text">Аксессуары</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<style>
+    * {
+        font-family: 'Montserrat', !important;
+    }
+
+    svg {
+        width: 30px;
+        height: 30px;
+    }
+</style>

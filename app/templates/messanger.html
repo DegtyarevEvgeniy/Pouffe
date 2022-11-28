@@ -1,0 +1,90 @@
+<div style="height: 80%;margin: 15% auto 0 auto; width: 70%" class="uk-position-bottom">
+    <!-- <form action="GET"> -->
+    <div class="uk-card uk-card-default uk-border-rounded uk-margin uk-position-bottom" style="height: 100%; ">
+        <div class="uk-card-body uk-panel uk-panel-scrollable uk-padding-small"
+            style="height: 100%; font-size:1.3em" id="messageDisplay">
+        </div>
+        <form id="post-form">
+            {% csrf_token %}
+            <div class="uk-card-footer uk-padding-remove uk-position-bottom" style="background-color: white;">
+                <div class="uk-grid-small uk-flex-middle" uk-grid>
+                    <div class="uk-width-expand" style="margin: 0 3%">
+                        <div class="uk-padding-small uk-padding-remove-horizontal uk-flex" style="margin: 0 auto">
+                            <input type="hidden" id="username" value="{{user.id}}">
+                            <!-- <input type="hidden" id="room_id" value="{{room_id}}"> -->
+                            <input class="uk-textarea uk-padding-remove uk-border-rounded uk-margin-small-right"
+                                placeholder="Напишите сообщение..." id="message" style="font-size: 20px;" />
+                            <input class="uk-button uk-button-text material-symbols-outlined" id="sendBtn" type="submit"
+                                value="send"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        var room = localStorage.activeChat
+        var id = $('#username').val()
+        setInterval(function () {
+            $.ajax({
+                type: 'GET',
+                url: "/getMsg/chat/" + localStorage.activeChat + "/",
+                success: function (response) {
+                    // console.log(response);
+                    $("#messageDisplay").empty();
+                    for (var key in response.messages) {
+                        if (response.messages[key].user == id) {
+                            var temp =
+                                '<div class="me uk-grid-small uk-flex-bottom uk-flex-right" uk-grid> <div class="uk-width-auto uk-flex uk-flex-right"> <div class="uk-card uk-card-body uk-card-small uk-card-primary uk-border-rounded uk-width-1"> <p class="uk-margin-remove uk-text-break">' +
+                                response.messages[key].value +
+                                ' </p></div></div></div>';
+
+                        } else {
+                            var temp =
+                                '<div class="guest uk-grid-small uk-flex-bottom uk-flex-left" uk-grid><div class="uk-width-auto "><div class="uk-card uk-card-body uk-card-small uk-card-default uk-border-rounded uk-width-1"> <p class="uk-margin-remove uk-text-break">' +
+                                response.messages[key].value +
+                                '</p></div></div></div>';
+                        }
+                        $("#messageDisplay").append(temp);
+                        // console.log(temp)
+                        // console.log("response.messages[key].user = ", response.messages[key].user)
+                        // console.log("response.messages[key].value = ", response.messages[key].value)
+                        // console.log("response.messages[key].date = ", response.messages[key].date)
+                    }
+                },
+                error: function (response) {
+                    // alert('An error occured')
+                }
+            });
+        }, 1000);
+    })
+
+    document.getElementById('message').addEventListener('keyup', function (event) {
+        if (event.keyCode == 13) {
+            document.getElementById('sendBtn').click();
+        }
+    });
+
+    $(document).on('submit', '#post-form', function (e) {
+        e.preventDefault();
+        if ($('#message').val().trim()) {
+            $.ajax({
+                type: 'POST',
+                url: '/send',
+                data: {
+                    username: $('#username').val(),
+                    room_id: localStorage.activeChat,
+                    message: $('#message').val(),
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                },
+                success: function (data) {
+                    // alert(data)
+                }
+            });
+        }
+        document.getElementById('message').value = ''
+    });
+</script>

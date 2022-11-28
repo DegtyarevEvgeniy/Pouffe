@@ -1,0 +1,307 @@
+<style>
+    input {
+        border-radius: 5px !important;
+    }
+
+    #regForm {
+        margin: 0px auto;
+        padding: 40px;
+        border-radius: 10px;
+    }
+
+    .tab {
+        display: none;
+    }
+
+    #prevBtn {
+        background-color: #bbbbbb;
+    }
+
+    .all-steps {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-align: center;
+        vertical-align: middle;
+        margin: 30px auto;
+        width: 30%;
+        height: 8px;
+        border-top: 1px solid;
+        border-bottom: 1px solid;
+        border-radius: 20px;
+    }
+
+    .all-steps::after {
+        border-radius: 200px;
+        background-color: #0a3644;
+        content: '\A';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: var(--width-nonstatic, 35%);
+        z-index: 1;
+    }
+
+    .step {
+        z-index: 2;
+        height: 25px;
+        width: 25px;
+        margin: 0px;
+        background-color: #bbbbbb;
+        border: 2px solid;
+        border-color: #bbbbbb;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 15px;
+        opacity: 1;
+        transition: 0.2s;
+    }
+</style>
+
+<body>
+    <div>
+        <div>
+            <div>
+                <div class="all-steps" id="all-steps">
+                    <a style="background-color: #2652bf; border-color: #2652bf" class="step" onclick="surTab(0)"></a>
+                    <a class="step" onclick="surTab(1)"></a>
+                    <!-- <a class="step" onclick="surTab(4)"></a> -->
+                </div>
+                <form id="regForm" class="uk-width-4-5" action="/becomeCreator/" method="POST">
+
+                    <div class="tab" style="display: block">
+                        <h2 class="uk-text-center">Юридические данные</h2>
+                        <h4 class="uk-text-center">Введите данные</h4>
+                        <br>
+                        <div class="uk-width-4-5 uk-flex uk-flex-between" style="margin: 0 auto">
+                            <div style="display: inline-block; margin: 0 10px" class="uk-width-1-3">
+                                <label> Тип </label>
+                                <br>
+                                <select class="uk-select">
+                                    <option value="ООО">ООО</option>
+                                    <option value="ИП">ИП</option>
+                                    <option value="Самозанятый">Самозанятый</option>
+                                    <option value="Физлицо">Физлицо</option>
+                                </select>
+                            </div>
+                            <div style="display: inline-block; margin: 0 10px" class="uk-width-1-3">
+
+                                <label>Краткое наименование</label>
+                                <br>
+                                <input type="text" id="companyInput" name="name_small" maxlength="50"
+                                    class="form-control" placeholder="{{creator.name_small}}"
+                                    value="{{creator.name_small}}">
+                            </div>
+
+                            <div style="display: inline-block; margin: 0 10px" class="uk-width-1-3">
+                                <label>Полное наименование</label>
+                                <br>
+                                <input type="text" id="companyInput" name="nameFull" maxlength="50" class="form-control"
+                                    placeholder="{{creator.nameFull}}" value="{{creator.nameFull}}">
+                            </div>
+                        </div>
+
+                        <br>
+
+                        <div class="uk-width-4-5 uk-flex uk-flex-between" style="margin: 0 auto">
+                            <div style="display: inline-block; margin: 0 10px" class="uk-width-1-3">
+
+                                <label>ОГРН</label>
+                                <br>
+                                <input type="text" id="companyInput" name="ogrn" maxlength="50" class="form-control"
+                                    placeholder="{{creator.ogrn}}" value="{{creator.ogrn}}">
+                            </div>
+                            <div style="display: inline-block; margin: 0 10px" class="uk-width-1-3">
+
+                                <label>ИНН</label>
+                                <br>
+                                <input type="text" id="companyInput" name="inn" maxlength="50" class="form-control"
+                                    placeholder="{{creator.inn}}" value="{{creator.inn}}">
+                            </div>
+                            <div style="display: inline-block; margin: 0 10px" class="uk-width-1-3">
+
+                                <label>КПП</label>
+                                <br>
+                                <input type="text" id="companyInput" name="kpp" maxlength="50" class="form-control"
+                                    placeholder="{{creator.kpp}}" value="{{creator.kpp}}">
+                            </div>
+                        </div>
+
+                        <br>
+
+                        <div class="uk-width-4-5 uk-flex uk-flex-between" style="margin: 0 auto">
+                            <div style="display: inline-block; margin: 0 10px" class="uk-width-1">
+
+                                <label>Адрес</label>
+                                <br>
+                                <input type="text" id="companyInput" name="street" maxlength="50" class="form-control"
+                                    placeholder="{{creator.street}}" value="{{creator.street}}">
+                            </div>
+                        </div>
+
+                        <br>
+
+                        <div class="uk-width-4-5 uk-flex uk-flex-between" style="margin: 0 auto">
+                            <div style="display: inline-block; margin: 0 10px" class="uk-width-2-4">
+
+                                <label>Физ адрес</label>
+                                <br>
+                                <input type="text" id="companyInput" name="fiz_adress" maxlength="50"
+                                    class="form-control" placeholder="{{creator.fiz_adress}}"
+                                    value="{{creator.fiz_adress}}">
+                            </div>
+                            <div style="display: inline-block; margin: 0 10px" class="uk-width-1-4">
+
+                                <label>Город</label>
+                                <br>
+                                <input type="text" id="companyInput" name="city" maxlength="50" class="form-control"
+                                    placeholder="{{creator.city}}" value="{{creator.city}}">
+                            </div>
+                            <div style="display: inline-block; margin: 0 10px" class="uk-width-1-4">
+
+                                <label>Индекс</label>
+                                <br>
+                                <input type="text" id="companyInput" name="index" maxlength="50" class="form-control"
+                                    placeholder="{{creator.index}}" value="{{creator.index}}">
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <div class="tab">
+                        <h2 class="uk-text-center">Оплата</h2>
+                        <h4 class="uk-text-center">Введите данные для оплаты</h4>
+                        <br>
+                        <div class="uk-width-1-1 uk-flex uk-flex-center">
+                            <div style="display: inline-block; margin: 0 10px" class="uk-width-1-3">
+
+                                <label>Расчетный счет</label>
+                                <br>
+                                <input type="text" id="companyInput" name="payment_account" maxlength="50"
+                                    class="form-control" placeholder="{{creator.payment_account}}"
+                                    value="{{creator.payment_account}}">
+                            </div>
+                            <div style="display: inline-block; margin: 0 10px" class="uk-width-1-3">
+
+                                <label>Форма регистрации</label>
+                                <br>
+                                <input type="text" id="companyInput" name="reg_form" maxlength="50" class="form-control"
+                                    placeholder="{{creator.reg_form}}" value="{{creator.reg_form}}">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="uk-width-1-1 uk-flex uk-flex-center">
+                            <div style="display: inline-block; margin: 0 10px" class="uk-width-1-3">
+
+                                <label>БИК</label>
+                                <br>
+                                <input type="text" id="companyInput" name="bik" maxlength="50" class="form-control"
+                                    placeholder="{{creator.bik}}" value="{{creator.bik}}">
+                            </div>
+
+                            <div style="display: inline-block; margin: 0 10px" class="uk-width-1-3">
+
+                                <label>КОР</label>
+                                <br>
+                                <input type="text" id="companyInput" name="korr_check" maxlength="50"
+                                    class="form-control" placeholder="{{creator.korr_check}}"
+                                    value="{{creator.korr_check}}">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab">
+                        <h2 class="uk-text-center">Загрузка данных</h2>
+                        <h4 class="uk-text-center">Пожалуйста подождите</h4>
+                    </div>
+
+                    <br>
+                    <br>
+                    <div style="overflow:auto;" id="next-previous">
+                        <div style="float:right;">
+                            <button class="uk-button uk-button-default" type="button" id="prevBtn"
+                                onclick="nextPrev(-1)">
+                                Назад
+                            </button>
+                            {% csrf_token %}
+                            <button class="uk-button uk-button-default" type="button" id="nextBtn" onclick="nextPrev(1)"
+                                name="profile_saver1">
+                                Далее
+                            </button>
+
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+<!-- <script  src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js'></script> -->
+
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.13.7/dist/js/uikit.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.13.7/dist/js/uikit-icons.min.js"></script>
+<script>
+    let currentTab = 0;
+    let progressBar = document.querySelector(".all-steps");
+    
+
+    function showTab(n) {
+        let x = document.getElementsByClassName("tab");
+        x[n].style.display = "block";
+        console.log(n)
+        if (n === 0) {
+            document.getElementById("prevBtn").style.display = "none";
+        } else {
+            document.getElementById("prevBtn").style.display = "inline";
+        }
+        if (n === (x.length - 1)) {
+            document.getElementById("nextBtn").innerHTML = "Далее";
+        } else {
+            document.getElementById("nextBtn").innerHTML = "Далее";
+        }
+        fixStepIndicator(n)
+    }
+
+    function nextPrev(n) {
+        let x = document.getElementsByClassName("tab");
+        x[currentTab].style.display = "none";
+        currentTab = currentTab + n;
+        if (currentTab === x.length - 1) {
+            document.getElementById('nextBtn').type = "submit"
+        }
+        showTab(currentTab);
+    }
+
+    function surTab(n) {
+        let x = document.getElementsByClassName("tab");
+        x[currentTab].style.display = "none";
+        currentTab = n;
+        showTab(currentTab);
+    }
+
+    function fixStepIndicator(n) {
+        let i, x = document.getElementsByClassName("step");
+
+        progressBar.style.setProperty("--width-nonstatic", "100%");
+
+        x[n].style.backgroundColor = '#2652bf';
+        x[n].style.borderColor = '#2652bf';
+        //color for n
+
+        for (i = 0; i < n; i++) { // color for every before n
+            x[i].style.backgroundColor = '#0a3644';
+            x[i].style.borderColor = '#0a3644';
+        }
+
+        for (i = n + 1; i < x.length; i++) { // color for every after n
+            x[i].style.backgroundColor = '#bbbbbb';
+            x[i].style.borderColor = '#bbbbbb';
+        }
+    }
+</script>

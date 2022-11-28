@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+
+<style>
+    #main-img {
+        height: 30em;
+        background-color: #cccccc;
+        background-image: url({{profile.bgImage}});
+        background-repeat: none;
+        background-position: center;
+        background-size: cover;
+        display: flex;
+        align-items: flex-end;
+        justify-content: left;
+        border-bottom: 1px solid;
+    }
+</style>
+
+<body style="margin: 0 auto;">
+
+
+
+    <div id="main-img">
+        <div class="uk-width-4-5 uk-flex uk-flex-left" style="margin: 0 auto;">
+            <div class="uk-width-auto uk-flex uk-flex-middle uk-flex-aound"
+                style="margin: 0 auto; padding: 0 2%; border-top-left-radius: 5px;  border-top-right-radius: 5px; background-color: white;">
+                <div class="uk-flex uk-flex-center uk-flex-middle " style="padding: 1%; ">
+                    <img class="" width="250" src="{{profile.logoImage}}">
+                </div>
+                <div class="uk-width-expand uk-flex uk-flex-left uk-flex-middle" style="padding: 0">
+                    <h1 class="uk-card-title uk-margin-remove-bottom uk-padding-small"
+                        style=" font-size: 5em; text-transform:uppercase;">{{profile.name}}</h1>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="uk-section  uk-width-4-5" style="margin: 0 auto;">
+        <div class="uk-width-1-2">
+            <h2>О бренде</h2>
+            <p class="uk-text-break">{{profile.description}}</p>
+        </div>
+    </div>
+    <div class="uk-section uk-width-4-5 uk-flex uk-flex-wrap uk-flex-wrap-around uk-flex-left" style="margin: 0 auto;">
+        <!-- start of card -->
+        {% for item in products %}
+        <div class="uk-card uk-card-default uk-width-1-4@l uk-width-1-3"
+            style="box-shadow: none; padding: 3px; margin: 40px;">
+            <div>
+                <div class="uk-card uk-card-default">
+                    <div class="uk-card-media-top uk-text-center" style="margin-top: 5%">
+                        <img src="{{item.picture}}" width="200" alt="">
+                    </div>
+                    <div class="uk-card-body">
+                        <h3 class="uk-card-title uk-text-truncate">{{ item.item_name }}</h3>
+                        <p>
+                            <label>Наличие: </label> {{ item.availability }}
+                        </p>
+                        <div class="price">
+                            {{ item.cost }} ₽
+                        </div>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                            the card's content.</p>
+                        <a href="../goods/{{ item.id }}" class="btn btn-primary">Посмотреть</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        {% endfor %}
+        <!-- end of card -->
+
+    </div>
+    <!-- <div class="width-1 uk-text-center">
+        <h3>Товары продавца</h3>
+    </div>
+    uk-flex uk-flex-wrap uk-flex-wrap-around uk-flex-center uk-width-1 -->
+    <!-- <div class="uk-card-body  uk-grid-column-small uk-grid-row-large uk-flex-center uk-text-right" uk-grid
+        style="margin: 10px auto;  padding: 5px;">
+        {% for product in products %}
+        {% if profile.email == product.id_creator %}
+
+        <div class="uk-card uk-card-default uk-width-1-4" style="box-shadow: none; padding: 3px; margin: 40px;">
+            <div>
+                <div class="uk-card uk-card-default">
+                    <div class="uk-card-media-top uk-text-center" style="margin-top: 5%">
+                        <img src="{{ product.picture.url }}" width="300" alt="">
+                    </div>
+                    <div class="uk-card-body">
+                        <h3 class="uk-card-title uk-text-truncate">{{ product.product_name }}</h3>
+                        <p>
+                            <label>Наличие: </label> {{ product.availability }}
+                        </p>
+                        <div class="price">
+                            {{ product.cost }} ₽
+                        </div>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk
+                            of
+                            the
+                            card's
+                            content.</p>
+                        <a href="../goods/{{ product.id }}" class="btn btn-primary">Посмотреть</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>  -->
+</body>
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.13.7/dist/js/uikit.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.13.7/dist/js/uikit-icons.min.js"></script>
+
+
+{% endblock %}

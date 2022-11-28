@@ -1,0 +1,666 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+
+<div class="uk-flex" style="width: 80%; margin: 0 auto; margin-bottom: 5%">
+    <div>
+        <div class="uk-margin-medium-top uk-margin-medium-left uk-margin-medium-bottom">
+            <a>
+                <div class="uk-flex uk-">
+                    <img  width="40px" height="30px" src="https://cdn-icons-png.flaticon.com/512/545/545680.png">
+                    <h2 class="uk-margin-remove">К задачам</h2>
+                </div>
+            </a>
+        </div>
+        <div class="uk-flex-column" style="width: 140%; margin-left: 65%">
+            <div>
+                <h1>Создать задачу</h1>
+            </div>
+            <div class="">
+                <form method="post" action="{% url 'AddTask' %}">
+                    {% csrf_token %}
+                    <div class="form-floating uk-margin-medium-top">
+                        <p class="uk-margin-remove-bottom">Название задачи</p>
+                        {{ form.task_name }}
+                    </div>
+                    <div class="form-floating uk-margin-medium-top">
+                        <p class="uk-margin-remove-bottom">Описание задачи</p>
+                        {{ form.description }}
+                    </div>
+
+                <label>Ключевые слова</label>
+                <div class="input-group mt-2 mb-2">
+                    <input type="text" value="-" name="tag" id="keyValue" class="form-control">
+                    <button name="tag" type="submit" class="btn btn-outline-secondary" id="btnAddkey" onclick="addKey(this)" ><i class="fa fa-plus"></i></button>
+                    <br>
+                </div>
+
+
+                    {% csrf_token %}
+                    <div class="form-floating uk-margin-medium-top">
+                        <p class="uk-margin-remove-bottom">Бюджет покупки</p>
+                        {{ form.price }}
+                        <!--без этого задача не сохраняется в бд (select and data)-->
+                        <p class="uk-margin-remove-bottom">------------</p>
+                        {{ form.select }}
+                        <p class="uk-margin-remove-bottom">Дата</p>
+                        {{ form.date }}
+                    </div>
+                    <div class="uk-flex-column" style="margin-top: 2%;">
+                        <div class="uk-flex uk-margin-medium-top uk-margin-bottom" style="margin-left: 13%">
+                            <input style="margin-top: 4%" type="checkbox" id="terms_and_conditions" value="1" onclick="terms_changed(this)" />
+                            <div class="uk-margin-medium-left">
+                                <label for="terms_and_conditions">Нажав на кнопку вы соглашаетесь с.....</label>
+                                <br>
+                                <label for="terms_and_conditions">Задача будет опубликована от вашего имени.</label>
+                            </div>
+                        </div>
+                        <div>
+                            <button style="width: 100%; border-radius: 5px;" type="submit" class="uk-button-default" name="addtask" id="submit_button" disabled>Опубликовать</button>
+                        </div>
+                    </div>
+            </form>
+            </div>
+        </div>
+    </div>
+    <div class="uk-flex-column" style="width: 25%; background-color: #C4C4C4; margin-left:auto;">
+        <div style="margin-top: 10%">
+            <a href="#" class="uk-button" style="background-color: #E5E5E5; display: block;  text-align:center">Мои задачи</a>
+        </div>
+        <div style="margin-top: 2%">
+            <a href="#" class="uk-button" style="background-color: #E5E5E5; display: block;  text-align:center">Создать</a>
+        </div>
+        <!-- <div style="margin-top: 2%"> -->
+            <!-- <a href="#" class="uk-button" style="background-color: #E5E5E5; display: block;  text-align:center">Чаты</a> -->
+        <!-- </div> -->
+    </div>
+</div>
+
+
+
+
+<script src="https://code.jquery.com/jquery-1.12.3.js" integrity="sha256-1XMpEtA4eKXNNpXcJ1pmMPs8JV+nwLdEqwiJeCQEkyc=" crossorigin="anonymous">
+</script>
+<script>
+    $(function() {
+
+        let $list, $newItemForm;
+        $list = $('ul');
+        $newItemForm = $('#newItemForm');
+
+        $newItemForm.on('submit', function(e) {
+            e.preventDefault();
+            let text = $('input:text').val();
+            $list.append('<li>' + text + '</li>');
+            $('input:text').val('');
+        });
+
+        $list.on('click', 'li', function() {
+            let $this = $(this);
+            $this.remove();
+        });
+
+    });
+
+    function terms_changed(termsCheckBox){
+        //If the checkbox has been checked
+        if(termsCheckBox.checked){
+            //Set the disabled property to FALSE and enable the button.
+            document.getElementById("submit_button").disabled = false;
+        } else{
+            //Otherwise, disable the submit button.
+            document.getElementById("submit_button").disabled = true;
+        }
+    }
+</script>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+    .height-form {
+        height: 10%
+    }
+    .TextStyle li {
+        background-color: #fff;
+        color: #000;
+        font-size: 20px;
+        list-style-type: none;
+        width: 20%;
+        margin: 0px auto;
+        border-radius: 3px;
+        border: 1px solid #000;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+
+
+
+    .inputText {
+        font-size: 12px;
+        padding: 6px;
+        border: 1px solid #000;
+        border-radius: 3px;
+    }
+
+    .inputSubmit {
+        background-color: #fff;
+        color: #000;
+        border-radius: 8px;
+        border: none;
+        padding: 5px;
+    }
+
+    .item {
+        background-color: #fff;
+        color: #000;
+    }
+
+    #newItemButton {
+        display: none;
+    }
+
+    #itemField {
+        margin-top: 60px;
+        width: 10%;
+    }
+    .container {
+        max-width: 700px;
+        width: 100%;
+        background-color: #fff;
+        padding: 25px 30px;
+        border-radius: 5px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .container .title {
+        font-size: 25px;
+        font-weight: 500;
+        position: relative;
+    }
+
+    .container .title::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 3px;
+        width: 30px;
+        border-radius: 5px;
+        background: linear-gradient(135deg, #71b7e6, #9b59b6);
+    }
+
+    .content form .user-details {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin: 20px 0 12px 0;
+    }
+
+    form .user-details .input-box {
+        margin-bottom: 15px;
+        width: calc(100% / 2 - 20px);
+    }
+
+    form .input-box span.details {
+        display: block;
+        font-weight: 500;
+        margin-bottom: 5px;
+    }
+
+    .user-details .input-box input {
+        height: 45px;
+        width: 100%;
+        outline: none;
+        font-size: 16px;
+        border-radius: 5px;
+        padding-left: 15px;
+        border: 1px solid #ccc;
+        border-bottom-width: 2px;
+        transition: all 0.3s ease;
+    }
+
+    .user-details .input-box input:focus,
+    .user-details .input-box input:valid {
+        border-color: #9b59b6;
+    }
+
+    form .gender-details .gender-title {
+        font-size: 20px;
+        font-weight: 500;
+    }
+
+    form .category {
+        display: flex;
+        width: 80%;
+        margin: 14px 0;
+        justify-content: space-between;
+    }
+
+    form .category label {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    form .category label .dot {
+        height: 18px;
+        width: 18px;
+        border-radius: 50%;
+        margin-right: 10px;
+        background: #d9d9d9;
+        border: 5px solid transparent;
+        transition: all 0.3s ease;
+    }
+
+    #dot-1:checked~.category label .one,
+    #dot-2:checked~.category label .two,
+    #dot-3:checked~.category label .three {
+        background: #9b59b6;
+        border-color: #d9d9d9;
+    }
+
+    form input[type="radio"] {
+        display: none;
+    }
+
+    form .button {
+        height: 45px;
+        margin: 35px 0
+    }
+
+    form .button input {
+        height: 100%;
+        width: 100%;
+        border-radius: 5px;
+        border: none;
+        color: #fff;
+        font-size: 18px;
+        font-weight: 500;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        background: linear-gradient(135deg, #71b7e6, #9b59b6);
+    }
+
+    form .button input:hover {
+        /* transform: scale(0.99); */
+        background: linear-gradient(-135deg, #71b7e6, #9b59b6);
+    }
+
+    @media(max-width: 584px) {
+        .container {
+            max-width: 100%;
+        }
+        form .user-details .input-box {
+            margin-bottom: 15px;
+            width: 100%;
+        }
+        form .category {
+            width: 100%;
+        }
+        .content form .user-details {
+            max-height: 300px;
+            overflow-y: scroll;
+        }
+        .user-details::-webkit-scrollbar {
+            width: 5px;
+        }
+    }
+
+    @media(max-width: 459px) {
+        .container .content .category {
+            flex-direction: column;
+        }
+    }
+    #newItemButton {
+        display: none;
+    }
+
+    #itemField {
+        margin-top: 60px;
+        width: 10%;
+    }
+</style>
+
+
+<script>
+</script>
+<script src="https://code.jquery.com/jquery-1.12.3.js" integrity="sha256-1XMpEtA4eKXNNpXcJ1pmMPs8JV+nwLdEqwiJeCQEkyc=" crossorigin="anonymous">
+</script>
+
+<script>
+    var inputnum = 0,
+        keynum = 0,
+        currentTab = 0;
+
+    function addInput(el) {
+        inputnum++;
+        let input = el.parentElement.getElementsByTagName("input")[0];
+        if (inputnum < 15) {
+            var $inputGroup =
+                `<div class="input-group mt-2 mb-2 w-75"> <button class="btn btn-outline-secondary" onclick="removeInput(this, 1)" type="button"><i class="fa fa-minus"></i></button> <input type="text" class="form-control" value="${document.getElementById('inputvalue').value}" disabled> <button class="btn btn-outline-secondary" onclick="changeInput(this)" type="button"><span class="material-icons"> mode_edit </span></button></div>`;
+            document.getElementById("inputDiv").insertAdjacentHTML("afterbegin", $inputGroup);
+            input.value = "";
+        }
+    }
+
+    function removeInput(el) {
+        el.parentElement.remove()
+    }
+
+    function changeInput(el) {
+        let inputPole = el.parentElement.getElementsByTagName("input")[0];
+        let BtnImage = el.parentElement.getElementsByTagName("span")[0];
+        inputPole.disabled ? BtnImage.innerHTML = "edit_off" : BtnImage.innerHTML = "mode_edit";
+        inputPole.disabled ? inputPole.removeAttribute("disabled") : inputPole.setAttribute("disabled", "disabled");
+    }
+
+    function addKey(el) {
+        keynum++;
+        let key = el.parentElement.getElementsByTagName("input")[0];
+        if (keynum < 15) {
+            var $inputGroup =
+                `<div class="input-group mt-2 mb-2 w-75"> <button class="btn btn-outline-secondary" onclick="removeInput(this, 0)" type="button"><i class="fa fa-minus"></i></button> <input type="text" class="form-control" disabled value="${document.getElementById('keyValue').value}"> <button class="btn btn-outline-secondary" onclick="changeInput(this)" type="button"><span class="material-icons"> mode_edit </span> </div>`;
+            document.getElementById("keyDiv").insertAdjacentHTML("afterbegin", $inputGroup);
+            key.value = "";
+        }
+    }
+
+    function showExtraInputs() {
+        let extrInput = document.getElementById('extraInputs');
+        extrInput.className == "d-none" ? extrInput.className = "" : extrInput.className = "d-none";
+
+    }
+
+    document.addEventListener("DOMContentLoaded", function(event) {
+        showTab(currentTab);
+    });
+
+    function showTab(n) {
+        let x = document.getElementsByClassName("tab");
+        x[n].style.display = "block";
+        if (n === 0) {
+            document.getElementById("prevBtn").style.display = "none";
+        } else {
+            document.getElementById("prevBtn").style.display = "inline";
+        }
+        fixStepIndicator(n)
+    }
+
+    function nextPrev(n) {
+        let x = document.getElementsByClassName("tab");
+        x[currentTab].style.display = "none";
+        currentTab = currentTab + n;
+        if (currentTab === x.length) {
+            document.getElementById('nextBtn').href = "/becomeCreator/"
+            document.getElementById('nextBtn').type = "submit"
+        }
+        showTab(currentTab);
+    }
+
+    function fixStepIndicator(n) {
+        let i, x = document.getElementsByClassName("step");
+        for (i = 0; i <
+        x.length; i++) {
+            x[i].className = x[i].className.replace(" active", "");
+        }
+    }
+</script>
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<br>-->
+
+
+<!--<div class="container">-->
+<!--    <div class="title">editTask</div>-->
+<!--    <div class="content">-->
+<!--        <form method="post">-->
+<!--            {% csrf_token %}-->
+<!--            <div class="user-details">-->
+<!--                <div class="col-md">-->
+<!--                    <div class="form-floating">-->
+<!--                        {{ form.task_name }}-->
+<!--                        <label for="floatingInputGrid">Название задачи</label>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-md">-->
+<!--                    <div class="form-floating">-->
+<!--                        {{ form.select }}-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div class="form-floating">-->
+<!--                {{ form.description }}-->
+<!--                <label for="floatingTextarea2">Описание</label>-->
+<!--            </div>-->
+
+<!--            <div class="input-box">-->
+<!--                <br>-->
+<!--                <div class="input-group mb-3">-->
+<!--                    <span class="input-group-text">Цена</span>-->
+<!--                    {{ form.price }}-->
+<!--                    <span class="input-group-text">руб</span>-->
+<!--                </div>-->
+<!--            </div>-->
+
+
+<!--            <div class="form-group">-->
+<!--                {{ form.date }}-->
+<!--            </div>-->
+
+<!--            <div class="d-grid gap-2 d-md-block">-->
+<!--                <div class="buttonBack">-->
+<!--                    <a href="/yourTasks/">Назад</a>-->
+<!--                </div>-->
+<!--                <div class="button">-->
+<!--                    <input type="submit" value="Сохранить">-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </form>-->
+<!--    </div>-->
+<!--</div>-->
+
+
+<!--<style>-->
+<!--    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');-->
+<!--    .container {-->
+<!--        max-width: 700px;-->
+<!--        width: 100%;-->
+<!--        background-color: #fff;-->
+<!--        padding: 25px 30px;-->
+<!--        border-radius: 5px;-->
+<!--        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);-->
+<!--    }-->
+<!--    form .buttonBack a{-->
+<!--        text-align: center;-->
+<!--        box-sizing: border-box;-->
+<!--        height: 100%;-->
+<!--        width: 100%;-->
+<!--        margin: auto;-->
+<!--        padding: 10px 292px 10px;-->
+<!--        text-decoration: none;-->
+<!--        border-radius: 5px;-->
+<!--        border: none;-->
+<!--        color: #fff;-->
+<!--        font-size: 18px;-->
+<!--        font-weight: 500;-->
+<!--        letter-spacing: 1px;-->
+<!--        cursor: pointer;-->
+<!--        transition: all 0.3s ease;-->
+<!--        background: linear-gradient(135deg, #71b7e6, #9b59b6);-->
+
+<!--    }-->
+<!--    form .buttonBack {-->
+<!--        margin-top: 5%;-->
+
+<!--    }-->
+
+<!--    .container .title {-->
+<!--        font-size: 25px;-->
+<!--        font-weight: 500;-->
+<!--        position: relative;-->
+<!--    }-->
+
+<!--    .container .title::before {-->
+<!--        content: "";-->
+<!--        position: absolute;-->
+<!--        left: 0;-->
+<!--        bottom: 0;-->
+<!--        height: 3px;-->
+<!--        width: 30px;-->
+<!--        border-radius: 5px;-->
+<!--        background: linear-gradient(135deg, #71b7e6, #9b59b6);-->
+<!--    }-->
+
+<!--    .content form .user-details {-->
+<!--        display: flex;-->
+<!--        flex-wrap: wrap;-->
+<!--        justify-content: space-between;-->
+<!--        margin: 20px 0 12px 0;-->
+<!--    }-->
+
+<!--    form .user-details .input-box {-->
+<!--        margin-bottom: 15px;-->
+<!--        width: calc(100% / 2 - 20px);-->
+<!--    }-->
+
+<!--    form .input-box span.details {-->
+<!--        display: block;-->
+<!--        font-weight: 500;-->
+<!--        margin-bottom: 5px;-->
+<!--    }-->
+
+<!--    .user-details .input-box input {-->
+<!--        height: 45px;-->
+<!--        width: 100%;-->
+<!--        outline: none;-->
+<!--        font-size: 16px;-->
+<!--        border-radius: 5px;-->
+<!--        padding-left: 15px;-->
+<!--        border: 1px solid #ccc;-->
+<!--        border-bottom-width: 2px;-->
+<!--        transition: all 0.3s ease;-->
+<!--    }-->
+
+<!--    .user-details .input-box input:focus,-->
+<!--    .user-details .input-box input:valid {-->
+<!--        border-color: #9b59b6;-->
+<!--    }-->
+
+<!--    form .gender-details .gender-title {-->
+<!--        font-size: 20px;-->
+<!--        font-weight: 500;-->
+<!--    }-->
+
+<!--    form .category {-->
+<!--        display: flex;-->
+<!--        width: 80%;-->
+<!--        margin: 14px 0;-->
+<!--        justify-content: space-between;-->
+<!--    }-->
+
+<!--    form .category label {-->
+<!--        display: flex;-->
+<!--        align-items: center;-->
+<!--        cursor: pointer;-->
+<!--    }-->
+
+<!--    form .category label .dot {-->
+<!--        height: 18px;-->
+<!--        width: 18px;-->
+<!--        border-radius: 50%;-->
+<!--        margin-right: 10px;-->
+<!--        background: #d9d9d9;-->
+<!--        border: 5px solid transparent;-->
+<!--        transition: all 0.3s ease;-->
+<!--    }-->
+
+<!--    #dot-1:checked~.category label .one,-->
+<!--    #dot-2:checked~.category label .two,-->
+<!--    #dot-3:checked~.category label .three {-->
+<!--        background: #9b59b6;-->
+<!--        border-color: #d9d9d9;-->
+<!--    }-->
+
+<!--    form input[type="radio"] {-->
+<!--        display: none;-->
+<!--    }-->
+
+<!--    form .button {-->
+<!--        height: 45px;-->
+<!--        margin: 35px 0;-->
+
+<!--    }-->
+
+<!--    form .button input {-->
+<!--        height: 100%;-->
+<!--        width: 100%;-->
+<!--        border-radius: 5px;-->
+<!--        border: none;-->
+<!--        color: #fff;-->
+<!--        font-size: 18px;-->
+<!--        font-weight: 500;-->
+<!--        letter-spacing: 1px;-->
+<!--        cursor: pointer;-->
+<!--        transition: all 0.3s ease;-->
+<!--        background: linear-gradient(135deg, #71b7e6, #9b59b6);-->
+<!--    }-->
+
+
+<!--    form .button input:hover {-->
+<!--        /* transform: scale(0.99); */-->
+<!--        background: linear-gradient(-135deg, #71b7e6, #9b59b6);-->
+<!--    }-->
+
+<!--    @media(max-width: 584px) {-->
+<!--        .container {-->
+<!--            max-width: 100%;-->
+<!--        }-->
+<!--        form .user-details .input-box {-->
+<!--            margin-bottom: 15px;-->
+<!--            width: 100%;-->
+<!--        }-->
+<!--        form .category {-->
+<!--            width: 100%;-->
+<!--        }-->
+<!--        .content form .user-details {-->
+<!--            max-height: 300px;-->
+<!--            overflow-y: scroll;-->
+<!--        }-->
+<!--        .user-details::-webkit-scrollbar {-->
+<!--            width: 5px;-->
+<!--        }-->
+<!--    }-->
+
+<!--    @media(max-width: 459px) {-->
+<!--        .container .content .category {-->
+<!--            flex-direction: column;-->
+<!--        }-->
+<!--    }-->
+<!--</style>-->
+
+
+<!--<script>-->
+<!--</script>-->
+
+

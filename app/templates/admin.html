@@ -1,0 +1,67 @@
+
+{% extends "base.html" %}
+{% block content %}
+
+    <div class="card" id="product_creator">
+        <div class="card-body">
+            <!-- Grid row -->
+            <div class="row">
+                <!-- Grid column -->
+                <div class="uk-width-1 uk-text-center">
+                    <h1 class="">Одобрить заявку</h1>
+                </div>
+                <!-- Grid column -->
+            </div>
+            <!-- Grid row -->
+            <!--Table-->
+            <table class="uk-table uk-table-divider uk-width-4-5" style="margin: 2% auto;">
+                <!--Table head-->
+                <thead>
+                    <tr>
+                        <th class="uk-text-center uk-width-auto">ID</th>
+                        <th class="uk-text-center uk-width-auto">Название бренда</th>
+                        <th class="uk-text-center uk-width-auto">Имя</th>
+                        <th class="uk-text-center uk-width-auto">Телефон</th>
+                        <th class="uk-text-center uk-width-auto">Город</th>
+                        <th class="uk-text-center uk-width-auto">ССылка</th>
+                        <th class="uk-text-center uk-width-auto">Почта</th>
+                        <th class="uk-text-center uk-width-auto">Одорить</th>
+
+
+                    </tr>
+                </thead>
+                <!--Table head-->
+                <!--Table body-->
+                <form method="POST" id="goodsList">
+
+
+                    {% csrf_token %}
+                    <tbody>
+
+                        {% for partner in partners %}
+
+                        <tr>
+                            <td class="uk-text-truncate uk-text-center">{{ partner.id }}</td>
+                            <td class="uk-text-truncate uk-text-center">{{ partner.brand_name }}</td>
+                            <td class="uk-text-truncate uk-text-center">{{ partner.name }}</td>
+                            <td class="uk-text-truncate uk-text-center">{{ partner.phone }}</td>
+                            <td class="uk-text-truncate uk-text-center">{{ partner.city }}</td>
+                            <td class="uk-text-truncate uk-text-center">{{ partner.link }}</td>
+                            <td class="uk-text-truncate uk-text-center">{{ partner.email }}</td>
+                            <td class="uk-text-center uk-flex uk-flex-center">
+                                <button name="deletePaartner" form="goodsList" value="{{partner.id}}" type="submit"
+                                    class="uk-button uk-button-danger uk-margin-small-right uk-border-rounded uk-text-large"> X </button>
+                                <button name="submitPaartner" form="goodsList" value="{{partner.id}}" type="submit"
+                                    class="uk-button uk-button-primary uk-margin-small-left uk-border-rounded uk-text-large"> Y </button>
+                            </td>
+                        </tr>
+
+                        {% endfor %}
+                    </tbody>
+                </form>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}
+

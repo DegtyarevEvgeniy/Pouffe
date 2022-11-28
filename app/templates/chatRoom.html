@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+
+<style>
+    #chatList li {
+        margin: 5% auto;
+    }
+
+    #chatList li button {
+        margin: 0 auto;
+        border-bottom: 1px solid;
+    }
+</style>
+
+<body>
+
+    <div class="uk-panel uk-panel-scrallable">
+        <ul class="uk-nav " id="chatList" style="height: 100%; width: 15%">
+            {% if chats %}
+            {% for chat in chats %}
+            <li class="uk-active uk-flex uk-flex-center">
+                <button type="button"
+                    class="uk-width-4-5 uk-text-left uk-button uk-button-link Btn {{chat.chat_room}}">{{chat.first_name}}
+                    {{chat.last_name}}</button>
+            </li>
+            {% endfor %}
+            {% else %}
+            <h2>У вас пока нет начатых бесед</h2>
+            {% endif %}
+        </ul>
+    </div>
+    <!-- <div id="MainWindowContainer" style="width: 100px; height: 100px;"></div> -->
+    {% include "messanger.html" %}
+    </div>
+
+</body>
+
+<script>
+    var link = 0
+
+    $('.Btn').on('click', {}, function (inBody) {
+        // var xhr = new XMLHttpRequest()
+        classes = $(this).attr('class').split(/\s+/)
+        link = classes[classes.length - 1]
+        console.log(link)
+        localStorage.activeChat = link
+        // xhr.open('GET', `/chat/${link}/`)
+        // xhr.onload = function () {
+        //     $('#MainWindowContainer').html(xhr.response)
+        // }
+        // xhr.send()
+    });
+</script>
+
+
+{% endblock %}

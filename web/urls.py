@@ -15,10 +15,49 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.contrib.auth import views as authViews
 from app import views
+from django.conf.urls import include
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', views.index_page),
+    path('admin/', views.admin_page),
+    path('logout/', views.logout_view),
+    path('login/', views.login_page, name='signup'),
 
+    path('restorePassword/', views.forgot_password_page),
+    path('addTask/', views.addTask_page, name='AddTask'),
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('', views.index_page),
+    path('edit/', views.edit_profile),
+
+    path('chats/', views.chat_page_list),
+    path('chat/<room_id>/', views.chat_page),
+
+    # zz
+    path('partners/', views.partners_page),
+    path('documents/', views.documents_page),
+    path('documents/documentsTemplates/<name>/', views.documentTemplates_page),
+    path('brands/', views.brands_page),
+    path('brands/<shopnmae>', views.sertCardBrend_page),
+    path('becomeCreator/', views.becomeCreator_page),
+    path('becomeCreator/becomeCreatorTemplates/<name>/', views.becomeCreatorTemplate_page),
+    path('addTask/', views.addTask_page),
+    path('goods/', views.goods_page),
+    path('goods/<product_id>/', views.cardProduct_page),
+    path('goods/category/<category>', views.goodsSearch_page_category),
+    path('goods/search/<product_name>', views.goodsSearch_page),
+    path('yourTasks/editTask/<task_id>/', views.editTask_page),
+    path('yourTasks/infoTask/', views.infoTask_page),
+    path('orders/', views.orders_page),
+    path('cart/', views.cart_page),
+
+    
+    *static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 ]
+handler400 = views.pageNotAccess
+handler403 = views.pageMistakeServ
+handler404 = views.pageNotFound
+handler500 = views.pageNotRequest
+

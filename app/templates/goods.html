@@ -1,0 +1,151 @@
+{% extends "base.html" %} {% block content %}
+
+
+<body style="margin: 0 auto;">
+    <div class="uk-margin-medium-top uk-margin-xlarg uk-flex uk-width-1@m uk-width-4-5" uk-filter="target: .js-filter"
+        style="margin: 0 auto; ">
+        <div class="uk-width-1-5" style="height: 100%; font-size: 1.2em;">
+            <div class="uk-margin-small-left">
+                <ul class="uk-breadcrumb">
+                    <li><a href="/goods/">Все товары</a></li>
+                    {% if category %}
+                    <li><a href="/goods/category/{{category}}">{{category}}</a></li>
+                    {% endif %}
+                    <li><span></span></li>
+                </ul> 
+            </div>
+            <div class="uk-flex uk-flex-middle">
+                <h3 class="uk-margin-medium-right">Фильтр</h3>
+                <a class="uk-button uk-button-link uk-text-right" style="border-bottom: 1px solid"uk-filter-control>Сбросить</a></li>
+                
+            </div>
+            <ul class="uk-nav uk-subnav-pill">
+                <h4>Пол:</h4>
+                <li class="uk-width-1 uk-text-right">
+                    <a class="uk-button uk-button-link uk-text-right" uk-filter-control="group: sex">неважно</a></li>
+                <li class="uk-width-1 uk-text-right" uk-filter-control="filter: [data-sex='унисекс']; group: sex">
+                    <a class="uk-button uk-button-link uk-text-right">унисекс</a></li>
+                <li class="uk-width-1 uk-text-right" uk-filter-control="filter: [data-sex='мужское']; group: sex">
+                    <a class="uk-button uk-button-link uk-text-right">мужское</a></li>
+                <li class="uk-width-1 uk-text-right" uk-filter-control="filter: [data-sex='женское']; group: sex">
+                    <a class="uk-button uk-button-link uk-text-right">женское</a></li>
+                <li class="uk-divider"></li>
+            </ul>
+            <ul class="uk-nav uk-subnav-pill">
+                <h4>Рейтинг товара:</h4>
+                <li><a class="uk-button uk-button-link uk-text-right" uk-filter-control="group: rating">неважно</a>
+                </li>
+                <li class="uk-width-1 uk-text-right" uk-filter-control="filter: [data-rating='5']; group: rating">
+                    <a class="uk-button uk-button-link uk-text-right">&starf;&starf;&starf;&starf;&starf;</a>
+                </li>
+                <li class="uk-width-1 uk-text-right" uk-filter-control="filter: [data-rating='4']; group: rating">
+                    <a class="uk-button uk-button-link uk-text-right">&starf;&starf;&starf;&starf;&star;</a>
+                </li>
+                <li class="uk-width-1 uk-text-right" uk-filter-control="filter: [data-rating='3']; group: rating">
+                    <a class="uk-button uk-button-link uk-text-right">&starf;&starf;&starf;&star;&star;</a>
+                </li>
+                <li class="uk-width-1 uk-text-right" uk-filter-control="filter: [data-rating='2']; group: rating">
+                    <a class="uk-button uk-button-link uk-text-right">&starf;&starf;&star;&star;&star;</a>
+                </li>
+                <li class="uk-width-1 uk-text-right" uk-filter-control="filter: [data-rating='1']; group: rating">
+                    <a class="uk-button uk-button-link uk-text-right">&starf;&star;&star;&star;&star;</a>
+                </li>
+                <li class="uk-divider"></li>
+            </ul>
+            <ul class="uk-nav uk-subnav-pill">
+                <h4>Срок доставки:</h4>
+                <li><a class="uk-button uk-button-link uk-text-right" uk-filter-control="group: duration">неважно</a></li>
+                <li class="uk-width-1 uk-text-right"
+                    uk-filter-control="filter: [data-duration='1 - 2 дня']; group: duration"><a
+                        class="uk-button uk-button-link uk-text-right">1 - 2 дня</a></li>
+                <li class="uk-width-1 uk-text-right"
+                    uk-filter-control="filter: [data-duration='2 - 5 дней']; group: duration"><a
+                        class="uk-button uk-button-link uk-text-right">2 - 5 дней</a></li>
+                <li class="uk-width-1 uk-text-right"
+                    uk-filter-control="filter: [data-duration='5 - 7 дней']; group: duration"><a
+                        class="uk-button uk-button-link uk-text-right">5 - 7 дней</a></li>
+                <li class="uk-width-1 uk-text-right"
+                    uk-filter-control="filter: [data-duration='1 - 2 недели']; group: duration"><a
+                        class="uk-button uk-button-link uk-text-right">1 - 2 недели</a></li>
+                <li class="uk-width-1 uk-text-right"
+                    uk-filter-control="filter: [data-duration='2 недели - месяц']; group: duration"><a
+                        class="uk-button uk-button-link uk-text-right">2 недели - месяц</a></li>
+                <li class="uk-width-1 uk-text-right"
+                    uk-filter-control="filter: [data-duration='1 - 3 месяца']; group: duration"><a
+                        class="uk-button uk-button-link uk-text-right">1 - 3 месяца</a></li>
+                <li class="uk-width-1 uk-text-right"
+                    uk-filter-control="filter: [data-duration='3 - 6 месяцев']; group: duration"><a
+                        class="uk-button uk-button-link uk-text-right">3 - 6 месяцев</a></li>
+                <li class="uk-width-1 uk-text-right"
+                    uk-filter-control="filter: [data-duration='6 - 12 месяцев']; group: duration"><a
+                        class="uk-button uk-button-link uk-text-right">6 - 12 месяцев</a></li>
+                <li class="uk-width-1 uk-text-right"
+                    uk-filter-control="filter: [data-duration='1 - 2 года']; group: duration"><a
+                        class="uk-button uk-button-link uk-text-right">1 - 2 года</a></li>
+                <li class="uk-width-1 uk-text-right"
+                    uk-filter-control="filter: [data-duration='более 3-х лет']; group: duration"><a
+                        class="uk-button uk-button-link uk-text-right">более 3-х лет</a></li>
+                <li class="uk-divider"></li>
+            </ul>
+        </div>
+
+        <ul class="js-filter uk-grid uk-grid-medium uk-width-4-5" uk-grid style="height: 100%; margin: auto; border-left: 1px solid" uk-grid>
+
+            {% include "baseProductCard.html" %}
+
+        </ul>
+    </div>
+    {% include "footer.html" %}
+
+</body>
+
+<script>
+    function pricevalidation() {
+        let p1 = parseInt(document.getElementById('from').value)
+        let p2 = parseInt(document.getElementById('to').value)
+        let top = Math.max(p1, p2)
+        let bottom = Math.min(p1, p2)
+        let goods_prices = document.getElementsByClassName('price')
+        for (let i = 0; i < goods_prices.length; ++i) {
+            let str = parseInt(goods_prices[i].innerHTML.split(/(\s+)/)[2])
+            if (top < str || str < bottom) {
+                goods_prices[i].parentElement.parentElement.parentElement.parentElement.style.cssText =
+                    'display: none';
+            } else {
+                goods_prices[i].parentElement.parentElement.parentElement.parentElement.style.cssText =
+                    'display: flex';
+            }
+        }
+    }
+</script>
+
+<style>
+    .textStyleHeader p {
+        font-family: 'Inter';
+        font-size: 20px;
+        font-style: normal;
+        line-height: 15px;
+
+    }
+
+    .textStyleHeaderRegion label {
+        font-family: 'Inter';
+        font-size: 18px;
+        font-style: normal;
+        line-height: 15px;
+        margin-bottom: 5px;
+    }
+
+    .textAll label {
+        font-family: 'Inter';
+        font-style: normal;
+        font-size: 18px;
+        margin-bottom: 5px;
+    }
+
+    .checked {
+        color: orange;
+    }
+</style>
+
+{% endblock %}

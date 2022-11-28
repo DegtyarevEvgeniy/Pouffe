@@ -1,0 +1,156 @@
+
+<div class="row">
+    <div class="d-flex justify-content-center align-items-center mb-3 mt-5">
+        <h4 class="text-right">Резюме</h4>
+    </div>
+    <div class="col-md-3 border-end">
+        <div class="d-flex flex-column align-items-center text-center py-5">
+            <img class="rounded-circle mt-5" width="150px" src="{{ creator_avatar.url }}">
+            <span class="font-weight-bold">{{ first_name }}
+            </span>
+            <span class="text-black-50">{{ email }}</span>
+            <span> </span>
+        </div>
+    </div>
+
+    <div id="main_change" class="col-md-8 ml-3">
+        <form method="post" action="./" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="p-3 py-5">
+                <div class="row mt-3 d-flex align-items-center">
+                    <div class="col-md-4">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" name="iscompany" onchange="isCompany()"
+                                id="isCompanyTrigger" placeholder="{{ creator.is_company }}"
+                                value="{{ creator.is_company }}">
+                            <label class="form-check-label" for="isCompanyTrigger">Вы являетесь компанией?</label>
+                        </div>
+                    </div>
+                    <div class="col-md-8" id="companyTriggerOn" style="opacity: 0;">
+                        <input type="text" id="companyInput" name="profile_company_name" maxlength="50"
+                            class="form-control" placeholder="{{ creator.company_name }}"
+                            value="{{ creator.company_name }}">
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="row mt-3 mb-3">
+                    <div class="col-md-12">
+                        <h1 class="labels">Расскажите о себе</h1>
+                        <textarea name="profile_description" maxlength="500" class="form-control"
+                            placeholder="{{ creator.description }}" value="">{{ creator.description }}</textarea>
+                    </div>
+                </div>
+
+                <div class="row mt-3 mb-3">
+                    <h1 class="labels mb-4">Контакты</h1>
+                    <div class="col-md-6">
+                        <div class="input-group mb-3">
+                            <input type="text" name="telegram" class="form-control" maxlength="50" placeholder="{{ creator.telegram }}"
+                                value="{{ creator.telegram }}">
+                            <snap class="input-group-text" style="color: white; background-color: #229ED9;">
+                                <i class="fab fa-telegram"></i>
+                            </snap>
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" name="vk" maxlength="50" placeholder="{{ creator.vk }}"
+                                value="{{ creator.vk }}">
+                            <snap class="input-group-text" style="color: white; background-color: #4c75a3;">
+                                <i class="fab fa-vk"></i>
+                            </snap>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" name="instagram" maxlength="50" placeholder="{{ creator.instagram }}"
+                                value="{{ creator.instagram }}">
+                            <snap class="input-group-text" style="color: white; background-color: #ac2bac;">
+                                <i class="fab fa-instagram"></i>
+                            </snap>
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" name="whatsapp" id="whatsappInput" maxlength="12"
+                                placeholder="{{ creator.whatsapp }}" value="{{ creator.whatsapp }}">
+                            <snap class="input-group-text" style="color: white; background-color: #25d366;">
+                                <i class="fab fa-whatsapp"></i>
+                            </snap>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-3 mb-3">
+                    <div class="col-md-8">
+                        <label class="labels">Загрузить фото</label>
+                        <input id="fileupload" class="form-control" name="profile_images" type="file" accept="image/*">
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="row mt-3 mb-3" style="display: none">
+                    <div class="col-md-12">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" name="published" placeholder="{{ creator.published }}"
+                                value="{{ creator.published }}" checked>
+                            <label class="form-check-label">Хотите опубликовать резюме?</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-5 text-center">
+                    <button name="profile_saver" class="btn btn-primary profile-button" type="submit">Сохранить</button>
+                </div>
+                <div class="mt-2 mb-2">
+                    <label class="labels" style="color: crimson">{{ error }}</label>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+<script>
+    function isCompany() {
+        let companyDiv = document.getElementById('companyTriggerOn');
+        let companyInput = document.getElementById('companyInput');
+        if (document.getElementById('isCompanyTrigger').checked) {
+            companyDiv.style.opacity = 1;
+            companyInput.removeAttribute("disabled");
+        } else {
+            companyDiv.style.opacity = 0;
+            companyInput.setAttribute("disabled", "disabled");
+        }
+    }
+
+    function setInputFilter(textbox, inputFilter, errMsg) {
+        ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop", "focusout"].forEach(
+            function (event) {
+                textbox.addEventListener(event, function (e) {
+                    if (inputFilter(this.value)) {
+                        // Accepted value
+                        if (["keydown", "mousedown", "focusout"].indexOf(e.type) >= 0) {
+                            this.classList.remove("input-error");
+                            this.setCustomValidity("");
+                        }
+                        this.oldValue = this.value;
+                        this.oldSelectionStart = this.selectionStart;
+                        this.oldSelectionEnd = this.selectionEnd;
+                    } else if (this.hasOwnProperty("oldValue")) {
+                        // Rejected value - restore the previous one
+                        this.classList.add("input-error");
+                        this.setCustomValidity(errMsg);
+                        this.reportValidity();
+                        this.value = this.oldValue;
+                        this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+                    } else {
+                        // Rejected value - nothing to restore
+                        this.value = "";
+                    }
+                });
+            });
+    }
+
+    setInputFilter(document.getElementById("whatsappInput"), function (value) {
+        return /^\d*\+?\d*$/.test(value); // Allow digits and '.' only, using a RegExp
+    }, "Введите только номер без пробелов");
+</script>

@@ -1,0 +1,113 @@
+<div class="card" id="product_creator">
+    <div class="card-body">
+        <!-- Grid row -->
+        <div class="row">
+            <!-- Grid column -->
+            <div class="uk-width-1 uk-text-center">
+                <h1 class="">Мои товары</h1>
+                <a class="uk-button uk-button-primary uk-border-rounded Btnn" role="button" style="margin: auto">Создать
+                    товар</a>
+            </div>
+            <!-- Grid column -->
+        </div>
+        <!-- Grid row -->
+        <!--Table-->
+            <table class="uk-table uk-table-divider uk-width-4-5" style="margin: 2% auto;">
+                <!--Table head-->
+                <thead>
+                    <tr>
+                        <th class="uk-text-center uk-width-1-5">Название товара</th>
+                        <th class="uk-text-center uk-width-1-5">Бренд</th>
+                        <th class="uk-text-center uk-width-1-5">Цена</th>
+                        <th class="uk-text-center uk-width-1-5">Опубликовано</th>
+                        <th class="uk-text-center uk-width-1-6">Удалить</th>
+    
+    
+                    </tr>
+                </thead>
+                <!--Table head-->
+                <!--Table body-->
+                <form method="GET" id="goodsList" action="/becomeCreator/">
+    
+    
+                    {% csrf_token %}
+                    <tbody>
+    
+                        {% for product in products %}
+    
+                        <tr>
+                            <td class="uk-text-truncate uk-text-center">{{ product.product_name }}</td>
+                            <td class="uk-text-truncate uk-text-center">{{product.brand}}</td>
+                            <td class="uk-text-truncate uk-text-center">{{ product.price }}</td>
+                            <td class="uk-text-truncate uk-text-center">text</td>
+                            <td class="uk-text-center">
+                                <button name="delete" form="goodsList" value="{{product.id}}" href="" type="submit"
+                                    class="uk-button uk-button-danger uk-border-rounded uk-text-large"> X </button>
+                            </td>
+                        </tr>
+    
+                        {% endfor %}
+                    </tbody>
+                </form>
+            </table>
+        </div>
+</div>
+
+<style>
+    .hm-gradient {
+        background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%);
+    }
+
+    .darken-grey-text {
+        color: #2E2E2E;
+    }
+
+    .input-group.md-form.form-sm.form-2 input {
+        border: 1px solid #bdbdbd;
+        border-top-left-radius: 0.25rem;
+        border-bottom-left-radius: 0.25rem;
+    }
+
+    .input-group.md-form.form-sm.form-2 input.purple-border {
+        border: 1px solid #9e9e9e;
+    }
+
+    .input-group.md-form.form-sm.form-2 input[type=text]:focus:not([readonly]).purple-border {
+        border: 1px solid #ba68c8;
+        box-shadow: none;
+    }
+
+    .form-2 .input-group-addon {
+        border: 1px solid #ba68c8;
+    }
+
+    .danger-text {
+        color: #ff3547;
+    }
+
+    .success-text {
+        color: #00C851;
+    }
+
+    .table-bordered.red-border,
+    .table-bordered.red-border th,
+    .table-bordered.red-border td {
+        border: 1px solid #ff3547 !important;
+    }
+
+    .table.table-bordered th {
+        text-align: center;
+    }
+</style>
+
+<script>
+    $('.Btnn').on('click', {}, function (inBody) {
+        var xhr = new XMLHttpRequest()
+        localStorage.page = 6
+        xhr.open('GET', 'becomeCreatorTemplates/6/')
+        xhr.onload = function () {
+            $('#MainWindowContainer').html(xhr.response)
+        }
+        xhr.send()
+    });
+</script>
