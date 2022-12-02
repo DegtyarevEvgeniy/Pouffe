@@ -1,4 +1,5 @@
 <div style="width: 90%; margin: 0 auto">
+    {% if user.is_authenticated %}
     <nav class="uk-navbar-container" style="margin-bottom: 0; background-color: white;" uk-navbar>
         <div class="uk-navbar-left">
             <a href="#main-menuL" uk-toggle>
@@ -30,9 +31,11 @@
                     </div>
                 </li>
                 <ul class="uk-navbar-nav uk-width-auto">
+                    {% if user.is_partner %}
                     <li class="uk-active">
                         <a href="/becomeCreator/" uk-icon="icon: database"></a>
                     </li>
+                    {% endif %}
                     <li class="uk-active">
                         <a href="/cart/" uk-icon="icon: cart"></a>
                     </li>
@@ -43,15 +46,27 @@
                         <a uk-icon="icon: user"></a>
                         <div class="uk-navbar-dropdown">
                             <ul class="uk-nav uk-navbar-dropdown-nav">
+                                {% if user.is_partner %}
+                                <li>
+
+                                    <a href="/partners/" class="uk-button uk-button-link"
+                                        style="text-transform: none;">Вы
+                                        уже
+                                        партнер</a>
+                                </li>
+                                {% else %}
                                 <li class="uk-active">
                                     <a href="/partners/" class="uk-button uk-button-link uk-text-normal"
                                         style="text-transform: none;">Стать партнером</a>
                                 </li>
+                                {% endif %}
                                 <li class="uk-nav-divider"></li>
                                 <li class="uk-active"><a href="/edit/">Настройки профиля</a></li>
                                 <!-- <li class="uk-active"><a href="/chats">Чаты</a></li> -->
                                 <li class="uk-active"><a href="/logout/">Выйти</a></li>
+                                {% if user.is_admin and user.is_superuser and user.is_staff and user.is_active %}
                                 <li class="uk-active"><a href="/admin/">Админка</a></li>
+                                {% endif %}
                             </ul>
                         </div>
                     </li>
@@ -62,7 +77,8 @@
         </div>
     </nav>
 
-<!-- 
+    {% else %}
+
     <nav class="uk-navbar-container" style="margin-bottom: 0; height: 10vh; width: 100%; background-color: white"
         uk-navbar>
         <div class="uk-navbar-left">
@@ -112,7 +128,9 @@
                 </li>
             </ul>
         </div>
-    </nav> -->
+    </nav>
+
+    {% endif %}
 
 
     <!-- start of main-menuL -->
