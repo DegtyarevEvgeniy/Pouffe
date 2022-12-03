@@ -1,30 +1,64 @@
-<form method="POST">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.13.10/dist/css/uikit.min.css" />
+<style>
+    
+    @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
 
-<div class="row">
-  <div class="col-md-1">
-    <div class="d-flex flex-column align-items-center text-center p-3 py-5"></div>
-  </div>
-  <div id="main_change" class="col-md-10">
-    <div class="p-3 py-5">
-      <div class="d-flex justify-content-center align-items-center mb-3">
-        <h4 class="text-right">Заголовок</h4>
-      </div>
+    P {
+        font-family: 'Montserrat'
+    }
+</style>
+<div style="width: 80%; margin: auto; margin-top: 5%;">
 
-      
-
-      <div class="row mt-3">
-        <div class="col-md-9">
-          <h1>Текст</h1>
-        </div>
-      </div>
-
-      
-
-      <div class="mt-5 text-center">
-        <button class="btn btn-primary profile-button" type="submit">Опубликовать</button>
-      </div>
+    <div>
+        <p style="font-weight: 520; font-size: 3em; margin: 0">Доставка</p>
+        <p style="margin: 0; font-weight: 600; font-size: 1em;">На этой странице Вы можете выбрать способы доставки</p>
     </div>
-  </div>
-</div>
 
-</form>
+    <!-- <div class="uk-width-2-3 uk-margin-medium-top">
+        <p style="font-weight: 600; font-size: 2em; margin: 0;" >Адрес возврата товара</p>
+        <p style="margin: 0; font-weight: 600; font-size: 1em; margin-bottom: 1%;">На какой адрес отсылать товар, в случае возврата покупателем</p>
+        <input class="uk-input uk-border-rounded uk-width-1-2" style="border: solid black 2px; border-radius: 5em;" type="text" placeholder="Адрес">
+    </div> -->
+
+    <div class="uk-margin-medium-top">
+        <div>
+            <p style="font-weight: 600; font-size: 2em; margin: 0">Доступные способы доставки</p>
+            {% if shop.shipping_pony_express == '' and shop.shipping_yandex_delivery == '' and shop.shipping_dostavista == '' and shop.shipping_sdek == '' %}
+            <p style="font-weight: 600; font-size: 1em; margin: 0">Здесь будут отображаться выбранные Вами способы доставки товара</p>
+            {% endif %}
+            <div class="uk-flex-row">
+                {% if shop.shipping_pony_express != '' %}
+                <div class="uk-margin-top uk-margin-right uk-flex-column">
+                    <p style="font-weight: 520; font-size: 1.5em">Пони Экспресс</p>
+                    <p class="uk-text-break" style="font-weight: 520; font-size: 1.2em; margin: 0;">{{shop.shipping_pony_express}}</p>
+                </div>
+                {% endif %}
+
+                {% if shop.shipping_yandex_delivery != '' %}
+                <div class="uk-margin-top uk-margin-right uk-flex-column">
+                    <p style="font-weight: 520; font-size: 1.5em">Яндекс Доставка</p>
+                    <p class="uk-text-break" style="font-weight: 520; font-size: 1.2em; margin: 0;">{{shop.shipping_yandex_delivery}}</p>
+                </div>
+                {% endif %}
+
+                {% if shop.shipping_dostavista != '' %}
+                <div class="uk-margin-top uk-margin-right uk-flex-column">
+                    <p style="font-weight: 520; font-size: 1.5em">Достависта</p>
+                    <p class="uk-text-break" style="font-weight: 520; font-size: 1.2em; margin: 0;">{{shop.shipping_dostavista}}</p>
+                </div>
+                {% endif %}
+
+                {% if shop.shipping_sdek != '' %}
+                <div class="uk-margin-top uk-margin-right uk-flex-column">
+                    <p style="font-weight: 520; font-size: 1.5em">СДЭК</p>
+                    <p class="uk-text-break" style="font-weight: 520; font-size: 1.2em; margin: 0;">{{shop.shipping_sdek}}</p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <a class="uk-button uk-button-secondary uk-border-pill uk-margin-medium-top" style="font-size: 1.3em;" href="/deliveryChoice/">Редактировать доставку</a>
+         
+    </div>
+
+</div>

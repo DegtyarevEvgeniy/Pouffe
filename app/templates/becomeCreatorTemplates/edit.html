@@ -1,0 +1,1147 @@
+<style>
+    #result {
+        display: flex;
+        gap: 10px;
+        padding: 10px 0;
+    }
+
+    .thumbnail {
+        height: 192px;
+    }
+
+    .loader {
+        border: 16px solid #f3f3f3;
+        /* Light grey */
+        border-top: 16px solid #3498db;
+        /* Blue */
+        border-radius: 50%;
+        width: 120px;
+        height: 120px;
+        animation: spin 2s linear infinite;
+    }
+
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+</style>
+
+<div class="uk-flex uk-flex-top uk-flex-center" style="margin: 0 auto;">
+    <div class="uk-width-3-5" style="margin: 0 auto">
+        <form id="regForm" method="POST" action="" enctype="multipart/form-data">
+
+            {% csrf_token %}
+
+            <h1 class="width-1-5">Редактирование товар</h1>
+
+            <div class="tab uk-width-1 uk-flex uk-flex-middle uk-flex-center" style="margin-bottom: 5%; height: 500px"
+                bis_skin_checked="1">
+                <div>
+                    <h2>Изменить товар: <b>{{product.product_name}}</b></h2>
+                    <div class="uk-width-1 uk-flex uk-flex-middle uk-flex-around">
+                        <button class="uk-width-1-3 uk-button uk-button-danger uk-border-rounded"
+                            onclick="location.reload()">нет</button>
+                        <button class="uk-width-1-3 uk-button uk-button-primary uk-border-rounded" type="button"
+                            onclick="nextPrev(1)">да</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab" style="display: none; margin-bottom: 5%" bis_skin_checked="1">
+                <div class="uk-flex uk-flex-top uk-flex-between uk-margin-medium-bottom" bis_skin_checked="1">
+                    <div class="uk-width-2-5" bis_skin_checked="1">
+                        <label>Название товара <i uk-tooltip="Введите название товара" uk-icon="question" title=""
+                                aria-expanded="false" tabindex="0" class="uk-icon"><svg width="20" height="20"
+                                    viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <circle fill="none" stroke="#000" stroke-width="1.1" cx="10" cy="10" r="9"></circle>
+                                    <circle cx="10.44" cy="14.42" r="1.05"></circle>
+                                    <path fill="none" stroke="#000" stroke-width="1.2"
+                                        d="M8.17,7.79 C8.17,4.75 12.72,4.73 12.72,7.72 C12.72,8.67 11.81,9.15 11.23,9.75 C10.75,10.24 10.51,10.73 10.45,11.4 C10.44,11.53 10.43,11.64 10.43,11.75">
+                                    </path>
+                                </svg></i></label>
+                        <div bis_skin_checked="1">
+                            <input type="text" name="product_name" class="uk-form uk-input"
+                                placeholder="Введите название товара" value="{{product.product_name}}" id="product_name"
+                                max_length="100" oninput="PassChecker(1)" maxlength="500" required>
+                        </div>
+                    </div>
+                    <div class="uk-width-2-5" bis_skin_checked="1">
+                        <label>Бренд <i uk-tooltip="Введите название бренда" uk-icon="question" title=""
+                                aria-expanded="false" tabindex="0" class="uk-icon"><svg width="20" height="20"
+                                    viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <circle fill="none" stroke="#000" stroke-width="1.1" cx="10" cy="10" r="9"></circle>
+                                    <circle cx="10.44" cy="14.42" r="1.05"></circle>
+                                    <path fill="none" stroke="#000" stroke-width="1.2"
+                                        d="M8.17,7.79 C8.17,4.75 12.72,4.73 12.72,7.72 C12.72,8.67 11.81,9.15 11.23,9.75 C10.75,10.24 10.51,10.73 10.45,11.4 C10.44,11.53 10.43,11.64 10.43,11.75">
+                                    </path>
+                                </svg></i></label>
+                        <p class="uk-text-bold uk-text-large uk-text-uppercase uk-text-truncate">{{product.brand}}</p>
+                        <input type="text" value="{{product.product_id}}" name="product_id" style="display: none"
+                            readonly>
+                    </div>
+                </div>
+                <div class="uk-flex uk-flex-top uk-flex-between uk-margin-medium-bottom" bis_skin_checked="1">
+                    <div class="uk-width-2-5 uk-flex-row" bis_skin_checked="1">
+
+                        <div class="uk-width-1 uk-margin-small-bottom" bis_skin_checked="1">
+                            <label> Срок получения товара <i
+                                    uk-tooltip="Выберите, через сколько покупатель сможет получить свой товар после покупки"
+                                    uk-icon="question" title="" aria-expanded="false" tabindex="0" class="uk-icon"><svg
+                                        width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <circle fill="none" stroke="#000" stroke-width="1.1" cx="10" cy="10" r="9">
+                                        </circle>
+                                        <circle cx="10.44" cy="14.42" r="1.05"></circle>
+                                        <path fill="none" stroke="#000" stroke-width="1.2"
+                                            d="M8.17,7.79 C8.17,4.75 12.72,4.73 12.72,7.72 C12.72,8.67 11.81,9.15 11.23,9.75 C10.75,10.24 10.51,10.73 10.45,11.4 C10.44,11.53 10.43,11.64 10.43,11.75">
+                                        </path>
+                                    </svg></i></label>
+                            <select name="duration" class="uk-form uk-select" maxlength="300" id="id_duration">
+                                <option value="{{product.duration}}">{{product.duration}}</option>
+
+                                <option value="1 - 2 дня">1 - 2 дня</option>
+
+                                <option value="2 - 5 дней">2 - 5 дней</option>
+
+                                <option value="5 - 7 дней">5 - 7 дней</option>
+
+                                <option value="1 - 2 недели">1 - 2 недели</option>
+
+                                <option value="2 недели - месяц">2 недели - месяц</option>
+
+                                <option value="1 - 3 месяца">1 - 3 месяца</option>
+
+                                <option value="3 - 6 месяцев">3 - 6 месяцев</option>
+
+                                <option value="6 - 12 месяцев">6 - 12 месяцев</option>
+
+                                <option value="1 - 2 года">1 - 2 года</option>
+
+                                <option value="более 3-х лет">более 3-х лет</option>
+
+                            </select>
+                        </div>
+                        <div class="uk-width-1 uk-margin-small-bottom" bis_skin_checked="1">
+                            <label> Категория <i uk-tooltip="Выберите категорию, к которой относится товар"
+                                    uk-icon="question" title="" aria-expanded="false" tabindex="0" class="uk-icon"><svg
+                                        width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <circle fill="none" stroke="#000" stroke-width="1.1" cx="10" cy="10" r="9">
+                                        </circle>
+                                        <circle cx="10.44" cy="14.42" r="1.05"></circle>
+                                        <path fill="none" stroke="#000" stroke-width="1.2"
+                                            d="M8.17,7.79 C8.17,4.75 12.72,4.73 12.72,7.72 C12.72,8.67 11.81,9.15 11.23,9.75 C10.75,10.24 10.51,10.73 10.45,11.4 C10.44,11.53 10.43,11.64 10.43,11.75">
+                                        </path>
+                                    </svg></i></label>
+                            <select name="category" class="uk-form uk-select" maxlength="50" id="id_category">
+                                <option selected value="{{product.category}}">{{product.category}}</option>
+
+                                <option value="Одежда">Одежда</option>
+
+                                <option value="Обувь">Обувь</option>
+
+                                <option value="Сумки">Сумки</option>
+
+                                <option value="Интерьер">Интерьер</option>
+
+                                <option value="Аксессуары">Аксессуары</option>
+
+                            </select>
+                        </div>
+                        <div class="uk-width-1 uk-margin-small-bottom" bis_skin_checked="1">
+                            <label>Страна произваодетель <i uk-tooltip="Выберите страну, в которой товар был изготовлен"
+                                    uk-icon="question" title="" aria-expanded="false" tabindex="0" class="uk-icon"><svg
+                                        width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <circle fill="none" stroke="#000" stroke-width="1.1" cx="10" cy="10" r="9">
+                                        </circle>
+                                        <circle cx="10.44" cy="14.42" r="1.05"></circle>
+                                        <path fill="none" stroke="#000" stroke-width="1.2"
+                                            d="M8.17,7.79 C8.17,4.75 12.72,4.73 12.72,7.72 C12.72,8.67 11.81,9.15 11.23,9.75 C10.75,10.24 10.51,10.73 10.45,11.4 C10.44,11.53 10.43,11.64 10.43,11.75">
+                                        </path>
+                                    </svg></i></label>
+                            <select name="country" class="uk-form uk-select" maxlength="30" id="id_country">
+                                <option selected value="{{product.country}}">{{product.country}}</option>
+
+                                <option value="Афганистан">Афганистан</option>
+
+                                <option value="Аландские острова">Аландские острова</option>
+
+                                <option value="Албания">Албания</option>
+
+                                <option value="Алжир">Алжир</option>
+
+                                <option value="американское Самоа">американское Самоа</option>
+
+                                <option value="Андорра">Андорра</option>
+
+                                <option value="Ангола">Ангола</option>
+
+                                <option value="Ангилья">Ангилья</option>
+
+                                <option value="Антарктида">Антарктида</option>
+
+                                <option value="Антигуа и Барбуда">Антигуа и Барбуда</option>
+
+                                <option value="Аргентина">Аргентина</option>
+
+                                <option value="Армения">Армения</option>
+
+                                <option value="Аруба">Аруба</option>
+
+                                <option value="Австралия">Австралия</option>
+
+                                <option value="Австрия">Австрия</option>
+
+                                <option value="Азербайджан">Азербайджан</option>
+
+                                <option value="Багамы">Багамы</option>
+
+                                <option value="Бахрейн">Бахрейн</option>
+
+                                <option value="Бангладеш">Бангладеш</option>
+
+                                <option value="Барбадос">Барбадос</option>
+
+                                <option value="Беларусь">Беларусь</option>
+
+                                <option value="Бельгия">Бельгия</option>
+
+                                <option value="Белиз">Белиз</option>
+
+                                <option value="Бенин">Бенин</option>
+
+                                <option value="Бермуды">Бермуды</option>
+
+                                <option value="Бутан">Бутан</option>
+
+                                <option value="Боливия">Боливия</option>
+
+                                <option value="Босния и Герцеговина">Босния и Герцеговина</option>
+
+                                <option value="Ботсвана">Ботсвана</option>
+
+                                <option value="Остров Буве">Остров Буве</option>
+
+                                <option value="Бразилия">Бразилия</option>
+
+                                <option value="Британская территория Индийского океана">Британская территория Индийского
+                                    океана</option>
+
+                                <option value="Бруней-Даруссалам">Бруней-Даруссалам</option>
+
+                                <option value="Болгария">Болгария</option>
+
+                                <option value="Буркина-Фасо">Буркина-Фасо</option>
+
+                                <option value="Бурунди">Бурунди</option>
+
+                                <option value="Камбоджа">Камбоджа</option>
+
+                                <option value="Камерун">Камерун</option>
+
+                                <option value="Канада">Канада</option>
+
+                                <option value="Кабо-Верде">Кабо-Верде</option>
+
+                                <option value="Каймановы острова">Каймановы острова</option>
+
+                                <option value="Центрально-Африканская Республика">Центрально-Африканская Республика
+                                </option>
+
+                                <option value="Чад">Чад</option>
+
+                                <option value="Чили">Чили</option>
+
+                                <option value="Китай">Китай</option>
+
+                                <option value="Остров Рождества">Остров Рождества</option>
+
+                                <option value="Кокосовые (Килинг) острова">Кокосовые (Килинг) острова</option>
+
+                                <option value="Колумбия">Колумбия</option>
+
+                                <option value="Коморы">Коморы</option>
+
+                                <option value="Конго">Конго</option>
+
+                                <option value="Демократическая Республика Острова Кука">Демократическая Республика
+                                    Острова Кука</option>
+
+                                <option value="Коста-Рика">Коста-Рика</option>
+
+                                <option value="Cote D'ivoire">Cote D'ivoire</option>
+
+                                <option value="Хорватия">Хорватия</option>
+
+                                <option value="Куба">Куба</option>
+
+                                <option value="Кипр">Кипр</option>
+
+                                <option value="Чешская Республика">Чешская Республика</option>
+
+                                <option value="Дания">Дания</option>
+
+                                <option value="Джибути">Джибути</option>
+
+                                <option value="Доминика">Доминика</option>
+
+                                <option value="Доминиканская Респблика">Доминиканская Респблика</option>
+
+                                <option value="Эквадор">Эквадор</option>
+
+                                <option value="Египет">Египет</option>
+
+                                <option value="Эль Сальвадор">Эль Сальвадор</option>
+
+                                <option value="Экваториальная Гвинея">Экваториальная Гвинея</option>
+
+                                <option value="Эритрея">Эритрея</option>
+
+                                <option value="Эстония">Эстония</option>
+
+                                <option value="Эфиопия">Эфиопия</option>
+
+                                <option value="Фолклендские (Мальвинские) острова">Фолклендские (Мальвинские) острова
+                                </option>
+
+                                <option value="Фарерские острова">Фарерские острова</option>
+
+                                <option value="Фиджи">Фиджи</option>
+
+                                <option value="Финляндия">Финляндия</option>
+
+                                <option value="Франция">Франция</option>
+
+                                <option value="Французская Гвиана">Французская Гвиана</option>
+
+                                <option value="Французская Полинезия">Французская Полинезия</option>
+
+                                <option value="Южные Французские Территории">Южные Французские Территории</option>
+
+                                <option value="Габон">Габон</option>
+
+                                <option value="Гамбия">Гамбия</option>
+
+                                <option value="Грузия">Грузия</option>
+
+                                <option value="Германия">Германия</option>
+
+                                <option value="Гана">Гана</option>
+
+                                <option value="Гибралтар">Гибралтар</option>
+
+                                <option value="Греция">Греция</option>
+
+                                <option value="Гренландия">Гренландия</option>
+
+                                <option value="Гренада">Гренада</option>
+
+                                <option value="Гваделупа">Гваделупа</option>
+
+                                <option value="Гуам">Гуам</option>
+
+                                <option value="Гватемала">Гватемала</option>
+
+                                <option value="Гернси">Гернси</option>
+
+                                <option value="Гвинея">Гвинея</option>
+
+                                <option value="Гвинея-бисау">Гвинея-бисау</option>
+
+                                <option value="Гайана">Гайана</option>
+
+                                <option value="Гаити">Гаити</option>
+
+                                <option value="Остров Херд и острова Макдональдс">Остров Херд и острова Макдональдс
+                                </option>
+
+                                <option value="Святой Престол (город-государство Ватикан)">Святой Престол
+                                    (город-государство Ватикан)</option>
+
+                                <option value="Гондурас">Гондурас</option>
+
+                                <option value="Гонконг">Гонконг</option>
+
+                                <option value="Венгрия">Венгрия</option>
+
+                                <option value="Исландия">Исландия</option>
+
+                                <option value="Индия">Индия</option>
+
+                                <option value="Индонезия">Индонезия</option>
+
+                                <option value="Иран">Иран</option>
+
+                                <option value="Исламская Республика">Исламская Республика</option>
+
+                                <option value="Ирак">Ирак</option>
+
+                                <option value="Ирландия">Ирландия</option>
+
+                                <option value="Остров Мэн">Остров Мэн</option>
+
+                                <option value="Израиль">Израиль</option>
+
+                                <option value="Италия">Италия</option>
+
+                                <option value="Ямайка">Ямайка</option>
+
+                                <option value="Япония">Япония</option>
+
+                                <option value="Джерси">Джерси</option>
+
+                                <option value="Иордания">Иордания</option>
+
+                                <option value="Казахстан">Казахстан</option>
+
+                                <option value="Кения">Кения</option>
+
+                                <option value="Кирибати">Кирибати</option>
+
+                                <option value="Korea">Korea</option>
+
+                                <option value="Democratic People's Republic of Korea">Democratic People's Republic of
+                                    Korea</option>
+
+                                <option value="Республика Кувейт">Республика Кувейт</option>
+
+                                <option value="Кыргызстан">Кыргызстан</option>
+
+                                <option value="Lao People's Democratic Republic">Lao People's Democratic Republic
+                                </option>
+
+                                <option value="Латвия">Латвия</option>
+
+                                <option value="Ливан">Ливан</option>
+
+                                <option value="Лесото">Лесото</option>
+
+                                <option value="Либерия">Либерия</option>
+
+                                <option value="Ливийская арабская джамахирия">Ливийская арабская джамахирия</option>
+
+                                <option value="Лихтенштейн">Лихтенштейн</option>
+
+                                <option value="Литва">Литва</option>
+
+                                <option value="Люксембург">Люксембург</option>
+
+                                <option value="Макао">Макао</option>
+
+                                <option value="Македония, бывшая">Македония, бывшая</option>
+
+                                <option value="Югославская Республика Мадагаскар">Югославская Республика Мадагаскар
+                                </option>
+
+                                <option value="Малави">Малави</option>
+
+                                <option value="Малайзия">Малайзия</option>
+
+                                <option value="Мальдивы">Мальдивы</option>
+
+                                <option value="Мали">Мали</option>
+
+                                <option value="Мальта">Мальта</option>
+
+                                <option value="Маршалловы острова">Маршалловы острова</option>
+
+                                <option value="Мартиника">Мартиника</option>
+
+                                <option value="Мавритания">Мавритания</option>
+
+                                <option value="Маврикий">Маврикий</option>
+
+                                <option value="Майотта">Майотта</option>
+
+                                <option value="Мексика">Мексика</option>
+
+                                <option value="Микронезия, Федеративные Штаты Молдовы">Микронезия, Федеративные Штаты
+                                    Молдовы</option>
+
+                                <option value=" Республика Монако"> Республика Монако</option>
+
+                                <option value="Монголия">Монголия</option>
+
+                                <option value="Черногория">Черногория</option>
+
+                                <option value="Монтсеррат">Монтсеррат</option>
+
+                                <option value="Марокко">Марокко</option>
+
+                                <option value="Мозамбик">Мозамбик</option>
+
+                                <option value="Мьянма">Мьянма</option>
+
+                                <option value="Намибия">Намибия</option>
+
+                                <option value="Науру">Науру</option>
+
+                                <option value="Непал">Непал</option>
+
+                                <option value="Нидерланды">Нидерланды</option>
+
+                                <option value="Нидерландские Антильские острова">Нидерландские Антильские острова
+                                </option>
+
+                                <option value="Новая Каледония">Новая Каледония</option>
+
+                                <option value="Новая Зеландия">Новая Зеландия</option>
+
+                                <option value="Никарагуа">Никарагуа</option>
+
+                                <option value="Нигер">Нигер</option>
+
+                                <option value="Нигерия">Нигерия</option>
+
+                                <option value="Ниуэ">Ниуэ</option>
+
+                                <option value="Остров Норфолк">Остров Норфолк</option>
+
+                                <option value="Северные Марианские острова">Северные Марианские острова</option>
+
+                                <option value="Норвегия">Норвегия</option>
+
+                                <option value="Оман">Оман</option>
+
+                                <option value="Пакистан">Пакистан</option>
+
+                                <option value="Палау">Палау</option>
+
+                                <option value="Палестинская территория, оккупированная">Палестинская территория,
+                                    оккупированная</option>
+
+                                <option value="Панама">Панама</option>
+
+                                <option value="Папуа - Новая Гвинея">Папуа - Новая Гвинея</option>
+
+                                <option value="Парагвай">Парагвай</option>
+
+                                <option value="Перу">Перу</option>
+
+                                <option value="Филиппины">Филиппины</option>
+
+                                <option value="Питкэрн">Питкэрн</option>
+
+                                <option value="Польша">Польша</option>
+
+                                <option value="Португалия">Португалия</option>
+
+                                <option value="Пуэрто-Рико">Пуэрто-Рико</option>
+
+                                <option value="Катар">Катар</option>
+
+                                <option value="Воссоединение">Воссоединение</option>
+
+                                <option value="Румыния">Румыния</option>
+
+                                <option value="Российская Федерация">Российская Федерация</option>
+
+                                <option value="Руанда">Руанда</option>
+
+                                <option value="Святая Елена">Святая Елена</option>
+
+                                <option value="Сент-Китс и Невис">Сент-Китс и Невис</option>
+
+                                <option value="Сент-Люсия">Сент-Люсия</option>
+
+                                <option value="Сен-Пьер и Микелон">Сен-Пьер и Микелон</option>
+
+                                <option value="Святой Винсент и Гренадины">Святой Винсент и Гренадины</option>
+
+                                <option value="Самоа">Самоа</option>
+
+                                <option value="Сан-Марино">Сан-Марино</option>
+
+                                <option value="Сан-Томе и Принсипи">Сан-Томе и Принсипи</option>
+
+                                <option value="Саудовская Аравия">Саудовская Аравия</option>
+
+                                <option value="Сенегал">Сенегал</option>
+
+                                <option value="Сербия">Сербия</option>
+
+                                <option value="Сейшелы">Сейшелы</option>
+
+                                <option value="Сьерра-Леоне">Сьерра-Леоне</option>
+
+                                <option value="Сингапур">Сингапур</option>
+
+                                <option value="Словакия">Словакия</option>
+
+                                <option value="Словения">Словения</option>
+
+                                <option value="Соломоновы острова">Соломоновы острова</option>
+
+                                <option value="Сомали">Сомали</option>
+
+                                <option value="Южная Африка">Южная Африка</option>
+
+                                <option value="Южная Георгия и Южные Сандвичевы острова">Южная Георгия и Южные
+                                    Сандвичевы острова</option>
+
+                                <option value="Испания">Испания</option>
+
+                                <option value="Шри-Ланка">Шри-Ланка</option>
+
+                                <option value="Судан">Судан</option>
+
+                                <option value="Суринам">Суринам</option>
+
+                                <option value="Шпицберген и Ян-Майен">Шпицберген и Ян-Майен</option>
+
+                                <option value="Свазиленд">Свазиленд</option>
+
+                                <option value="Швеция">Швеция</option>
+
+                                <option value="Швейцария">Швейцария</option>
+
+                                <option value="Сирийская Арабская Республика">Сирийская Арабская Республика</option>
+
+                                <option value="Тайвань">Тайвань</option>
+
+                                <option value="Таджикистан">Таджикистан</option>
+
+                                <option value="Танзания, Объединенная Республика Таиланд">Танзания, Объединенная
+                                    Республика Таиланд</option>
+
+                                <option value="Тимор-Лешти">Тимор-Лешти</option>
+
+                                <option value="Идти">Идти</option>
+
+                                <option value="Токелау">Токелау</option>
+
+                                <option value="Тонга">Тонга</option>
+
+                                <option value="Тринидад и Тобаго">Тринидад и Тобаго</option>
+
+                                <option value="Тунис">Тунис</option>
+
+                                <option value="Турция">Турция</option>
+
+                                <option value="Туркменистан">Туркменистан</option>
+
+                                <option value="острова Теркс и Кайкос">острова Теркс и Кайкос</option>
+
+                                <option value="Тувалу">Тувалу</option>
+
+                                <option value="Уганда">Уганда</option>
+
+                                <option value="Украина">Украина</option>
+
+                                <option value="Объединенные Арабские Эмираты">Объединенные Арабские Эмираты</option>
+
+                                <option value="Соединенное Королевство">Соединенное Королевство</option>
+
+                                <option value="Соединенные Штаты">Соединенные Штаты</option>
+
+                                <option value="Малые окраины США">Малые окраины США</option>
+
+                                <option value="острова">острова</option>
+
+                                <option value="Уругвай">Уругвай</option>
+
+                                <option value="Узбекистан">Узбекистан</option>
+
+                                <option value="Вануату">Вануату</option>
+
+                                <option value="Венесуэла">Венесуэла</option>
+
+                                <option value="Вьетнам">Вьетнам</option>
+
+                                <option value="Виргинские острова, Британские">Виргинские острова, Британские</option>
+
+                                <option value="Виргинские острова, США">Виргинские острова, США</option>
+
+                                <option value="Уоллис и Футуна">Уоллис и Футуна</option>
+
+                                <option value="Западная Сахара">Западная Сахара</option>
+
+                                <option value="Йемен">Йемен</option>
+
+                                <option value="Замбия">Замбия</option>
+
+                                <option value="Зимбабве">Зимбабве</option>
+
+                            </select>
+                        </div>
+                        <div class="uk-width-1 uk-margin-small-bottom" bis_skin_checked="1">
+                            <label> Пол <i uk-tooltip="Выберите подходящий пол для товара" uk-icon="question" title=""
+                                    aria-expanded="false" tabindex="0" class="uk-icon"><svg width="20" height="20"
+                                        viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <circle fill="none" stroke="#000" stroke-width="1.1" cx="10" cy="10" r="9">
+                                        </circle>
+                                        <circle cx="10.44" cy="14.42" r="1.05"></circle>
+                                        <path fill="none" stroke="#000" stroke-width="1.2"
+                                            d="M8.17,7.79 C8.17,4.75 12.72,4.73 12.72,7.72 C12.72,8.67 11.81,9.15 11.23,9.75 C10.75,10.24 10.51,10.73 10.45,11.4 C10.44,11.53 10.43,11.64 10.43,11.75">
+                                        </path>
+                                    </svg></i></label>
+                            <select name="sex" class="uk-form uk-select" maxlength="50" id="id_sex">
+                                <option value="{{product.sex}}">{{product.sex}}</option>
+
+                                <option value="женское">женский</option>
+
+                                <option value="мужское">мужской</option>
+
+                                <option value="унисекс">унисекс</option>
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="uk-width-2-5 uk-margin-small-bottom" bis_skin_checked="1">
+                        <label>Описание <i
+                                uk-tooltip="Введите описание своему товару. Так покупателям будет легче понять, что они покупают"
+                                uk-icon="question" title="" aria-expanded="false" tabindex="0" class="uk-icon"><svg
+                                    width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <circle fill="none" stroke="#000" stroke-width="1.1" cx="10" cy="10" r="9"></circle>
+                                    <circle cx="10.44" cy="14.42" r="1.05"></circle>
+                                    <path fill="none" stroke="#000" stroke-width="1.2"
+                                        d="M8.17,7.79 C8.17,4.75 12.72,4.73 12.72,7.72 C12.72,8.67 11.81,9.15 11.23,9.75 C10.75,10.24 10.51,10.73 10.45,11.4 C10.44,11.53 10.43,11.64 10.43,11.75">
+                                    </path>
+                                </svg></i></label>
+                        <textarea name="description" cols="40" rows="10" class="uk-form uk-textarea" id="description"
+                            placeholder="Введите описание товара" oninput="PassChecker(1)" maxlength="1000"
+                            required>{{product.description}}</textarea>
+                    </div>
+                </div>
+
+
+                <div class="uk-flex uk-flex-top uk-flex-between uk-margin-medium-bottom" bis_skin_checked="1">
+                    <div class="uk-width-2-5" bis_skin_checked="1">
+                        <label>Состав товара <i
+                                uk-tooltip="Введите из чего состоит товар и сколько это в процентах. Не забудьте нажать на плюс, чтобы добавить комплект к товару"
+                                uk-icon="question" title="" aria-expanded="false" tabindex="0" class="uk-icon"><svg
+                                    width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <circle fill="none" stroke="#000" stroke-width="1.1" cx="10" cy="10" r="9"></circle>
+                                    <circle cx="10.44" cy="14.42" r="1.05"></circle>
+                                    <path fill="none" stroke="#000" stroke-width="1.2"
+                                        d="M8.17,7.79 C8.17,4.75 12.72,4.73 12.72,7.72 C12.72,8.67 11.81,9.15 11.23,9.75 C10.75,10.24 10.51,10.73 10.45,11.4 C10.44,11.53 10.43,11.64 10.43,11.75">
+                                    </path>
+                                </svg></i></label>
+                        <div class="uk-flex uk-flex-left uk-flex-middle uk-width-1 uk-margin-medium-bottom"
+                            bis_skin_checked="1">
+                            <input type="text" id="compNmae" maxlength="40" class="changeble uk-input uk-width-3-6">
+                            <div class="uk-inline uk-width-1-4" bis_skin_checked="1">
+                                <input type="number" oninput="PercentageChecker(this)" id="compPercentage" min="0"
+                                    max="100" style="border-left: none; border-right: none;" class="uk-input">
+                                <span class="uk-form-icon uk-form-icon-flip">%</span>
+                            </div>
+                            <button class="uk-button uk-button-default uk-width-1-6" style="padding:0" id="btnAdd"
+                                name="addComplect" onclick="addInput(this)" type="button"><svg
+                                    class="svg-inline--fa fa-plus" aria-hidden="true" focusable="false"
+                                    data-prefix="fas" data-icon="plus" role="img" xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 448 512" data-fa-i2svg="">
+                                    <path fill="currentColor"
+                                        d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z">
+                                    </path>
+                                </svg>
+                            </button>
+                        </div>
+                        <div id="inputDiv" class="uk-width-1 uk-flex-row" bis_skin_checked="1">
+                        </div>
+                    </div>
+                    <div class="uk-width-2-5" bis_skin_checked="1">
+                        <label> Размерный ряд <i
+                                uk-tooltip="Введите размеры Вашего товара. Не забудьте нажать на плюс, чтобы добавить размер товару"
+                                uk-icon="question" title="" aria-expanded="false" tabindex="0" class="uk-icon"><svg
+                                    width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <circle fill="none" stroke="#000" stroke-width="1.1" cx="10" cy="10" r="9"></circle>
+                                    <circle cx="10.44" cy="14.42" r="1.05"></circle>
+                                    <path fill="none" stroke="#000" stroke-width="1.2"
+                                        d="M8.17,7.79 C8.17,4.75 12.72,4.73 12.72,7.72 C12.72,8.67 11.81,9.15 11.23,9.75 C10.75,10.24 10.51,10.73 10.45,11.4 C10.44,11.53 10.43,11.64 10.43,11.75">
+                                    </path>
+                                </svg></i></label>
+                        <div class="uk-flex uk-flex-left uk-flex-middle uk-width-1 uk-margin-medium-bottom"
+                            bis_skin_checked="1">
+                            <input type="text" id="size" maxlength="10" class="changeble uk-input uk-width-3-6">
+                            <button class="uk-button uk-button-default uk-width-1-6" style="padding:0" id="btnAdd"
+                                name="addComplect" onclick="addSize(this)" type="button"><svg
+                                    class="svg-inline--fa fa-plus" aria-hidden="true" focusable="false"
+                                    data-prefix="fas" data-icon="plus" role="img" xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 448 512" data-fa-i2svg="">
+                                    <path fill="currentColor"
+                                        d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z">
+                                    </path>
+                                </svg>
+                            </button>
+                        </div>
+                        <div id="sizeInput" class="uk-width-1 uk-grid uk-grid-stack" uk-grid="" bis_skin_checked="1">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="tab" style="display: none;" bis_skin_checked="1">
+                <table class="uk-table uk-table-justify uk-table-divider" id="pricing">
+                    <thead>
+                        <tr>
+                            <th class="uk-width-auto">Название</th>
+                            <th class="uk-width-auto">Размер</th>
+                            <th class="uk-width-auto">Кол-во</th>
+                            <th class="uk-width-auto">Цена <i uk-tooltip="Эту цену будут видеть покупатели"
+                                    uk-icon="question" title="" aria-expanded="false" tabindex="0" class="uk-icon"><svg
+                                        width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <circle fill="none" stroke="#000" stroke-width="1.1" cx="10" cy="10" r="9">
+                                        </circle>
+                                        <circle cx="10.44" cy="14.42" r="1.05"></circle>
+                                        <path fill="none" stroke="#000" stroke-width="1.2"
+                                            d="M8.17,7.79 C8.17,4.75 12.72,4.73 12.72,7.72 C12.72,8.67 11.81,9.15 11.23,9.75 C10.75,10.24 10.51,10.73 10.45,11.4 C10.44,11.53 10.43,11.64 10.43,11.75">
+                                        </path>
+                                    </svg></i></th>
+                            <th class="uk-width-auto uk-text-center">Итоговая стоимость <i
+                                    uk-tooltip="Чистая прибль с учетом комиссии" uk-icon="question" title=""
+                                    aria-expanded="false" tabindex="0" class="uk-icon"><svg width="20" height="20"
+                                        viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <circle fill="none" stroke="#000" stroke-width="1.1" cx="10" cy="10" r="9">
+                                        </circle>
+                                        <circle cx="10.44" cy="14.42" r="1.05"></circle>
+                                        <path fill="none" stroke="#000" stroke-width="1.2"
+                                            d="M8.17,7.79 C8.17,4.75 12.72,4.73 12.72,7.72 C12.72,8.67 11.81,9.15 11.23,9.75 C10.75,10.24 10.51,10.73 10.45,11.4 C10.44,11.53 10.43,11.64 10.43,11.75">
+                                        </path>
+                                    </svg>
+                                </i>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="table">
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="tab" style="display: none;" bis_skin_checked="1">
+                <h1>please wait</h1>
+                <div class="uk-flex uk-flex-center uk-flex-middle" bis_skin_checked="1">
+                    <div class="loader" bis_skin_checked="1"></div>
+
+                </div>
+            </div>
+
+            {% csrf_token %}
+
+
+            <div style="overflow:auto; width: 100%" id="next-previous" bis_skin_checked="1">
+                <div style="float:right;" bis_skin_checked="1">
+                    <button type="button" id="prevBtn"
+                        style="display: none; border-radius: 1000px; text-align:center; width: 50px; height: 50px; padding: 0;"
+                        class="uk-button" onclick="nextPrev(-1)">
+                        <svg class="svg-inline--fa fa-angles-left" aria-hidden="true" focusable="false"
+                            data-prefix="fas" data-icon="angles-left" role="img" xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 512 512" data-fa-i2svg="">
+                            <path fill="currentColor"
+                                d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160zm352-160l-160 160c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L301.3 256 438.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0z">
+                            </path>
+                        </svg>
+                    </button>
+                    <button name="save_changet_product" type="button" id="nextBtn"
+                        style="border-radius: 1000px; text-align:center; width: 50px; height: 50px; padding: 0; background-color: gray;"
+                        class="uk-button uk-button-primary" onclick="nextPrev(1)">
+                        <svg class="svg-inline--fa fa-angles-right" aria-hidden="true" focusable="false"
+                            data-prefix="fas" data-icon="angles-right" role="img" xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 512 512" data-fa-i2svg="">
+                            <path fill="currentColor"
+                                d="M470.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 256 265.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160zm-352 160l160-160c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L210.7 256 73.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0z">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<script>
+    var inputnum = 0,
+        sizeInput = 0,
+        currentTab = 0;
+    shown = true;
+
+    function PassChecker(n) {
+        // console.log("PassChecker = " + n)
+        let product_name = document.getElementById("product_name").value.length;
+        let description = document.getElementById("description").value.length;
+        let comps = document.getElementById('inputDiv').children.length
+        let sizes = document.getElementById('sizeInput').children.length
+        let btn = document.getElementById('nextBtn')
+        if (n == 1) {
+            return 1
+        }
+        if (n == 2 && product_name > 0 && description > 0 && comps > 0 && sizes > 0) {
+            btn.style["background-color"] = 'blue'
+            btn.disabled = false;
+            return 1
+        } else if (n == 3) {
+            let prices = document.getElementsByClassName("price")
+            let amount = document.getElementsByClassName("amount")
+            let checker1 = false
+            let checker2 = false
+            for (let i = 0; i < prices.length; i++) {
+                if (prices[i].value.length > 0) {
+                    checker1 = true
+                } else {
+                    checker1 = false
+                }
+            }
+            for (let i = 0; i < amount.length; i++) {
+                if (amount[i].value.length > 0) {
+                    checker2 = true
+                } else {
+                    checker2 = false
+                }
+            }
+            if (checker1 && checker2) {
+                btn.style["background-color"] = 'blue'
+                btn.disabled = false;
+                localStorage.page = 5;
+
+                return 1
+            } else {
+                btn.style["background-color"] = 'gray'
+                btn.disabled = true;
+                return 0
+            }
+        } else if (n == 4) {
+            localStorage.page = 5;
+            btn.type = "submit"
+            return 1
+        }
+
+    }
+
+    function recalc(el) {
+        let price = parseInt(el.value)
+        let form = el.parentElement.parentElement.getElementsByClassName('final_price')[0];
+        let sum = price - price * 0.1
+        if (price >= 10000000) {
+            el.value = 10000000
+            sum = 10000000
+        }
+        form.innerHTML = sum + "₽"
+        PassChecker(3)
+    }
+
+    function addComplectation() {
+        let name = document.getElementById('product_name').value;
+        let sizes = document.getElementById('sizeInput').children
+        // console.log("qweqw")
+        table = document.getElementById('table')
+        for (let i = 0; i < sizes.length; i++) {
+            let size = sizes[i].getElementsByClassName('complectations_size')[0].value
+            table.innerHTML +=
+                `<tr> <td class="uk-text-truncate">${name}</td> <td class="uk-width-1-5">${size}</td> <td class="uk-width-1-5"><input class="uk-input amount" type="number" max="1000000" name="amount_${i}" oninput="PassChecker(2)" required></td> <td class="uk-width-1-5"><input class="uk-input price" type="number" name="price_${i}" oninput="recalc(this)" required></td> <td class="uk-width-1-5 uk-text-center"><p class="final_price"></p></td> </tr>`;
+        }
+    }
+
+    function addInput(el) {
+        // let input = el.parentElement.getElementsByTagName("input")[0];
+        let name = document.getElementById('compNmae');
+        let percentage = document.getElementById('compPercentage');
+        if (inputnum < 15 && name.value && percentage.value) {
+            name.removeAttribute("disabled");
+            percentage.removeAttribute("disabled");
+            name.placeholder = "Введите состав товара";
+            var $inputGroup =
+                `<div class="uk-flex uk-flex-center uk-flex-middle"> <input type="text" class="uk-input uk-width-3-6 complectations_name" name="compName_${inputnum}" value="${name.value}" readonly> <div class="uk-inline uk-width-1-4"> <input type="number" oninput="PercentageChecker(this)" class="uk-input complectations_percent" name="compPercentage_${inputnum}" value="${percentage.value}" readonly> <span class="uk-form-icon uk-form-icon-flip">%</span> </div> <button class="uk-button uk-button-default uk-width-1-6" style="padding: 0" onclick="changeInput(this)" type="button"> <i uk-icon="pencil" id="editon"></i> <i uk-icon="check" id="editoff" style="display: none"></i>  </button> <button class="uk-button uk-button-default uk-width-1-6" style="padding: 0" onclick="removeEl(this, 0)" type="button"> <i class="fa fa-minus"></i> </button> </div> `;
+            // <button class="btn btn-outline-secondary" onclick="changeInput(this)" type="button"><span class="material-icons"> mode_edit </span></button>
+            document.getElementById("inputDiv").insertAdjacentHTML("afterbegin", $inputGroup);
+            name.value = "";
+            percentage.value = "";
+            inputnum++;
+        } else if (inputnum >= 15) {
+            name.value = "";
+            percentage.value = "";
+            name.setAttribute("disabled", "disabled");
+            name.placeholder = "Вы ввели максимальное количество составляющих товара";
+        } else {
+            name.placeholder = "Для добавления элемента необходимо заполнить эти поля";
+        }
+        PassChecker(2)
+    }
+
+    function addSize(el) {
+        let size = document.getElementById('size');
+        if (sizeInput < 15 && size.value) {
+            size.removeAttribute("disabled");
+            size.placeholder = "Введите состав товара";
+            var $inputGroup =
+                `<div class="uk-flex uk-flex-center uk-flex-middle uk-width-1-3"> <input type="text" class="uk-input uk-width-4-5 complectations_size" name="size_${sizeInput}" value="${size.value}" readonly> <button class="uk-button uk-button-default uk-width-1-5" style="padding: 0" onclick="removeEl(this, 1)" type="button"> <i class="fa fa-minus"></i> </button> </div> `;
+            // <button class="btn btn-outline-secondary" onclick="changeInput(this)" type="button"><span class="material-icons"> mode_edit </span></button>
+            document.getElementById("sizeInput").insertAdjacentHTML("afterbegin", $inputGroup);
+            size.value = "";
+            sizeInput++;
+        } else if (sizeInput >= 15) {
+            size.value = "";
+            size.setAttribute("disabled", "disabled");
+            size.placeholder = "Вы ввели максимальное количество составляющих товара";
+        } else {
+            size.placeholder = "Для добавления элемента необходимо заполнить эти поля";
+        }
+        PassChecker(2)
+    }
+
+    function removeEl(el, arg) {
+        let mainInput = el.parentElement.parentElement.parentElement.getElementsByClassName("changeble")[0];
+        arg ? sizeInput-- : inputnum--;
+        if (inputnum < 15 || sizeInput < 15) {
+            mainInput.removeAttribute("disabled");
+            mainInput.placeholder = "";
+        }
+        el.parentElement.remove();
+        PassChecker(2)
+    }
+
+    function changeInput(el) {
+        let inputPoleName = el.parentElement.getElementsByTagName("input")[0];
+        let inputPolePercantage = el.parentElement.getElementsByTagName("input")[1];
+        let editon = el.parentElement.getElementsByTagName("i")[0];
+        let editoff = el.parentElement.getElementsByTagName("i")[1];
+        inputPoleName.placeholder = "Введите состав товара";
+        if (inputPoleName.value && inputPolePercantage.value) {
+            if (inputPoleName.readOnly && inputPolePercantage.readOnly) {
+                editon.style.display = "none";
+                editoff.style.display = "inline-block";
+            } else {
+                inputPoleName.value = inputPoleName.value
+                inputPolePercantage.value = inputPolePercantage.value
+                editon.style.display = "inline-block";
+                editoff.style.display = "none";
+            }
+            inputPoleName.readOnly ? inputPoleName.readOnly = false : inputPoleName.readOnly = true;
+            inputPolePercantage.readOnly ? inputPolePercantage.readOnly = false : inputPolePercantage.readOnly = true;
+        } else {
+            inputPoleName.placeholder = "Заполните это поле или удалите его";
+        }
+        PassChecker(2)
+    }
+
+    function PercentageChecker(el) {
+        if (el.value > 100) {
+            el.value = 100;
+        } else if (el.value < 0) {
+            el.value = 0;
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", function (event) {
+        showTab(currentTab);
+    });
+
+    function showTab(n) {
+        let x = document.getElementsByClassName("tab");
+        let len = document.getElementById('table').children.length
+        console.log(n)
+        try {
+            x[n].style.display = "block";
+            if (n === 1) {
+                setValues('{{product.compound}}', '{{product.size}}', '{{product.amount}}', '{{product.price}}')
+                // PassChecker(2)
+                for (let i = 0; i < len; i++) {
+                    document.getElementById('table').children[0].remove()
+                }
+                document.getElementById("prevBtn").style.display = "none";
+            } else if (n === 2) {
+                document.getElementById("nextBtn").style["background-color"] = 'gray'
+                document.getElementById("prevBtn").style.display = "inline-block";
+                addComplectation()
+                // PassChecker(4)
+            } else if (n === 3) {
+                document.getElementById("nextBtn").style["background-color"] = 'gray'
+                document.getElementById("prevBtn").style.display = "inline-block";
+                // PassChecker(4)
+            } else if (n == x.length - 1) {
+                // PassChecker(5)
+                document.getElementById("prevBtn").style.display = "none";
+                document.getElementById("nextBtn").style.display = "inline-block";
+
+            } else {
+                for (let i = 0; i < len; i++) {
+                    document.getElementById('table').children[0].remove()
+                }
+                document.getElementById("prevBtn").style.display = "inline-block";
+            }
+            PassChecker(n + 1)
+            fixStepIndicator(n)
+        } catch {}
+    }
+
+    function nextPrev(n) {
+        let x = document.getElementsByClassName("tab");
+        let btn = document.getElementById("nextBtn");
+        if (n > 0 && currentTab < 3) {
+            if (n == 0) {
+                document.getElementById("nextBtn").style["display"] = 'none';
+                showTab(currentTab);
+            }
+            if (PassChecker(currentTab + 1)) {
+                document.getElementById("nextBtn").style["display"] = 'block';
+                x[currentTab].style.display = "none";
+                currentTab = currentTab + n;
+                document.getElementById("nextBtn").style["background-color"] = 'gray';
+                showTab(currentTab);
+            } else {
+                alert(
+                    "ERROR \n Недостаточно данных \n Проверьте введенные данные еще раз. \n Кога все будет введено правильно, стрелочка подскажет дорогу"
+                )
+
+            }
+        } else {
+            x[currentTab].style.display = "none";
+            currentTab = currentTab + n;
+            if (currentTab === 4) {
+                PassChecker(4)
+                document.getElementById('next-previous').classList.add("redirect");
+            }
+            showTab(currentTab);
+        }
+    }
+
+    function fixStepIndicator(n) {
+        let i, x = document.getElementsByClassName("step");
+        for (i = 0; i <
+            x.length; i++) {
+            x[i].className = x[i].className.replace(" active", "");
+        }
+    }
+
+    function setValues(compond, size, amount, price) {
+        compond = compond.split(',').filter(function (el) {
+            return el != '';
+        });
+        size = size.split(',').filter(function (el) {
+            return el != '';
+        });
+        amount = amount.split(',').filter(function (el) {
+            return el != '';
+        });
+        price = price.split(',').filter(function (el) {
+            return el != '';
+        });
+
+        if (shown) {
+            shown = false;
+            for (let i = 0; i < compond.length; ++i) {
+                let arr = compond[i].split(" ").filter(function (el) {
+                    return el != '';
+                });
+                inputnum++;
+                str = arr[0];
+                percent = arr[1];
+                var $inputGroup =
+                    `<div class="uk-flex uk-flex-center uk-flex-middle"> <input type="text" class="uk-input uk-width-3-6 complectations_name" name="compName_${inputnum}" value="${str}" readonly> <div class="uk-inline uk-width-1-4"> <input type="number" oninput="PercentageChecker(this)" class="uk-input complectations_percent" name="compPercentage_${inputnum}" value="${percent}" readonly> <span class="uk-form-icon uk-form-icon-flip">%</span> </div> <button class="uk-button uk-button-default uk-width-1-6" style="padding: 0" onclick="changeInput(this)" type="button"> <i uk-icon="pencil" id="editon"></i> <i uk-icon="check" id="editoff" style="display: none"></i>  </button> <button class="uk-button uk-button-default uk-width-1-6" style="padding: 0" onclick="removeEl(this, 0)" type="button"> <i class="fa fa-minus"></i> </button> </div> `;
+                document.getElementById("inputDiv").insertAdjacentHTML("afterbegin", $inputGroup);
+            }
+            for (let i = 0; i < size.length; ++i) {
+                sizeInput++;
+                var $inputGroup =
+                    `<div class="uk-flex uk-flex-center uk-flex-middle uk-width-1-3"> <input type="text" class="uk-input uk-width-4-5 complectations_size" name="size_${sizeInput}" value="${size[i]}" readonly> <button class="uk-button uk-button-default uk-width-1-5" style="padding: 0" onclick="removeEl(this, 1)" type="button"> <i class="fa fa-minus"></i> </button> </div> `;
+                document.getElementById("sizeInput").insertAdjacentHTML("afterbegin", $inputGroup);
+            }
+
+        }
+
+    }
+</script>

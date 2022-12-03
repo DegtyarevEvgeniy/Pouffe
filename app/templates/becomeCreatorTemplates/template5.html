@@ -20,9 +20,7 @@
                         <th class="uk-text-center uk-width-1-5">Бренд</th>
                         <th class="uk-text-center uk-width-1-5">Цена</th>
                         <th class="uk-text-center uk-width-1-5">Опубликовано</th>
-                        <th class="uk-text-center uk-width-1-6">Удалить</th>
-    
-    
+                        <th class="uk-text-center uk-width-1-6">Действия</th>
                     </tr>
                 </thead>
                 <!--Table head-->
@@ -109,5 +107,17 @@
             $('#MainWindowContainer').html(xhr.response)
         }
         xhr.send()
+    });
+
+    $('.Btn_edit').on('click', {}, function (inBody) {
+        var xhr = new XMLHttpRequest()
+        // localStorage.page = 7
+        xhr.open('GET', `becomeCreatorTemplates/edit/${this.value}/`)
+        xhr.onload = function () {
+            $('#MainWindowContainer').html(xhr.response)
+        }
+        
+        xhr.send()
+
     });
 </script>

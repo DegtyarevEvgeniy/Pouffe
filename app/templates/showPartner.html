@@ -1,6 +1,16 @@
-{% extends "base.html" %}
+<html lang="en">
 
-{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BeFreela</title>
+
+    <!-- <link rel="stylesheet" href="style.css">
+    <script defer src="app.js"></script> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.15.10/dist/css/uikit.min.css" />
+
+</head>
 
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
@@ -237,30 +247,12 @@
 
     }
 
-    @keyframes colorChange {
-        0% {
-            background-image: linear-gradient(to bottom, rgb(196, 47, 47), rgb(196, 47, 47), rgb(196, 47, 47), rgb(196, 47, 47));
-        }
-
-        25% {
-            background-image: linear-gradient(to bottom, yellow, yellow, yellow, yellow, yellow);
-        }
-
-        50% {
-            background-image: linear-gradient(to bottom, blue, blue, blue, blue, blue);
-        }
-
-        100% {
-            background-image: linear-gradient(to bottom, green, green, green, green, green);
-        }
-    }
-
 
     /* The element to apply the animation to */
     .one {
         background-image: linear-gradient(to bottom, #ac866a, #787752, #46654d, #1c4e4c, #0a3644);
-        animation: colorChange 2s ease;
         animation-duration: 4s;
+        z-index: 1000;
 
 
     }
@@ -855,15 +847,14 @@
                         <br>
                         <div class="uk-width-1 uk-flex uk-flex-center uk-flex-middle">
                             {% if user.is_authenticated %}
-                                {%if user.confirmed%}
-                                    <li>Вы уже отправили заявку</li>
-
+                            <button class="uk-button uk-button-secondary uk-width-3-5" name="partRegBtn"
+                                style="margin: 0 auto" type="submit" onclick="UIkit.notification({message: '<span uk-icon=\'icon: check\'></span> Message with an icon'})">Отправить</button>
+                                <!-- <button class="uk-button uk-button-default demo" type="button" onclick="UIkit.notification({message: '<span uk-icon=\'icon: check\'></span> Message with an icon'})">With icon</button> -->
                                 {% else %}
                                 <button class="uk-button uk-button-secondary uk-width-3-5" name="partRegBtn"
-                                    style="margin: 0 auto" type="submit" onclick="UIkit.notification({message: '<span uk-icon=\'icon: check\'></span> Message with an icon'})">Отправить</button>
-                                <!-- <button class="uk-button uk-button-default demo" type="button" onclick="UIkit.notification({message: '<span uk-icon=\'icon: check\'></span> Message with an icon'})">With icon</button> -->
+                                style="margin: 0 auto" type="button">Отправить</button>
+                                
                                 {% endif %}
-                            {% endif %}
                         </div>
                         {% csrf_token %}
 
@@ -941,4 +932,3 @@
 </script>
 
 </html>
-{% endblock %}

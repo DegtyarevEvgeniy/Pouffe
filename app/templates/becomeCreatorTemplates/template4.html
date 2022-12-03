@@ -5,16 +5,19 @@
 </div>
 <div class="center">
 
-    <form method="POST" id="products_in_work_id" style="background-color: rgba(204, 204, 204, 0.2); margin: 1% 0; padding: 0 10px; width: 100%;" enctype="multipart/form-data">
+    <form method="POST" id="products_in_work_id"
+        style="background-color: rgba(204, 204, 204, 0.2); margin: 1% 0; padding: 0 10px; width: 100%;"
+        enctype="multipart/form-data">
         {% csrf_token %}
         <div class="uk-overflow-auto" style="margin: 0 auto">
-            <table class="uk-table uk-table-justify uk-table-divider uk-table-large" data-spy="scroll" data-target="#spy">
+            <table class="uk-table uk-table-justify uk-table-divider uk-table-large" data-spy="scroll"
+                data-target="#spy">
                 <thead>
                     <tr class="uk-text-center">
                         <th class="uk-text-center uk-width-auto">ID</th>
                         <th class="uk-text-center uk-width-auto">Название задачи</th>
                         <th class="uk-text-center uk-width-auto">Заказчик</th>
-                        <th class="uk-text-center uk-width-auto">Статус</th>
+                        <th class="uk-text-center uk-width-1-5">Статус</th>
                         <th class="uk-text-center uk-width-auto">Отказаться/Завершить</th>
                         <th class="uk-text-center uk-width-auto">Посмотреть пожелания</th>
                         <!-- <th class="uk-text-center uk-width-auto">Сообщения</th> -->
@@ -23,194 +26,98 @@
                 <!-- товары в работе -->
                 <tbody>
                     {% for product in products %}
+                    {% if product.is_incart == 0 %}
                     <tr>
                         <td class="uk-text-center product_id" uk-tooltip="{{ product.id }}">{{ product.id }}</td>
                         <td class="uk-text-center uk-text-truncate">{{ product.product_name }}</td>
                         <td class="uk-text-center">{{ product.customer }}</td>
-                        <th class="uk-text-left">
-                            <button name="in_work" class="uk-badge" type="submit" style="border-color: {{product.status1}}; background-color: {{product.status1}}; padding: 10%; margin: 2px;" uk-tooltip="В работе" value="{{product.id}}">1</button>
-                            <button name="done"    class="uk-badge" type="submit" style="border-color: {{product.status2}}; background-color: {{product.status2}}; padding: 10%; margin: 2px;" uk-tooltip="Сделано" value="{{product.id}}">2</button>
-                            <button name="payment" class="uk-badge" type="submit" style="border-color: {{product.status3}}; background-color: {{product.status3}}; padding: 10%; margin: 2px;" uk-tooltip="Ожидает оплаты" value="{{product.id}}">3</button>
+                        <th class="uk-text-center uk-flex-row">
+                            <button class="uk-width-1 uk-button uk-button-text" type="submit" value="{{product.id}}"
+                                name="change_status_to_0"
+                                style="padding-left: 10%; text-align: left;{% if product.status == 0 %} background-color: green; color: white {% endif %}"
+                                uk-tooltip="выберите этот пункт, если вы не готовы еще начать работу над заказом">Товар
+                                в обработке</button>
+                            <button class="uk-width-1 uk-button uk-button-text" type="submit" value="{{product.id}}"
+                                name="change_status_to_1"
+                                style="padding-left: 10%; text-align: left;{% if product.status == 1 %} background-color: green; color: white {% endif %}"
+                                uk-tooltip="выберите этот пункт, если вы ознакомились с деталями заказа и готовы начать работу над ним">Заказ
+                                в процессе сборки</button>
+                            <button class="uk-width-1 uk-button uk-button-text" type="submit" value="{{product.id}}"
+                                name="change_status_to_2"
+                                style="padding-left: 10%; text-align: left;{% if product.status == 2 %} background-color: green; color: white {% endif %}"
+                                uk-tooltip="выберите этот пункт, если заказ готов к отправке получателю">Заказ
+                                готов</button>
+                            <button class="uk-width-1 uk-button uk-button-text" type="submit" value="{{product.id}}"
+                                name="change_status_to_3"
+                                style="padding-left: 10%; text-align: left;{% if product.status == 3 %} background-color: green; color: white {% endif %}"
+                                uk-tooltip="выберите этот пункт, если вы отправили товар получателю">Заказ в процессе
+                                доставки</button>
                         </th>
                         <td class="uk-text-center">
                             {% if product.status1 == "red" %}
-                            <button name="decline" form="products_in_work_id" type="submit" value="{{product.id}}" class="uk-button uk-button-danger uk-width-auto uk-text-center uk-border-rounded">Отказаться</button>
+                            <button name="decline" form="products_in_work_id" type="submit" value="{{product.id}}"
+                                class="uk-button uk-button-danger uk-width-auto uk-text-center uk-border-rounded">Отказаться</button>
                             {% elif product.status2 == "red" %}
-                            <button style="background-color: #faa05a" class="uk-button uk-width-auto uk-text-center uk-border-rounded" disabled>Доставить</button>
+                            <button style="background-color: #faa05a"
+                                class="uk-button uk-width-auto uk-text-center uk-border-rounded"
+                                disabled>Доставить</button>
                             {% else %}
                             <!-- <button name="send" form="products_in_work_id" type="submit" value="{{product.id}}" style="background-color: #faa05a" class="uk-button uk-width-1 uk-text-center uk-border-rounded">Доставить</button> -->
-                            <button name="decline" form="products_in_work_id" type="submit" value="{{product.id}}" class="uk-button uk-button-danger uk-width-auto uk-text-center uk-border-rounded">Отказаться</button>
-                            
+                            <button name="decline" form="products_in_work_id" type="submit" value="{{product.id}}"
+                                class="uk-button uk-button-danger uk-width-auto uk-text-center uk-border-rounded"
+                                uk-tooltip="Нажмите, если вы хотите отказаться от этого заказа">Отказаться</button>
+
                             {% endif %}
                             {{product.st}}
                         </td>
 
                         <td class="uk-text-center">
-                            <button name="" form="products_in_work_id" type="button" class="uk-button uk-button-primary uk-border-rounded" href="#modal-overflow" uk-toggle>Посмотреть</button>
+                            <button name="" form="products_in_work_id" type="button"
+                                class="uk-button uk-button-primary uk-border-rounded" href="#modal-overflow"
+                                uk-toggle>Посмотреть</button>
                             <div id="modal-overflow" uk-modal>
                                 <div class="uk-modal-dialog">
 
                                     <button class="uk-modal-close-default" type="button" uk-close></button>
 
                                     <div class="uk-modal-header">
-                                        <h2 class="uk-modal-title uk-text-truncate">Пожелание к товару {{ product.product_name }}</h2>
+                                        <h2 class="uk-modal-title uk-text-truncate">Пожелание к товару
+                                            {{ product.product_name }}</h2>
                                     </div>
 
                                     <div class="uk-modal-body" uk-overflow-auto>
-                                        <p class="uk-text-small uk-text-center uk-text-emphasis"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus est dolore nulla porro hic dolor molestiae fugit. Beatae in reprehenderit explicabo consequatur commodi. Ducimus, tempora repudiandae maxime itaque
-                                            soluta eaque. </p>
-
+                                        <h3>Сообщение от покупателя</h3>
+                                        <p class="uk-text-small uk-text-center uk-text-emphasis"> {{product.message}}
+                                        </p>
+                                        <div class="uk-margin"></div>
+                                        <h3>Адрес доставки</h3>
+                                        <p class="uk-text-small uk-text-center uk-text-emphasis">
+                                            {{product.delivery_address}} </p>
                                     </div>
 
                                     <div class="uk-modal-footer uk-text-right">
-                                        <button class="uk-button uk-button-primary uk-modal-close" type="button">Закрыть</button>
+                                        <button class="uk-button uk-button-primary uk-modal-close"
+                                            type="button">Закрыть</button>
                                     </div>
 
                                 </div>
                             </div>
                         </td>
-                        <!-- <td class="uk-text-center">
-                            <a type="submit" class="uk-button uk-button-default" href="/chat/{{product.chat_id}}">Написать</a>
-                        </td> -->
-
-                    </tr>
-                    {% endfor %}
-                </tbody>
-                <!-- товары на одобрение -->
-                <tbody style="border-top: 2px solid black!important;">
-                    {% if products_v %}
-                    <tr>
-                        <th class="uk-text-center"></th>
-                        <th class="uk-text-center"></th>
-                        <th class="uk-text-center"></th>
-                        <th class="uk-text-center" style="color: black">На</th>
-                        <th class="uk-text-center"></th>
-                        <th class="uk-text-center" style="color: black">одобрение:</th>
-                        <th class="uk-text-center"></th>
-                        <th class="uk-text-center"></th>
-                        <th class="uk-text-center"></th>
-
                     </tr>
                     {% endif %}
-
-                    {% for product in products_v %}
-                    <tr>
-                        <td class="uk-text-center uk-text-truncate product_id" uk-tooltip="{{ product.id }}">{{ product.id }}</td>
-                        <td class="uk-text-center"> {{ product.product_name }} </td>
-                        <td class="uk-text-center">1</td>
-                        <td class="uk-text-center">{{ product.id_user_buy }}</td>
-                        <td class="uk-text-center">дедлайн</td>
-                        <td class="uk-text-center">
-                            <button name="status" form="products_in_work_id" type="submit" value="{{product.id}}" class="uk-button uk-button-primary uk-width-1 uk-text-center uk-border-rounded" style="margin: 0 auto; padding: 0 5px; background-color: #faa05a!important">Согласиться</button>
-                        </td>
-                        <td class="uk-text-center">
-                            <button name="decline" form="products_in_work_id" type="submit" value="{{product.id}}" class="uk-button uk-button-danger uk-width-1 uk-text-center uk-border-rounded">Отказаться</button>
-                            {{product.status}}
-                        </td>
-                        <td class="uk-text-center">
-                            <button name="" form="products_in_work_id" type="button" class="uk-button uk-button-primary uk-border-rounded" href="#modal-overflow" uk-toggle>Посмотреть</button>
-                            <div id="modal-overflow" uk-modal>
-                                <div class="uk-modal-dialog">
-
-                                    <button class="uk-modal-close-default" type="button" uk-close></button>
-
-                                    <div class="uk-modal-header">
-                                        <h2 class="uk-modal-title uk-text-truncate">Пожелание к товару {{ product.product_name }}</h2>
-                                    </div>
-
-                                    <div class="uk-modal-body" uk-overflow-auto>
-                                        <p class="uk-text-small uk-text-center uk-text-emphasis"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus est dolore nulla porro hic dolor molestiae fugit. Beatae in reprehenderit explicabo consequatur commodi. Ducimus, tempora repudiandae maxime itaque
-                                            soluta eaque. </p>
-
-                                    </div>
-
-                                    <div class="uk-modal-footer uk-text-right">
-                                        <button class="uk-button uk-button-primary uk-modal-close" type="button">Закрыть</button>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </td>
-                        <!-- <td class="uk-text-center">
-                            <a type="submit" class="uk-button uk-button-default" href="/chat/{{product.chat_id}}">Написать</a>
-                        </td> -->
-                    </tr>
                     {% endfor %}
                 </tbody>
+
             </table>
         </div>
 
     </form>
 
-    <div class="uk-flex uk-flex-top uk-text-left" style="margin-top: 20px">
 
-        <!-- <div class="uk-card uk-card-default uk-card-body uk-width-1-2@m" style="box-shadow: none; ">
-            <h1>Отзывы</h1>
-            <div class="d-flex flex-row" style="padding-bottom: 10px;">
-
-                <img src="https://cdn130.picsart.com/356259745047201.jpg" alt="" width="70" height="58" class="d-inline-block align-text-top">
-                <div style="width: 100%; height: auto">
-                    <h4 style="margin-left: 5%"> User Name</h4>
-                    <div style="margin-left: 5%">
-                        <i class="fa-solid fa-star colorStarTrue"></i>
-                        <i class="fa-solid fa-star colorStarTrue"></i>
-                        <i class="fa-solid fa-star colorStarTrue"></i>
-                        <i class="fa-solid fa-star colorStarTrue"></i>
-                        <i class="fa-solid fa-star"></i>
-                    </div>
-                </div>
-
-            </div>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta fugit minus optio alias dolorum sapiente, facere iusto recusandae quo amet, asperiores deserunt, doloribus atque dolore saepe neque perspiciatis reprehenderit doloremque!
-            </p>
-            <style>
-                .colorStarTrue {
-                    font-weight: 900;
-                    color: #f8ce0b;
-                }
-            </style>
-        </div> -->
-        <!-- <div class="uk-card uk-card-default uk-card-body uk-width-1-2@m" style="box-shadow: none; border-left: 1px solid rgb(156, 156, 156)">
-            <h1>Запросы</h1>
-            <div style="margin: auto">
-                <form method="GET" id="goodsList" enctype="multipart/form-data">
-                    <div class="uk-overflow-aut">
-                        <table class="uk-table uk-table-justify" data-spy="scroll" data-target="#spy">
-                            <thead>
-                                <tr>
-                                    <th class="uk-width-small">ID Запроса</th>
-                                    <th class="uk-text-center">Название Товара</th>
-                                    <th class="uk-text-center">Заказчик</th>
-                                    <th class="uk-text-center">Статус</th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                {% for product in products_v %}
-                                <tr>
-                                    <td class="uk-text-center">{{ product.id }}</td>
-                                    <td class="uk-text-center">{{ product.product_name }}</td>
-                                    <td class="uk-text-center">{{ product.id_user_buy }}</td>
-                                    <td class="uk-text-center">
-                                        <button name="status" form="goodsList" type="submit" value="{{product.id}}" class="uk-button uk-button-primary uk-border-rounded" style="margin:auto; padding: 0 15px!important">Согласиться</button>
-                                    </td>
-                                    <td class="uk-text-center">
-                                        <button name="decline" form="goodsList" type="submit" value="{{product.id}}" class="uk-button uk-button-danger uk-border-rounded" style="margin:auto; padding: 0 15px!important">Отказаться</button>
-                                    </td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                </form>
-            </div>
-        </div> -->
-    </div>
 </div>
 
 <script>
-    
+
 </script>
 
 
@@ -221,23 +128,23 @@
         height: 350px;
         overflow: auto;
     }
-    
+
     .table-fixed {
         width: 100%;
         background-color: #f3f3f3;
     }
-    
+
     .center {
         width: 100%;
         height: auto;
     }
-    
+
     .img {
         height: 50px;
         width: 50px;
         background-color: aqua;
     }
-    
+
     .button {
         width: 71.5%;
         margin-left: 13.5%;
@@ -245,7 +152,7 @@
     }
 </style>
 
-<script >
+<script>
 
 
 </script>

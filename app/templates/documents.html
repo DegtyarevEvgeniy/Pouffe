@@ -1,6 +1,9 @@
 {% block content %}
 
-
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.13.7/dist/css/uikit.min.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
 <style>
     * {
         transition: 0.2s;
@@ -72,11 +75,6 @@
                     </ul>
                 </div>
                 <div class="uk-navbar-right uk-width-2-5@m">
-                    <div class="uk-search uk-search-default uk-margin-small-right uk-width-4-5@m">
-                        <a type="submit" href="" id="searchBtn" uk-search-icon></a>
-                        <input class="uk-search-input uk-border-rounded uk-width-1" type="search" placeholder="Search"
-                            id="search_pole">
-                    </div>
                     <ul class="uk-navbar-nav">
                         <li class="uk-active">
                             <a uk-icon="icon: user"></a>
@@ -107,22 +105,7 @@
 
 
 <script>
-    document.getElementById('search_pole').addEventListener('keyup', function (event) {
-        document.getElementById('searchBtn').href = "/goods/search/" + document.getElementById(
-            'search_pole').value;
-        if (event.keyCode == 13) {
-            document.getElementById('searchBtn').click();
-        }
-    });
 
-    let cards = document.querySelectorAll('.card-link')
-
-    cards.forEach(card => {
-        card.addEventListener('click', function handleClick(event) {
-            console.log(event.target.parentNode.className)
-
-        });
-    });
 
     $(function () {
         var num = window.location.search[1];

@@ -95,19 +95,7 @@
             <div>
                 <h2 class="uk-text-truncate uk-width-1-2">{{product.product_name}}</h2>
             </div>
-            <!--  -->
-            <!-- <div class="uk-flex">
-                <div class="uk-width-auto uk-display-inline uk-margin-small-right">
-                    <img src="{{shop.logoImage}}" class="uk-border-circle" style="width: 60px; height: 60px">
-                </div>
-                <div class="uk-width-expand uk-display-inline">
-                    <h3 class="uk-card-title uk-margin-remove-bottom ">{{shop.name}}
-                    </h3>
-                    <div><span>&#9733</span><span>&#9733</span><span>&#9733</span><span>&#9733</span><span>&#9734</span>
-                    </div>
-                </div>
-            </div> -->
-            <!--  -->
+
             <div class="uk-card uk-card-default uk-width-3-5@m uk-text-center uk-margin-small-bottom"
                 style="padding: 2% 0">
                 <p class="uk-margin-left uk-width-2-3@m" style="margin: 0;"> <i class="fa-regular fa-shield-check"></i>
@@ -124,14 +112,16 @@
             <!--  -->
             <div class="uk-text-left">
                 {% if request.user.is_authenticated %}
-                <button class="uk-button uk-button-secondary uk-width-2-3 uk-text-bold uk-margin-small-bottom"
-                    href="#modal-overflow" style="background-color: #B54F00;" uk-toggle>Заказать</button>
-
+                <form method="POST">
+                    {% csrf_token %}
+                    <a class="uk-button uk-button-secondary uk-width-2-3 uk-text-bold uk-margin-small-bottom"
+                        style="background-color: #B54F00;" href="#ordering-window" uk-toggle>Добавить в карзину</a>
+                </form>
                 {% else %}
                 <a class="uk-button uk-button-secondary uk-width-2-3 uk-text-bold uk-margin-small-bottom"
-                    href="/login">Заказать</a>
+                    href="/login">Добавить в карзину</a>
                 {% endif %}
-                <div id="modal-overflow" uk-modal>
+                <div id="ordering-window" uk-modal>
                     <div class="uk-modal-dialog">
                         <div>
                             <button class="uk-modal-close-default" type="button" uk-close></button>
@@ -156,12 +146,10 @@
                                         class="uk-flex uk-uk-flex-center uk-flex-middle uk-width-expand uk-margin-medium-left">
                                         <a class="uk-button uk-button-link amount-changer" id="minusBtn"
                                             uk-icon="icon: minus"></a>
-                                        <input type="number" name="amount" min="1" max="1000" id="amount" value="1" style="margin:0 2%"
-                                            class="uk-input uk-width-1-5">
+                                        <input type="number" name="amount" min="1" max="1000" id="amount" value="1"
+                                            style="margin:0 2%" class="uk-input uk-width-1-5">
                                         <a class="uk-button uk-button-link amount-changer" id="plusBtn"
                                             uk-icon="icon: plus"></a>
-                                        <!-- <button type="button" class="uk-width-auto uk-heading-xsmall uk-button uk-button-primary" style="padding: 0 20%"><span uk-icon="icon: minus; ratio: 4"></span></button> -->
-                                        <!-- <button type="button" class="uk-width-auto uk-heading-xsmall uk-button uk-button-primary" style="padding: 0 20%"><span uk-icon="icon: plus; ratio: 4"></span></button> -->
                                     </div>
                                 </div>
                                 <div class="uk-flex">
@@ -184,7 +172,7 @@
 
                                 {% csrf_token %}
                                 <button class="uk-button uk-button-primary" style="background-color: #B54F00;"
-                                    name="buy_product" type="submit"
+                                    name="addToCartBtn" type="submit"
                                     onclick="UIkit.notification({message: 'Запрос отправлен', status: 'success'})">Заказать
                                     товар</button>
                             </div>
@@ -390,9 +378,11 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
-    window.onload = document.getElementById('amount').innerHTML = "{{product.amount}}".split(',')[0];
-    var alertPlaceholder = document.getElementById('liveAlertPlaceholder')
-    var alertTrigger = document.getElementById('liveAlertBtn')
+    // window.onload = document.getElementById('amount').innerHTML;
+    // = "{{product.amount}}".split(',')[0]
+    var alertPlaceholder = document.getElementById('liveAlertPlaceholder');
+    var alertTrigger = document.getElementById('liveAlertBtn');
+    var itemAded = 0;
 
     function alert(message, type) {
         var wrapper = document.createElement('div')
@@ -415,26 +405,24 @@
         let prices = "{{product.price}}".split(',')
         let amount = "{{product.amount}}".split(',')
         let index = BtnList.indexOf(el)
-        document.getElementById('price').innerHTML = prices[index]
-        document.getElementById('amount').innerHTML = amount[index]
-        console.log(amount)
+        document.getElementById('price').innerHTML = prices[index] + " руб.";
     }));
 
     $('.amount-changer').on('click', function () {
         number = parseInt($('#amount').val())
-        if (this.id == "plusBtn" && number >= 1 ){
+        if (this.id == "plusBtn" && number >= 1) {
             $('#amount').val(number + 1)
-        } else if (number <= 1){
+        } else if (number <= 1) {
             $('#amount').val(1)
-        } else{
+        } else {
             $('#amount').val(number - 1)
         }
     });
     $('#amount').on('input', function () {
-        if (parseInt($('#amount').val()) <= 1){
+        if (parseInt($('#amount').val()) <= 1) {
             $('#amount').val(1)
         }
-        if (parseInt($('#amount').val()) >= 1000){
+        if (parseInt($('#amount').val()) >= 1000) {
             $('#amount').val(1000)
         }
     });

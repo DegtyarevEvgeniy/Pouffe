@@ -1,38 +1,4 @@
     {% for product in products %}
-    <!-- <li data-sex="{{product.sex}}" data-rating="{{product.flooredrating}}" data-duration="{{product.duration}}"
-        data-price="{{product.id}}" style="border-top: 1px solid; border-right: 1px solid; padding: 0; margin: 0">
-        <a href="/goods/{{product.id}}" class="uk-text-secondary uk-link-reset">
-            <div class="uk-card uk-card-hover" style=" width: 333px; border-collapse: collapse;">
-                <div class="uk-card-header">
-                    <img src="{{product.picture1}}" width="300px" alt="" style="margin-bottom: 2%;">
-                </div>
-                <div class="ukcard-body" style="padding: 0 5%">
-                    <p class="uk-text-truncate uk-text-bold" style="margin: 0">{{product.product_name}} </p>
-                    <p class="uk-text-meta" style="margin: 0">{{product.brand}} </p>
-                </div>
-                <div class="uk-card-footer uk-flex uk-flex-middle" style="border-top: 1px solid #929292">
-                    <p class="uk-text-truncate" style="margin: 0">{{product.show_price}} ₽ </p>
-                    <ul style="font-size: 1.2em; padding: 0 2%;" class="uk-nav">
-                        <li class="star">
-                            {% if product.flooredrating == 5 %}
-                            &starf;&starf;&starf;&starf;&starf;
-                            {% elif product.flooredrating == 4 %}
-                            &starf;&starf;&starf;&starf;&star;
-                            {% elif product.flooredrating == 3 %}
-                            &starf;&starf;&starf;&star;&star;
-                            {% elif product.flooredrating == 2 %}
-                            &starf;&starf;&star;&star;&star;
-                            {% elif product.flooredrating == 1 %}
-                            &starf;&star;&star;&star;&star;
-                            {% elif product.flooredrating == 0 %}
-                            &star;&star;&star;&star;&star;
-                            {% endif %}
-                        </li>
-                    </ul>
-                </div> 
-            </div>
-        </a>
-    </li> -->
     <li data-sex="{{product.sex}}" data-rating="{{product.flooredrating}}" data-duration="{{product.duration}}"
         data-price="{{product.id}}">
         <a href="/goods/{{product.id}}" class="uk-text-secondary uk-link-reset">

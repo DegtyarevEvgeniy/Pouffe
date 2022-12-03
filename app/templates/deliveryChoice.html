@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" type="image/x-icon" href="../../../media/logoImage/Befreed.png" />
+    <title>BeFreela</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.13.10/dist/css/uikit.min.css" />
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <script src="https://kit.fontawesome.com/6fc980010f.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Yandex.Metrika counter -->
+
+    <script type="text/javascript">
+        (function (m, e, t, r, i, k, a) {
+            m[i] = m[i] || function () {
+                (m[i].a = m[i].a || []).push(arguments)
+            };
+            m[i].l = 1 * new Date();
+            for (var j = 0; j < document.scripts.length; j++) {
+                if (document.scripts[j].src === r) {
+                    return;
+                }
+            }
+            k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode
+                .insertBefore(k, a)
+        })
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+        ym(90687318, "init", {
+            clickmap: true,
+            trackLinks: true,
+            accurateTrackBounce: true,
+            webvisor: true
+        });
+    </script>
+    <noscript>
+        <div><img src="https://mc.yandex.ru/watch/90687318" style="position:absolute; left:-9999px;" alt="" /></div>
+    </noscript>
+
+    <!-- /Yandex.Metrika counter -->
+
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
+    P {
+        font-family: 'Montserrat';
+        color: black;
+    }
+
+    label {
+        font-family: 'Montserrat';
+        color: black;
+        padding: 12px 12px;
+    }
+</style>
+
+<div style="width: 90%; margin: auto; margin-top: 5%;">
+    <form method="post">
+        <div class="uk-margin-large-left">
+            <p style="font-weight: 600; font-size: 3em; margin: 0;" class="uk-margin-bottom">Выберете способ доставки
+            </p>
+
+            <div class="uk-flex uk-flex-middle uk-margin-small-top">
+                <div class="uk-width-2-5"
+                    style="border: solid black 2px; border-radius: 5em; padding: 0; margin: 0 10px">
+                    <label style="font-weight: 600; font-size: 2em; padding: 1% 1% 1% 5%"
+                        class="uk-flex uk-flex-middle uk-flex-left">
+                        <input id="shipping_pony_express" class="uk-checkbox" type="checkbox"
+                            name="shipping_pony_express" style="background-color: black;">
+                        <span class="uk-margin-small-left uk-text-truncate">Pony Express</span>
+                    </label>
+                </div>
+
+                <input name="shipping_pony_express_input" id="shipping_pony_express_input"
+                    style="border: solid black 2px; border-radius: 5em; font-size: 2em; height: 60px; padding: 0 1%;"
+                    minlength="20" maxlength="500" class="uk-input" placeholder="Введите адрес на случай возврата"
+                    {% if shipping_pony_express != '' %} value="{{shop.shipping_pony_express}}" {% endif %} disabled
+                    required>
+
+            </div>
+            <div class="uk-flex uk-flex-middle uk-margin-small-top">
+                <div class="uk-width-2-5"
+                    style="border: solid black 2px; border-radius: 5em; padding: 0; margin: 0 10px">
+                    <label style="font-weight: 600; font-size: 2em; padding: 1% 1% 1% 5%"
+                        class="uk-flex uk-flex-middle uk-flex-left">
+                        <input id="shipping_yandex_delivery" class="uk-checkbox" type="checkbox"
+                            name="shipping_yandex_delivery" style="background-color: black;">
+                        <span class="uk-margin-small-left uk-text-truncate">Яндекс Доставка</span>
+                    </label>
+                </div>
+
+                <input name="shipping_yandex_delivery_input" id="shipping_yandex_delivery_input"
+                    style="border: solid black 2px; border-radius: 5em; font-size: 2em; height: 60px; padding: 0 1%;"
+                    minlength="20" maxlength="500" class="uk-input" placeholder="Введите адрес на случай возврата"
+                    {% if shipping_yandex_delivery != "" %} value="{{shop.shipping_yandex_delivery}}" {% endif %}
+                    disabled required>
+            </div>
+
+            <div class="uk-flex uk-flex-middle uk-margin-small-top">
+                <div class="uk-width-2-5"
+                    style="border: solid black 2px; border-radius: 5em; padding: 0; margin: 0 10px">
+                    <label style="font-weight: 600; font-size: 2em; padding: 1% 1% 1% 5%"
+                        class="uk-flex uk-flex-middle uk-flex-left">
+                        <input id="shipping_dostavista" class="uk-checkbox" type="checkbox" name="shipping_dostavista"
+                            style="background-color: black;">
+                        <span class="uk-margin-small-left uk-text-truncate">Достависта</span>
+                    </label>
+                </div>
+
+                <input name="shipping_dostavista_input" id="shipping_dostavista_input"
+                    style="border: solid black 2px; border-radius: 5em; font-size: 2em; height: 60px; padding: 0 1%;"
+                    minlength="20" maxlength="500" class="uk-input" placeholder="Введите адрес на случай возврата"
+                    {% if shipping_dostavista != '' %} value="{{shop.shipping_dostavista}}" {% endif %} disabled
+                    required>
+            </div>
+
+            <div class="uk-flex uk-flex-middle uk-margin-small-top">
+                <div class="uk-width-2-5"
+                    style="border: solid black 2px; border-radius: 5em; padding: 0; margin: 0 10px">
+                    <label style="font-weight: 600; font-size: 2em; padding: 1% 1% 1% 5%"
+                        class="uk-flex uk-flex-middle uk-flex-left">
+                        <input id="shipping_sdek" class="uk-checkbox" type="checkbox" name="shipping_sdek"
+                            style="background-color: black; ">
+                        <span class="uk-margin-small-left uk-text-truncate">СДЭК</span>
+                    </label>
+                </div>
+
+                <input name="shipping_sdek_input" id="shipping_sdek_input"
+                    style="border: solid black 2px; border-radius: 5em; font-size: 2em; height: 60px; padding: 0 1%;"
+                    minlength="20" maxlength="500" class="uk-input" placeholder="Введите адрес на случай возврата"
+                    {% if shipping_sdek != '' %} value="{{shop.shipping_sdek}}" {% endif %} disabled required>
+            </div>
+
+
+            {% csrf_token %}
+            <a href="/becomeCreator" class="uk-button uk-button-default uk-border-pill uk-margin-medium-top"
+                style="font-size: 1.5em; width: 15%" name="add_deliveries">Отмена</a>
+            <button class="uk-button uk-button-secondary uk-border-pill uk-margin-medium-top"
+                style="font-size: 1.5em; width: 15%" name="add_deliveries">Добавить</button>
+    </form>
+</div>
+
+<script>
+    document.getElementById('shipping_pony_express').addEventListener('change', function (e) {
+        if (this.checked) {
+            document.getElementById('shipping_pony_express_input').removeAttribute("disabled");
+        } else {
+            document.getElementById('shipping_pony_express_input').setAttribute("disabled", "disabled");
+        }
+    })
+    document.getElementById('shipping_yandex_delivery').addEventListener('change', function (e) {
+        if (this.checked) {
+            document.getElementById('shipping_yandex_delivery_input').removeAttribute("disabled");
+        } else {
+            document.getElementById('shipping_yandex_delivery_input').setAttribute("disabled", "disabled");
+        }
+    })
+    document.getElementById('shipping_dostavista').addEventListener('change', function (e) {
+        if (this.checked) {
+            document.getElementById('shipping_dostavista_input').removeAttribute("disabled");
+        } else {
+            document.getElementById('shipping_dostavista_input').setAttribute("disabled", "disabled");
+        }
+    })
+    document.getElementById('shipping_sdek').addEventListener('change', function (e) {
+        if (this.checked) {
+            document.getElementById('shipping_sdek_input').removeAttribute("disabled");
+        } else {
+            document.getElementById('shipping_sdek_input').setAttribute("disabled", "disabled");
+        }
+    })
+</script>
