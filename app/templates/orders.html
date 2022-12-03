@@ -2,10 +2,11 @@
 
 {% block content %}
 <style>
-     @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
-     p {
-        margin: 0 0 2% 0 ; 
-     }
+    @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
+    p {
+        margin: 0 0 2% 0;
+    }
 </style>
 
 <body>
@@ -16,8 +17,45 @@
         </div>
 
         <div class="uk-flex">
-            <div  class="uk-width-2-3 uk-margin-medium-right" style="background-color: grey; height: 70vh">
-                
+            <div class="uk-width-2-3 uk-margin-medium-right">
+                <div class="uk-flex-column">
+                    {% for shop in shops %}
+                    <div class="uk-width-1 uk-border-rounded" style="background-color: lightgrey; margin: 10px 0">
+                        <p class="uk-margin-left" style="font-weight: 600; font-size: 1.5em; margin:0">Заказ <b
+                                class="uk-text-uppercase">{{shop}}</b>
+                        </p>
+                    </div>
+                    {% for product in products %}
+                    <div class="uk-flex uk-margin">
+                        <div class="uk-width-3-5 uk-flex uk-flex-around">
+                            <img src="{{product.img}}" width="100" alt="">
+                            <a href="/goods/{{product.id}}/"
+                                class="uk-link-revert uk-button uk-button-text">{{product.product_name}}</a>
+                        </div>
+                        <div class="uk-width-2-5">
+                            <div class="uk-flex uk-flex-top uk-flex-between">
+                                <p class="uk-text-meta">Дата заказа:</p>
+                                <p>{{product.date_add}}</p>
+                            </div>
+                            <p>Способ оплаты</p>
+                            <div class="uk-flex uk-flex-top uk-flex-between">
+                                <p class="uk-text-meta">Способ оплаты:</p>
+                                <p>{{product.price}}</p>
+                            </div>
+                            <p>Способ доставки</p>
+                            <div class="uk-flex uk-flex-top uk-flex-between">
+                                <p class="uk-text-meta">Адрес:</p>
+                                <p>{{product.delivery_address}}</p>
+                            </div>
+                            <div class="uk-flex uk-flex-top uk-flex-between">
+                                <p class="uk-text-meta">Получатель:</p>
+                                <p>{{user}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% endfor %}
+                </div>
             </div>
 
             <div class="uk-flex-column uk-width-1-3">
@@ -32,99 +70,15 @@
                     <p style="font-weight: 600; font-size: 1.2em;">Не нашли ответа? Напишите нам</p>
                     <div style="width: 70%; margin: auto;">
                         <a class="uk-button uk-button-secondary uk-border-pill">Задать вопрос</a>
-                    </div>           
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </body>
+
 {% endblock %}
-  
-  
-  
-  
-  
-  
-  <!-- <div class="uk-flex uk-flex-between uk-flex-middle uk-width-4-5" style="margin: 0 auto">
-        <h1>Корзина</h1>
-        <h3 class="uk-text-center uk-width-2-3">Здесь вы можете отследить статус текущих заказов</h3>
-    </div>
 
-
-
-    <div class="uk-width-4-5 uk-flex-column uk-margin-bottom" style="margin: 2% auto">
-
-        <form method="POST" class="uk-width-1">
-            {% for product in products %}
-            <div class="uk-flex uk-flex-between uk-flex-middle uk-with-1"
-                style="padding: 1%; margin: 2% auto; border-bottom: 1px solid;">
-                <div class="uk-flex uk-flex-around uk-flex-middle uk-width-3-5">
-                    <div><img src="{{product.img}}" alt="" width="200px" style="border-radius: 5px">
-                    </div>
-                    <div class="uk-flex-row">
-                        <h2 class="uk-text-break">{{ product.id_user_buy }}</h2>
-                        <p style="font-size: 1.3em;" class="uk-text-break">Статус: <br> {{ product.status }}</p>
-                    </div>
-                </div>
-                <div class="uk-flex uk-flex-around uk-flex-center uk-width-2-5">
-                    <div class="uk-width-2-5">
-                        <h3 class="uk-text-break" style="text-align: center">{{ product.price }} руб.</h3>
-                        <p class="uk-text-break uk-text-truncate">Адрес: <br>{{product.delivery_address}}</p>
-                    </div>
-                    <div class="uk-width-auto">
-                        <button class="uk-button uk-button-primary uk-border-rounded uk-width-1" style="margin: 0 1%"
-                            type="button" uk-toggle="target: #modal-close-default">Оплатить заказ</button>
-                        <div class="uk-flex" style="margin-top: 5%">
-                            {% csrf_token %}
-                            <button class="uk-button uk-button-danger uk-border-rounded uk-width-1" style="margin: 0 1%"
-                                name="decline" value="{{product.id}}" type="submit">Отказаться</button> -->
-                            <!-- <a class="uk-button uk-button-primary uk-border-rounded uk-width-auto {{product.chat}}" -->
-                            <!-- id="cahtBtn" style="margin: 0 1%" type="button">Чат</a> -->
-                        <!-- </div>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-        </form>
-    </div>
-    </div>
-
-    <div id="modal-close-default" uk-modal>
-        <div class="uk-modal-dialog uk-modal-body">
-            <button class="uk-modal-close-default" type="button" uk-close></button>
-            <h2 class="uk-modal-title">Оплата</h2>
-            <div>
-                <div class="uk-flex uk-margin-bottom">
-                    <img src="{{user.userImage}}" alt="" class="uk-border-rounded" width="50" height="80" alt="">
-                    <div class="uk-flex-column uk-margin-left">
-                        <p class="uk-margin-remove">{{ user.first_name }}</p>
-                        <p class="uk-margin-remove">{{ user.email}}</p>
-                    </div>
-                </div>
-                <div class="uk-flex">
-                    <p class="uk-margin-remove">Получатель:</p>
-                    <span class="uk-label" style="margin: 0 0 0 5%">{{user.first_name}} {{user.last_name}}</span>
-                </div>
-                <div class="uk-margin-top">
-                    <p>Отсканируйте QR-код и оплатите товар</p>
-                    <img
-                        src="https://itumnik.ru/wp-content/uploads/2021/11/Risunok-1.-Izobrazhenie-QR-koda-sostoyashhego-iz-kvadratov.jpg">
-                </div>
-                <button class="uk-button uk-button-default uk-margin-small-right uk-modal-close"
-                    style="margin-left: 75%; border-radius: 5px;  " type="button">Закрыть</button>
-            </div>
-        </div>
-    </div>
-</body> -->
-
-<script>
-    const chatBtn = document.getElementById('cahtBtn')
-
-    chatBtn.addEventListener('click', function () {
-        window.location.replace('/chats/')
-        localStorage.setItem('activeChat', chatBtn.classList[chatBtn.classList.length - 1])
-    })
-</script>
 
 <style>
     .checked {
@@ -179,4 +133,3 @@
         position: relative;
     }
 </style>
-

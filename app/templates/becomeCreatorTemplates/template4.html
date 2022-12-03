@@ -26,7 +26,6 @@
                 <!-- товары в работе -->
                 <tbody>
                     {% for product in products %}
-                    {% if product.is_incart == 0 %}
                     <tr>
                         <td class="uk-text-center product_id" uk-tooltip="{{ product.id }}">{{ product.id }}</td>
                         <td class="uk-text-center uk-text-truncate">{{ product.product_name }}</td>
@@ -67,7 +66,6 @@
                                 class="uk-button uk-button-danger uk-width-auto uk-text-center uk-border-rounded"
                                 uk-tooltip="Нажмите, если вы хотите отказаться от этого заказа">Отказаться</button>
 
-                            {% endif %}
                             {{product.st}}
                         </td>
 

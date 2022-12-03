@@ -2,7 +2,63 @@
 
 {% block content %}
 
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+
+
 <style>
+
+    @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap');
+
+
+
+/* @media screen and (min-width: 992px){
+
+    
+    .product-imgs{
+        display: flex;
+
+    }
+
+} */
+
+    .product-imgs{
+        display: flex;
+
+    }
+
+    .img-select{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .img-item{
+        margin: 0.3rem;
+        border: 2px solid #000;
+    }
+
+    .img-item:hover{
+        opacity: 0.8;
+    }
+    .img-display{
+        height: 70vh;
+
+        overflow: hidden;
+        border: 2px solid #000;
+
+    }
+
+    .img-showcase{
+        display: flex;
+        width: 100%;
+        transition: all 0.5s ease;
+
+    }
+    .img-showcase img{
+        min-width: 100%;
+    }
+
+
     .checked {
         color: orange;
     }
@@ -54,68 +110,145 @@
     .rate-area>label:active {
         position: relative;
     }
+    .roww {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        /* height: 10px; */
+        color: aliceblue;
+
+    }
+
+  .column {
+    /* padding: 15px; */
+    border: 1px solid #666;
+    margin: 5px 0;
+    background: #343436;
+    width: 100%;
+
+    }
+
+    ._1 {
+        flex: 100;
+    }
+
 </style>
 
-<div class="uk-card uk-card-default uk-card-body uk-width-4-5" style="margin: 0  auto">
+<div class="uk-width-4-5" style="margin: 0  auto">
+
+    <h2 class=" uk-width-1">{{product.product_name}}AAAAAAAAAAAAAAAA</h2>
+
     <container class="container uk-flex uk-flex-around uk-flex-top uk-width-1">
         <div class="uk-width-1-2 uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slider>
 
-            <ul class="uk-slider-items uk-grid">
-                <li class="uk-width-4-5">
-                    <div class="uk-panel">
-                        <img src="{{product.picture1}}" width="1800" height="1200" alt="">
-                        <div class="uk-position-center uk-text-center">
-                        </div>
-                    </div>
-                </li>
-                <li class="uk-width-4-5">
-                    <div class="uk-panel">
-                        <img src="{{product.picture2}}" width="1800" height="1200" alt="">
-                        <div class="uk-position-center uk-text-center">
-                        </div>
-                    </div>
-                </li>
-                <li class="uk-width-4-5">
-                    <div class="uk-panel">
-                        <img src="{{product.picture3}}" width="1800" height="1200" alt="">
-                        <div class="uk-position-center uk-text-center">
-                        </div>
-                    </div>
-                </li>
-            </ul>
+            <div class = "product-imgs">
 
-            <a class="uk-position-center-left uk-position-small uk-hidden-hover" style="color: black; transition: 0.5s"
-                href="#" uk-slidenav-previous uk-slider-item="previous"></a>
-            <a class="uk-position-center-right uk-position-small uk-hidden-hover" style="color: black; transition: 0.5s"
-                href="#" uk-slidenav-next uk-slider-item="next"></a>
+                <div class = "img-select">
+                    <div class = "img-item">
+                        <a href = "#" data-id = "1">
+                            <img src = "{{product.picture1}}">
+                        </a>
+                    </div>
+                    <div class = "img-item">
+                        <a href = "#" data-id = "2">
+                            <img src = "{{product.picture2}}">
+                        </a>
+                    </div>
+                    <div class = "img-item">
+                        <a href = "#" data-id = "3">
+                            <img src = "{{product.picture3}}">
+                        </a>
+                    </div>
+                
+                </div>
+
+                <div class = "img-display">
+                    <div class = "img-showcase">
+                        <img src = "{{product.picture1}}">
+                        <img src = "{{product.picture2}}">
+                        <img src = "{{product.picture3}}">
+                    </div>
+                </div>
+                
+            </div>
+
+
 
 
         </div>
         <div class="uk-flex uk-flex-column uk-width-1-2 uk-text-center" style="padding-left: 5%">
+
+            <h2 class=" uk-width-1" style="text-align: left; font-weight: 600; font-weight: 600;">{{product.show_price}} ₽</h2>
+
             <div>
-                <h2 class="uk-text-truncate uk-width-1-2">{{product.product_name}}</h2>
+
             </div>
 
+            <!-- <div class="roww">
+
+                <div class="column _25">
+                   12%
+                </div>
+
+
+            </div> -->
+<!--             
             <div class="uk-card uk-card-default uk-width-3-5@m uk-text-center uk-margin-small-bottom"
                 style="padding: 2% 0">
                 <p class="uk-margin-left uk-width-2-3@m" style="margin: 0;"> <i class="fa-regular fa-shield-check"></i>
-                    Провернный продавец</p>
+                    Состав: </p>
             </div>
 
             <div class="uk-card uk-card-default uk-width-3-5@m uk-text-center uk-margin-small-top"
                 style="padding: 2% 0">
                 <p class="uk-margin-left uk-width-2-3@m" style="margin: 0;"> <i class="fa-regular fa-shield-check"></i>
-                    Доставка от поставщика</p>
+                    Размеры:</p>
+            </div> -->
+
+            <!-- <h1 id="price" class="uk-width-1 uk-text-left">{{product.show_price}} руб.</h1> -->
+
+            
+            <div class="uk-margin-medium-top uk-width-1 uk-flex" style="gap: 3%;">
+                <p class="uk-text-left" style="color: #8b8b8b;">Состав:</p>
+                <div class="uk-grid uk-grid-small uk-grid-match " id="sizelist" uk-grid>
+                    <p>FFFFFFF - 12%</p>
+                    <p>FFFFFFF - 12%</p>
+                    <p>FFFFFFF - 12%</p>
+                    <p>FFFFFFF - 12%</p>
+                    <p>FFFFFFF - 12%</p>
+                    <p>FFFFFFF - 12%</p>
+                    <p>FFFFFFF - 12%</p>
+                    <p>FFFFFFF - 12%</p>
+                    <p>FFFFFFF - 12%</p>
+                    <p>FFFFFFF - 12%</p>
+                    <p>FFFFFFF - 12%</p>
+                    <p>FFFFFFF - 12%</p>
+                    <p>FFFFFFF - 12%</p>
+                    <p>FFFFFFF - 12%</p>
+                    <p>FFFFFFF - 12%</p>
+                    <p>FFFFFFF - 12%</p>
+                </div>
+
             </div>
 
-            <h1 id="price" class="uk-width-1 uk-text-left">{{product.show_price}} руб.</h1>
-            <!--  -->
-            <div class="uk-text-left">
+
+            <div class="uk-margin-medium-top uk-width-1">
+                <p class="uk-width-1 uk-text-left">Размеры:</p>
+                <div class="uk-grid uk-grid-small uk-grid-match uk-width-4-5" id="sizelist" uk-grid>
+                    {% for size in product.sizes %}
+                    <button class="uk-button uk-button-link size">{{size}}</button>
+                    {% endfor %}
+                </div>
+
+            </div>
+
+
+            <div class="uk-text-left uk-margin-top">
                 {% if request.user.is_authenticated %}
                 <form method="POST">
                     {% csrf_token %}
                     <a class="uk-button uk-button-secondary uk-width-2-3 uk-text-bold uk-margin-small-bottom"
-                        style="background-color: #B54F00;" href="#ordering-window" uk-toggle>Добавить в карзину</a>
+                        style="background-color: #B54F00;" href="#ordering-window" uk-toggle>Добавить в корзину</a>
                 </form>
                 {% else %}
                 <a class="uk-button uk-button-secondary uk-width-2-3 uk-text-bold uk-margin-small-bottom"
@@ -134,12 +267,6 @@
                         <form method="POST" action="">
                             <div class="uk-modal-body uk-margin-left uk-margin-right uk-margin-bottom" uk-overflow-auto
                                 style="padding: 0">
-                                <img>
-                                <h4 class="uk-margin-remove-top">Название товара</h4>
-                                <div class="uk-flex">
-                                    <p class="uk-margin-small-top">Оплата: </p>
-                                    <p class="uk-margin-left uk-margin-small-top"> картой онлайн</p>
-                                </div>
                                 <div class="uk-flex">
                                     <p class="uk-margin-small-top">Количество: </p>
                                     <div
@@ -152,18 +279,17 @@
                                             uk-icon="icon: plus"></a>
                                     </div>
                                 </div>
-                                <div class="uk-flex">
-                                    <p class="uk-margin-small-top">Адрес доставки:</p>
-                                    <div class="uk-margin-left" style="width: 65%">
-                                        <input class="uk-input" name="address" id="form-stacked-text" type="text"
-                                            placeholder="г.Москва, Ленинградский проезд 111, кв 101, 100102">
-                                        <p class="uk-text-meta uk-margin-remove" style="font-size: 12px">Вводите адрес в
-                                            формате: "г. Город, улица, кв, почтовый индекc"</p>
+                                <div class="uk-flex uk-flex-top uk-flex-between uk-flex-middle uk-margin">
+                                    <p class="uk-margin-remove">Размер(ы): </p>
+                                    <div class="uk-grid-small uk-text-left uk-width-expand uk-margin-small-left" uk-grid>
+                                        {% for size in product.sizes %}
+                                        <label class="uk-flex uk-flex-middle">
+                                            <input type="radio" name="size" class="uk-radio uk-margin-small-right" id="" value="{{size}}">
+                                            <p class="uk-margin-remove">{{size}}</p>
+                                        </label>
+                                        {% endfor %}
                                     </div>
                                 </div>
-                                <p for="textarea">Пожелания к товару:</p>
-                                <textarea class="uk-textarea" name="message" id="" rows="5 "
-                                    style="width: 100%;"></textarea>
                             </div>
 
                             <div class="uk-modal-footer uk-text-right">
@@ -181,15 +307,28 @@
                     </div>
                 </div>
             </div>
-            <div class="uk-margin-medium-top uk-width-1">
-                <h3 class="uk-width-1 uk-text-left">Размеры:</h3>
-                <div class="uk-grid uk-grid-small uk-grid-match uk-width-4-5" id="sizelist" uk-grid>
-                    {% for size in product.sizes %}
-                    <button class="uk-button uk-button-link size">{{size}}</button>
-                    {% endfor %}
-                </div>
 
+            <div class="uk-margin-top" style="text-align: left;">
+                <p>
+                    Доставит BRAND
+                </p>
             </div>
+
+            <div class="uk-text-left">
+                <a href=""><p style="margin: 0;">Все товары BRAND ></p></a>
+                <a href=""><p>Все футболки в категории ></p></a>
+            </div>
+
+
+            <div class="uk-text-left">
+                <a href="">
+                    <img width="96" height="40" src="https://i.ibb.co/z7zmCKn/2022-08-28-10-00-15.png" alt="" style="border: 1px solid #666;" >
+                </a>
+            </div>
+
+
+
+            
 
         </div>
     </container>
@@ -216,7 +355,7 @@
                     <li class="uk-parent">
                         <a class="uk-text-muted uk-flex uk-flex-middle uk-flex-between"
                             style="border-bottom: 1px solid">
-                            <h2 class="uk-text-muted uk-margin-small-bottom">Харрактиристики</h2>
+                            <h2 class="uk-text-muted uk-margin-small-bottom">Характеристики</h2>
                             <span uk-icon="icon: menu"></span>
                         </a>
                         <ul class="uk-nav-sub uk-width-1">
@@ -238,8 +377,9 @@
 
             <div class="uk-width-2-5">
 
-                <div class="uk-flex uk-flex-center uk-text-center  uk-card uk-card-default"
+                <div class="uk-text-center  uk-card uk-card-default"
                     style="border-radius: 20px; padding: 30px 0;">
+                    
                     <div class="uk-margin-right uk-height-small">
                         <h3>{{product.rating}}</h3>
                         <p>На основании <br>{{product.rate_sum}} отзывов</p>
@@ -259,8 +399,63 @@
                             {% endif %}
                         </div>
                     </div>
+<div>
+  {% if request.user.is_authenticated %}
+                    <button style="color: white; background-color:#0A3644" class="uk-button uk-margin-small-bottom"
+                        type="button" uk-toggle="target: #modal-example">Написать отзыв</button>
+                    {% else %}
+                    <a style="color: white; background-color:#0A3644" class="uk-button uk-margin-small-bottom"
+                        type="button" href="/login">Написать отзыв</a>
+                    {% endif %}
+
+                    <div id="modal-example" uk-modal>
+
+                        <div class="uk-modal-dialog uk-modal-body">
+                            <h2 class="uk-modal-title">Отзыв</h2>
+                            <div class="uk-flex">
+                                <img src="{{user.userImage}}" alt="" class="uk-border-rounded" width="50" height="80"
+                                    alt="">
+                                <div class="uk-flex-column uk-margin-left">
+                                    <p class="uk-margin-remove">{{ user.first_name }}</p>
+                                    <p class="uk-margin-remove">{{ user.email }}</p>
+                                </div>
+                            </div>
+                            <form method="POST" action="">
+                                <div class="uk-margin-top">
+
+                                    <h3>Отзыв:</h3>
+                                    <textarea class="uk-textarea" name="review" id="" rows="10" style="width: 100%;"
+                                        maxlength="1500"></textarea>
+                                    <div class="uk-flex" style="margin-left: 45%">
+                                        <p class="uk-margin-small-top uk-margin-small-right">Оценка: </p>
+                                        <div class="uk-margin-remove-right rating-area">
+                                            <input type="radio" id="star-5" name="rating" value="5">
+                                            <label for="star-5" title="Оценка «5»"></label>
+                                            <input type="radio" id="star-4" name="rating" value="4">
+                                            <label for="star-4" title="Оценка «4»"></label>
+                                            <input type="radio" id="star-3" name="rating" value="3">
+                                            <label for="star-3" title="Оценка «3»"></label>
+                                            <input type="radio" id="star-2" name="rating" value="2">
+                                            <label for="star-2" title="Оценка «2»"></label>
+                                            <input type="radio" id="star-1" name="rating" value="1">
+                                            <label for="star-1" title="Оценка «1»"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% csrf_token %}
+                                <p class="uk-text-right">
+                                    <button class="uk-button uk-button-default uk-modal-close"
+                                        type="button">Закрыть</button>
+                                    <button name="comment_product" class="uk-button uk-button-primary"
+                                        type="submit">Опубликовать</button>
+                                </p>
+                            </form>
+                        </div>
+                    </div>
+</div>
+
                 </div>
-                <div class="uk-width-1 uk-flex uk-flex-middle uk-flex-center uk-margin-small-top">
+                <!-- <div class="uk-width-1 uk-flex uk-flex-middle uk-flex-center uk-margin-small-top">
                     {% if request.user.is_authenticated %}
                     <button style="color: white; background-color:#0A3644" class="uk-button uk-margin-small-bottom"
                         type="button" uk-toggle="target: #modal-example">Написать отзыв</button>
@@ -315,7 +510,7 @@
                     </div>
 
 
-                </div>
+                </div> -->
 
             </div>
             <div class="uk-width-3-5">
@@ -371,7 +566,6 @@
 </div>
 
 
-
 <script src="https://cdn.jsdelivr.net/npm/uikit@3.13.7/dist/js/uikit.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/uikit@3.13.7/dist/js/uikit-icons.min.js"></script>
 
@@ -402,9 +596,10 @@
     const sizeBtn = document.querySelectorAll('.size');
 
     sizeBtn.forEach(el => el.addEventListener('click', event => {
-        let prices = "{{product.price}}".split(',')
+        let prices = "{{product.prices}}".slice(1, "{{product.prices}}".length - 1).split(',')
         let amount = "{{product.amount}}".split(',')
         let index = BtnList.indexOf(el)
+
         document.getElementById('price').innerHTML = prices[index] + " руб.";
     }));
 
@@ -426,6 +621,28 @@
             $('#amount').val(1000)
         }
     });
+</script>
+
+<script>
+    const imgs = document.querySelectorAll('.img-select a');
+    const imgBtns = [...imgs];
+    let imgId = 1;
+
+    imgBtns.forEach((imgItem) => {
+        imgItem.addEventListener('click', (event) => {
+            event.preventDefault();
+            imgId = imgItem.dataset.id;
+            slideImage();
+        });
+    });
+
+    function slideImage(){
+        const displayWidth = document.querySelector('.img-showcase img:first-child').clientWidth;
+
+        document.querySelector('.img-showcase').style.transform = `translateX(${- (imgId - 1) * displayWidth}px)`;
+    }
+
+    window.addEventListener('resize', slideImage);
 </script>
 
 

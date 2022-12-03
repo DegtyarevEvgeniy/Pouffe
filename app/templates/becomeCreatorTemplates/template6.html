@@ -115,7 +115,7 @@
                                 name="addComplect" onclick="addSize(this)" type="button"><i
                                     class="fa fa-plus"></i></button>
                         </div>
-                        <div id="sizeInput" class="uk-width-1 uk-grid" uk-grid>
+                        <div id="sizeInput" class="uk-width-1 uk-grid uk-children-width-1-3" uk-grid>
                         </div>
                     </div>
                 </div>
@@ -416,7 +416,6 @@
     }
 
     function addInput(el) {
-        // let input = el.parentElement.getElementsByTagName("input")[0];
         let name = document.getElementById('compNmae');
         let percentage = document.getElementById('compPercentage');
         if (inputnum < 15 && name.value && percentage.value) {
@@ -424,8 +423,7 @@
             percentage.removeAttribute("disabled");
             name.placeholder = "Введите состав товара";
             var $inputGroup =
-                `<div class="uk-flex uk-flex-center uk-flex-middle"> <input type="text" class="uk-input uk-width-3-6 complectations_name" name="compName_${inputnum}" value="${name.value}" readonly> <div class="uk-inline uk-width-1-4"> <input type="number" oninput="PercentageChecker(this)" class="uk-input complectations_percent" name="compPercentage_${inputnum}" value="${percentage.value}" readonly> <span class="uk-form-icon uk-form-icon-flip">%</span> </div> <button class="uk-button uk-button-default uk-width-1-6" style="padding: 0" onclick="changeInput(this)" type="button"> <i uk-icon="pencil" id="editon"></i> <i uk-icon="check" id="editoff" style="display: none"></i>  </button> <button class="uk-button uk-button-default uk-width-1-6" style="padding: 0" onclick="removeEl(this, 0)" type="button"> <i class="fa fa-minus"></i> </button> </div> `;
-            // <button class="btn btn-outline-secondary" onclick="changeInput(this)" type="button"><span class="material-icons"> mode_edit </span></button>
+                `<div class="uk-flex uk-flex-center uk-flex-middle"> <input type="text" class="uk-input complectations_name" name="compName_${inputnum}" value="${name.value}" readonly> <div class="uk-inline uk-width-1-3"> <input type="number" oninput="PercentageChecker(this)" class="uk-input complectations_percent" name="compPercentage_${inputnum}" value="${percentage.value}" readonly> <span class="uk-form-icon uk-form-icon-flip">%</span> </div> <button class="uk-button uk-button-default uk-width-1-6" style="padding: 0" onclick="changeInput(this)" type="button"> <i uk-icon="pencil" id="editon"></i> <i uk-icon="check" id="editoff" style="display: none"></i>  </button> <button class="uk-button uk-button-default uk-width-1-6" style="padding: 0" onclick="removeEl(this, 0)" type="button"> <i class="fa fa-minus"></i> </button> </div> `;
             document.getElementById("inputDiv").insertAdjacentHTML("afterbegin", $inputGroup);
             name.value = "";
             percentage.value = "";
@@ -443,19 +441,29 @@
 
     function addSize(el) {
         let size = document.getElementById('size');
-        if (sizeInput < 15 && size.value) {
+        let sizes = document.getElementsByClassName('complectations_size');
+        let isUnique = true;
+        for (let i = 0; i < sizes.length; i++) {
+            if (size.value == sizes[i].value){
+                isUnique = false 
+            }
+        }
+        if (sizeInput < 15 && size.value && isUnique) {
             size.removeAttribute("disabled");
             size.placeholder = "Введите состав товара";
             var $inputGroup =
-                `<div class="uk-flex uk-flex-center uk-flex-middle uk-width-1-3"> <input type="text" class="uk-input uk-width-3-5 complectations_size" name="size_${sizeInput}" value="${size.value}" readonly> <button class="uk-button uk-button-default uk-width-1-5" style="padding: 0" onclick="removeEl(this, 1)" type="button"> <i class="fa fa-minus"></i> </button> </div> `;
+                `<div class="uk-flex uk-flex-center uk-flex-middle uk-width-1-3"> <input type="text" class="uk-input uk-width-4-5 complectations_size" name="size_${sizeInput}" value="${size.value}" readonly> <button class="uk-button uk-button-default uk-width-1-5" style="padding: 0" onclick="removeEl(this, 1)" type="button"> <i class="fa fa-minus"></i> </button> </div> `;
             // <button class="btn btn-outline-secondary" onclick="changeInput(this)" type="button"><span class="material-icons"> mode_edit </span></button>
             document.getElementById("sizeInput").insertAdjacentHTML("afterbegin", $inputGroup);
             size.value = "";
             sizeInput++;
-        } else if (sizeInput >= 15) {
+        } else if (isUnique == false){
+            size.value = "";
+            size.placeholder = "Такой размер вы уже вводили";
+        }else if (sizeInput >= 15) {
             size.value = "";
             size.setAttribute("disabled", "disabled");
-            size.placeholder = "Вы ввели максимальное количество составляющих товара";
+            size.placeholder = "Вы ввели максимальное количество размеров товара";
         } else {
             size.placeholder = "Для добавления элемента необходимо заполнить эти поля";
         }

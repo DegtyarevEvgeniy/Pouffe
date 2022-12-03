@@ -2,305 +2,264 @@
 
 {% block content %}
 
-<style>
-    #leftBottomnMenu {
-        position: relative;
-        z-index: 1;
-    }
 
-    #leftBottomnMenu:before {
-        content: "";
-        position: absolute;
-        float: left;
-        left: 0;
-        bottom: 0;
-        height: 1px;
-        width: 89%;
-        border-bottom: 1px solid #0A3644;
-    }
-
-    #rigthBottomnMenu {
-        position: relative;
-        z-index: 1;
-    }
-
-    #rigthBottomnMenu:before {
-        content: "";
-        position: absolute;
-        float: left;
-        left: 10%;
-        bottom: 0;
-        height: 1px;
-        width: 90%;
-        border-bottom: 1px solid #0A3644;
-    }
-
-    svg {
-        width: 30px;
-        height: 30px;
-    }
-    @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+{% load static %}
 
 
-    .whitefont p {
-        color: black
+<link rel="stylesheet" href="{% static "css/index.css" %}">
+<link rel="stylesheet" href="{% static "js/index.js" %}">
 
-    }
-    
-</style>
 
-<div style="width: 97%; margin: auto; padding-top: 5vh;" >
-    <div class = "uk-grid-match uk-flex" style="height: 80vh">
-        <div class = "uk-width-1-2 uk-margin-right">
-            <div data-src="https://sun9-13.userapi.com/impg/WdBQX3pTiEevM5-Jq8PbRw3KCpSAt7ViTP1H8g/sdT05rynN9g.jpg?size=349x329&quality=96&sign=4a12051e3d1c4fd061634f112cce627a&type=album" uk-img>
+
+
+
+<div style="width: 97%; margin: auto; padding-top: 5vh;">
+
+    <div class="uk-grid-match uk-flex" style="height: 85vh">
+
+        <div class="uk-width-1-2 uk-margin-right">
+            <div class="uk-background-cover"
+                data-src="https://img.freepik.com/free-photo/young-person-wearing-hoodie-mockup_23-2149246123.jpg?w=1380&t=st=1667115336~exp=1667115936~hmac=2b0f3ec335471e4f3ee8cb94a11ecb33725a523699f8a07e789ac2c2cc7998c9"
+                uk-img>
                 <div class="whitefont" style="margin-left: 5%; margin-top: 5%;">
-                    <p style="font-weight: 600; font-size: 2.625em;" class="uk-margin-large-left">Одежда</p>
-                    <p style="font-weight: 300; font-size: 1.5em;" class="uk-margin-medium-left">Lorem ipsum dolor sit amet,<br> consectetur adipiscing elit,<br> sed do eiusmod tempor.</p>
+                    <p style="font-weight: 600; font-size: 2.625em;" class="uk-margin-medium-left">Одежда</p>
+                    <p style="font-weight: 300; font-size: 1.3em;" class="uk-margin-medium-left">Не упусти свой шанс
+                        порадовать <br> себя уикальной вещью<br> вместе с BeFreela</p>
                     <div style="margin: auto; margin-top: 5%;" class="uk-margin-medium-left">
-                        <a class="uk-button uk-button-secondary uk-border-pill">Перейти в каталог</a>
+                        <a class="uk-button uk-button-secondary uk-border-pill" href="/goods/category/Clothing">Перейти
+                            в каталог</a>
                     </div>
                 </div>
             </div>
-            <!-- <div style = "position: relative;" class="">
-                <img class="uk-background-cover" src="https://sun9-14.userapi.com/impg/s3_nIg69RlpAwvbrYtOkrnF4sX_P9NASnGlekg/QlAv28YP6j0.jpg?size=1945x2025&quality=96&sign=767adfe7abd2079b9b20604ed26ed4cc&type=album">
-                <div style="position: absolute; top: 20%; left: 50%">
-                    <h1>Одежда</h1>
-                    <h3>Lorem ipsum dolor sit amet,<br> consectetur adipiscing elit,<br> sed do eiusmod tempor.</h3>
-                    <div>
-                        <a href="/goods/" style="background-color:white"class="uk-button uk-button-default">Для него</a>
-                        <a href="/goods/" style="background-color:rgb(255, 255, 255)" class="uk-button uk-button-default">Для нее</a>
-                    </div>
-                </div>
-            </div> -->
         </div>
-        <div class = "uk-width-1-2"  style="height: 80vh">
-                <div class="uk-flex-column">
-                        <div style="height: 39vh"  data-src="https://sun9-13.userapi.com/impg/WdBQX3pTiEevM5-Jq8PbRw3KCpSAt7ViTP1H8g/sdT05rynN9g.jpg?size=349x329&quality=96&sign=4a12051e3d1c4fd061634f112cce627a&type=album" uk-img>
-                            <div class="whitefont" style="padding-top: 5% ;">
-                                <p style="font-weight: 600; font-size: 2.625em;" class="uk-margin-large-left">Обувь</p>
-                                <p style="font-weight: 300; font-size: 1.5em;" class="uk-margin-medium-left">Lorem ipsum dolor sit amet,<br> consectetur adipiscing elit.</p>
-                                <div style="margin: auto;" class="uk-margin-medium-left">
-                                    <a class="uk-button uk-button-secondary uk-border-pill">Перейти в каталог</a>
-                                </div>
-                            </div>
+        <div class="uk-width-1-2" style="height: 85vh">
+            <div class="uk-flex-column">
+                <a class="uk-link-reset" href="/goods/category/Shoes">
 
-                        </div> 
-
-                        <div class="uk-flex" style="margin-top: 2vh">
-                            <div style="margin-right: 2vh" style="height: 39vh" class="uk-width-1-2" uk-img data-src="https://sun9-13.userapi.com/impg/WdBQX3pTiEevM5-Jq8PbRw3KCpSAt7ViTP1H8g/sdT05rynN9g.jpg?size=349x329&quality=96&sign=4a12051e3d1c4fd061634f112cce627a&type=album">
-                                <div class="whitefont uk-margin-top">
-                                    <p style="font-weight: 600; font-size: 2.25em; margin-left: 7%">Аксессуары</p>
-                                </div>
-                            </div>
-                            <div style="height: 39vh" class="uk-width-1-2" uk-img data-src="https://sun9-13.userapi.com/impg/WdBQX3pTiEevM5-Jq8PbRw3KCpSAt7ViTP1H8g/sdT05rynN9g.jpg?size=349x329&quality=96&sign=4a12051e3d1c4fd061634f112cce627a&type=album">
-                                <div class="whitefont uk-margin-top" >
-                                    <p style="font-weight: 600; font-size: 2.25em;  margin-left: 7%">Для дома</p>
-                                </div>
-                            </div>
-                            
+                    <div class="uk-background-cover" style="height: 40vh"
+                        data-src="https://img.freepik.com/free-photo/white-canvas-sneakers-unisex-footwear-fashion_53876-106040.jpg?w=1380&t=st=1667115187~exp=1667115787~hmac=813e26b07d62e51adc5b14dcbb4156cc30eb80f1e3e5adf5609227d3b6546065"
+                        uk-img>
+                        <div class="whitefont" style="padding-top: 5% ;">
+                            <p style="font-weight: 600; font-size: 2.625em; " class="uk-margin-large-left">Обувь</p>
                         </div>
-                </div>
+                    </div>
+                </a>
+
+                <a class="uk-link-reset" href="/goods/category/Interior">
+                    <div class="uk-flex" style="margin-top: 2vh">
+                        <div style="margin-right: 2vh" style="height: 43vh" class="uk-width-1-2 uk-background-cover"
+                            uk-img
+                            data-src="https://img.freepik.com/free-photo/top-view-of-female-property-in-bag_155003-13992.jpg?w=1380&t=st=1667078448~exp=1667079048~hmac=7f9aef695ae0a4cf3627adc5afc4faeae96994cdde8bd91fde6a27a9cd947ce6">
+                            <div class="whitefont uk-margin-top">
+                                <p style="font-weight: 600; font-size: 2.25em; margin-left: 7%">Аксессуары</p>
+                            </div>
+                        </div>
+                        <div style="height: 43vh" class="uk-width-1-2 uk-background-cover" uk-img
+                            data-src="https://img.freepik.com/free-photo/modern-interior-with-home-items-coziness-and-comfort-at-home_169016-4973.jpg?w=1380&t=st=1667115266~exp=1667115866~hmac=018222fae5c49e5c5aa46dd8d8c917e8d898e5422a3c07ac95283f8b985f7766">
+                            <div class="whitefont uk-margin-top">
+                                <p style="font-weight: 600; font-size: 2.25em;  margin-left: 7%">Для дома</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
         </div>
+
     </div>
 
     <div style="margin: 0 auto;" class="uk-margin-top uk-flex-center uk-flex-middle  uk-text-center">
 
-            <a class="uk-button uk-button-secondary uk-border-rounded" href="/goods/">Одежда</a>
-            <a class="uk-button uk-button-secondary uk-border-rounded" href="/goods/category/Clothing">Одежда</a>
-            <a class="uk-button uk-button-secondary uk-border-rounded" href="/goods/category/Shoes">Обувь</a>
-            <a class="uk-button uk-button-secondary uk-border-rounded" href="/goods/category/Bags">Сумки</a>
-            <a class="uk-button uk-button-secondary uk-border-rounded" href="/goods/category/Interior">Интерьер</a>
-            <a class="uk-button uk-button-secondary uk-border-rounded" href="/goods/category/Accessories">Аксессуары</a>
+        <p uk-margin class="" style="width:80%; margin:auto;">
+
+            <a class="uk-button uk-button-default uk-border-rounded" href="/goods/">Все товары</button></a>
+            <a class="uk-button uk-button-default uk-border-rounded" href="/goods/category/Clothing">Одежда</a>
+            <a class="uk-button uk-button-default uk-border-rounded" href="/goods/category/Shoes">Обувь</a>
+            <a class="uk-button uk-button-default uk-border-rounded" href="/goods/category/Bags">Сумки</a>
+            <a class="uk-button uk-button-default uk-border-rounded" href="/goods/category/Interior">Интерьер</a>
+            <a class="uk-button uk-button-default uk-border-rounded" href="/goods/category/Accessories">Аксессуары</a>
+
+
+        </p>
+
     </div>
 
 
     <div class="uk-grid uk-margin-large-top" style="height: 90vh">
+
         <div class="uk-width-1-3 ">
-            <div style="height: 90vh; margin-left: 3%" uk-img data-src="https://sun9-13.userapi.com/impg/WdBQX3pTiEevM5-Jq8PbRw3KCpSAt7ViTP1H8g/sdT05rynN9g.jpg?size=349x329&quality=96&sign=4a12051e3d1c4fd061634f112cce627a&type=album">
-                <p style="font-weight: 600; font-size: 2.25em; text-align: center;" >Подборки товаров</p>
+            <p style="font-weight: 600; font-size: 2.25em; text-align: left; margin-left: 3%">Популярные товары 🠒</p>
+
+            <div class="uk-background-cover" style="height: 75vh; margin-left: 3%" uk-img
+                data-src="https://img.freepik.com/free-photo/fashion-model-with-beautiful-face-and-perfect-body-wearing-trendy-dress-holding-brown-leather-hand-bag-full-length_273443-3993.jpg?w=1380&t=st=1667122172~exp=1667122772~hmac=bd70827c7b2f5b5085477505bcc38df40dad48264003db71091054707848d896">
 
                 <div>
-                    <a class="uk-button uk-button-secondary uk-border-pill" style="margin-top: 90%; width: 50%; margin-left: 25%;">Перейти в каталог</a>
+                    <a class="uk-button uk-button-secondary uk-border-pill"
+                        style="margin-top: 90%; width: 50%; margin-left: 25%;" href="/goods/">Перейти в каталог</a>
                 </div>
             </div>
         </div>
 
 
-        <div class="uk-wrap uk-width-2-3" style="height: 90vh" >
+        <div class="uk-wrap uk-width-2-3" style="height: 90vh">
             <div class="uk-grid uk-width-1" uk-grid style="margin-left: 2%; height: 90vh">
+
+                {% for product in products_start %}
+
                 <div style="height: 45vh; width: 32%; margin: 0">
-                    <div style="height: 70%; " uk-img data-src="https://sun9-13.userapi.com/impg/WdBQX3pTiEevM5-Jq8PbRw3KCpSAt7ViTP1H8g/sdT05rynN9g.jpg?size=349x329&quality=96&sign=4a12051e3d1c4fd061634f112cce627a&type=album"></div>
-                    <div>
-                        <p style="font-weight: 300; font-size: 18px;" class="uk-margin-small-left uk-margin-remove-bottom">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        <p style="font-weight: 300; font-size: 16px;" class="uk-margin-small-left uk-margin-remove-top uk-margin-remove-bottom">1990 руб.</p>
-                    </div>
+                    <a class="uk-link-reset" href="/goods/{{product.id}}">
+                        <div class="uk-flex uk-flex-center uk-flex-middle uk-background-cover uk-light" style="height: 70%; " uk-img data-src="{{product.picture1}}"></div>
+                        <div>
+                            <p style="font-weight: 300; font-size: 18px;"
+                                class="uk-margin-small-left uk-margin-remove-bottom">{{ product.product_name }}</p>
+                            <p style="font-weight: 300; font-size: 16px;"
+                                class="uk-margin-small-left uk-margin-remove-top uk-margin-remove-bottom">
+                                {{product.show_price}} ₽</p>
+                        </div>
+                    </a>
                 </div>
-                <div style="height: 45vh; width: 32%;">
-                    <div style="height: 70%; " uk-img data-src="https://sun9-13.userapi.com/impg/WdBQX3pTiEevM5-Jq8PbRw3KCpSAt7ViTP1H8g/sdT05rynN9g.jpg?size=349x329&quality=96&sign=4a12051e3d1c4fd061634f112cce627a&type=album"></div>
-                    <div>
-                        <p style="font-weight: 300; font-size: 18px;" class="uk-margin-small-left uk-margin-remove-bottom">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        <p style="font-weight: 300; font-size: 16px;" class="uk-margin-small-left uk-margin-remove-top uk-margin-remove-bottom">1990 руб.</p>
-                    </div>
-                </div>
-                <div style="height: 45vh; width: 32%; ">
-                    <div style="height: 70%; " uk-img data-src="https://sun9-13.userapi.com/impg/WdBQX3pTiEevM5-Jq8PbRw3KCpSAt7ViTP1H8g/sdT05rynN9g.jpg?size=349x329&quality=96&sign=4a12051e3d1c4fd061634f112cce627a&type=album"></div>
-                    <div>
-                        <p style="font-weight: 300; font-size: 18px;" class="uk-margin-small-left uk-margin-remove-bottom">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        <p style="font-weight: 300; font-size: 16px;" class="uk-margin-small-left uk-margin-remove-top uk-margin-remove-bottom">1990 руб.</p>
-                    </div>
-                </div>
-                <div style="height: 45vh; width: 32%;">
-                    <div style="height: 70%; " uk-img data-src="https://sun9-13.userapi.com/impg/WdBQX3pTiEevM5-Jq8PbRw3KCpSAt7ViTP1H8g/sdT05rynN9g.jpg?size=349x329&quality=96&sign=4a12051e3d1c4fd061634f112cce627a&type=album"></div>
-                    <div>
-                        <p style="font-weight: 300; font-size: 18px;" class="uk-margin-small-left uk-margin-remove-bottom">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        <p style="font-weight: 300; font-size: 16px;" class="uk-margin-small-left uk-margin-remove-top uk-margin-remove-bottom">1990 руб.</p>
-                    </div>
-                </div>
-                <div style="height: 45vh; width: 32%;">
-                    <div style="height: 70%; " uk-img data-src="https://sun9-13.userapi.com/impg/WdBQX3pTiEevM5-Jq8PbRw3KCpSAt7ViTP1H8g/sdT05rynN9g.jpg?size=349x329&quality=96&sign=4a12051e3d1c4fd061634f112cce627a&type=album"></div>
-                    <div>
-                        <p style="font-weight: 300; font-size: 18px;" class="uk-margin-small-left uk-margin-remove-bottom">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        <p style="font-weight: 300; font-size: 16px;" class="uk-margin-small-left uk-margin-remove-top uk-margin-remove-bottom">1990 руб.</p>
-                    </div>
-                </div>
-                <div style="height: 45vh; width: 32%; ">
-                    <div style="height: 70%; " uk-img data-src="https://sun9-13.userapi.com/impg/WdBQX3pTiEevM5-Jq8PbRw3KCpSAt7ViTP1H8g/sdT05rynN9g.jpg?size=349x329&quality=96&sign=4a12051e3d1c4fd061634f112cce627a&type=album"></div>
-                    <div>
-                        <p style="font-weight: 300; font-size: 18px;" class="uk-margin-small-left uk-margin-remove-bottom">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        <p style="font-weight: 300; font-size: 16px;" class="uk-margin-small-left uk-margin-remove-top uk-margin-remove-bottom">1990 руб.</p>
-                    </div>
-                </div>
+
+                {% endfor %}
 
             </div>
         </div>
     </div>
-    <div class="uk-width-1 uk-margin-large-top">
-        <div class="uk-width-1" style="height: 30vh" uk-img data-src="https://sun9-13.userapi.com/impg/WdBQX3pTiEevM5-Jq8PbRw3KCpSAt7ViTP1H8g/sdT05rynN9g.jpg?size=349x329&quality=96&sign=4a12051e3d1c4fd061634f112cce627a&type=album">
-            <div style="padding-top: 2%"> 
-                <p style="font-weight: 600; font-size: 2.625em; text-align: center; ">Распродажа</p>
-                <p style="font-weight: 600; font-size: 1.5em; text-align: center;" >Lorem ipsum dolor sit amet, consectetur adipiscing elit, ipsum dolor sit amet</p>
-                <div style="margin: auto; width: 30%">
-                <a class="uk-button uk-button-secondary uk-border-pill uk-width-1 " >Перейти в каталог</a>
-                </div>
+
+    <!-- АКЦИИ -->
+    <!-- <div class="uk-grid-collapse uk-child-width-expand@s uk-text-center uk-margin-large-top" uk-grid >
+
+        <div>
+            <div class="uk-inline-clip uk-transition-toggle" tabindex="0">
+                <img class="uk-transition-scale-up uk-transition-opaque" src="https://klike.net/uploads/posts/2019-05/1556708032_1.jpg" height="30px" width="auto" alt="">
             </div>
         </div>
-    </div>
 
         
+        <div>
+            <div class="uk-background-secondary uk-padding uk-light">Item</div>
+        </div>
+
+    </div> -->
 
 
 
+    <br>
+    <br>
+    <br>
 
 
-<div class=" uk-visible-toggle uk-position-relative" tabindex="-1" uk-slider>
 
-    <ul class="uk-slider-items uk-grid uk-margin-large-top" style="margin: auto">
-        <li class="uk-width-1 uk-flex">
+    <div class=" uk-visible-toggle uk-position-relative" tabindex="-1" uk-slider>
+        <h1 class="uk-margin-medium-left">Новые бренды</h1>
 
-            <div style="height: 45vh; width: 24%; margin-right: 2%"  >
-                <div style="height: 70%; " uk-img data-src="https://sun9-13.userapi.com/impg/WdBQX3pTiEevM5-Jq8PbRw3KCpSAt7ViTP1H8g/sdT05rynN9g.jpg?size=349x329&quality=96&sign=4a12051e3d1c4fd061634f112cce627a&type=album"></div>
-                <div>
-                    <p style="font-weight: 300; font-size: 18px;" class="uk-margin-small-left uk-margin-remove-bottom">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    <p style="font-weight: 300; font-size: 16px;" class="uk-margin-small-left uk-margin-remove-top uk-margin-remove-bottom">1990 руб.</p>
+
+        <ul class="uk-slider-items uk-grid uk-margin-large-top" style="margin: auto">
+            <li class="uk-width-1 uk-flex">
+
+                {% for shop in shops %}
+
+                <div style="height: 45vh; width: 32%; margin: 0">
+                    <a class="uk-link-reset" href="/brands/{{shop.name}}">
+                        <div class="uk-flex uk-flex-center uk-flex-middle uk-background-cover uk-light" style="height: 70%; " uk-img data-src="{{shop.logoImage}}"></div>
+                        <div class="uk-text-center">
+                            <h1>{{shop.name}}</h1>
+                        </div>
+                    </a>
                 </div>
-            </div>
-            <div style="height: 45vh; width: 24%; margin-right: 2%">
-                <div style="height: 70%; " uk-img data-src="https://sun9-13.userapi.com/impg/WdBQX3pTiEevM5-Jq8PbRw3KCpSAt7ViTP1H8g/sdT05rynN9g.jpg?size=349x329&quality=96&sign=4a12051e3d1c4fd061634f112cce627a&type=album"></div>
+
+                {% endfor %}
+
+            </li>
+          
+        </ul>
+
+        <a class="uk-position-center-left uk-margin-small-left uk-border-pill" href="#"
+            style="color: #ccc;" uk-slidenav-previous uk-slider-item="previous"></a>
+        <a class="uk-position-center-right uk-margin-small-right uk-border-pill "
+            style="color: #ccc;" href="#" uk-slidenav-next uk-slider-item="next"></a>
+
+    </div>
+
+
+    <h1 class="uk-margin-medium-left">Хиты продаж</h1>
+
+
+    <div class="uk-grid-small uk-margin-large-top uk-child-width-1-4@s uk-flex-center" uk-grid>
+
+        {% for product in products_bottom_1 %}
+
+         <div class="frame">
+            <a class="uk-link-reset" href="/goods/{{product.id}}" style="width: 100%;">
+
+                <div style="height: 70%; background-size: cover;" uk-img data-src="{{product.picture1}}"></div>
                 <div>
-                    <p style="font-weight: 300; font-size: 18px;" class="uk-margin-small-left uk-margin-remove-bottom">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    <p style="font-weight: 300; font-size: 16px;" class="uk-margin-small-left uk-margin-remove-top uk-margin-remove-bottom">1990 руб.</p>
+                    <p style="font-weight: 450; font-size: 30px;" class=" uk-margin-remove-bottom">{{product.show_price}} ₽</p>
+                    <p style="font-weight: 300; font-size: 20px;" class=" uk-margin-remove-top uk-margin-remove-bottom uk-panel uk-text-truncate">{{product.brand}} / {{ product.product_name }}</p>
+                    <p style="font-weight: 300; font-size: 20px;" class=" uk-margin-remove-top uk-margin-remove-bottom uk-panel uk-text-truncate">
+
+                        <p class="star">
+
+                        <strong>&star;</strong>
+                        <strong>&star;</strong>
+                        <strong>&star;</strong>
+                        <strong>&star;</strong>
+                        <strong>&star;</strong>
+
+                        </p>
+
+                    </p>
+                    <p style="font-weight: 300; font-size: 20px; display: none;" class="text_b uk-margin-remove-top uk-panel uk-text-truncate">Доступные размеры: {{product.size}}</p>
                 </div>
-            </div>
-            <div style="height: 45vh; width: 24%; margin-right: 2%">
-                <div style="height: 70%; " uk-img data-src="https://sun9-13.userapi.com/impg/WdBQX3pTiEevM5-Jq8PbRw3KCpSAt7ViTP1H8g/sdT05rynN9g.jpg?size=349x329&quality=96&sign=4a12051e3d1c4fd061634f112cce627a&type=album"></div>
-                <div>
-                    <p style="font-weight: 300; font-size: 18px;" class="uk-margin-small-left uk-margin-remove-bottom">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    <p style="font-weight: 300; font-size: 16px;" class="uk-margin-small-left uk-margin-remove-top uk-margin-remove-bottom">1990 руб.</p>
-                </div>
-            </div>
-            <div style="height: 45vh; width: 24%; margin-right: 2%">
-                <div style="height: 70%; " uk-img data-src="https://sun9-13.userapi.com/impg/WdBQX3pTiEevM5-Jq8PbRw3KCpSAt7ViTP1H8g/sdT05rynN9g.jpg?size=349x329&quality=96&sign=4a12051e3d1c4fd061634f112cce627a&type=album"></div>
-                <div>
-                    <p style="font-weight: 300; font-size: 18px;" class="uk-margin-small-left uk-margin-remove-bottom">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    <p style="font-weight: 300; font-size: 16px;" class="uk-margin-small-left uk-margin-remove-top uk-margin-remove-bottom">1990 руб.</p>
-                </div>
-            </div>
-            <div style="height: 45vh; width: 24%; margin-right: 2%">
-                <div style="height: 70%; " uk-img data-src="https://sun9-13.userapi.com/impg/WdBQX3pTiEevM5-Jq8PbRw3KCpSAt7ViTP1H8g/sdT05rynN9g.jpg?size=349x329&quality=96&sign=4a12051e3d1c4fd061634f112cce627a&type=album"></div>
-                <div>
-                    <p style="font-weight: 300; font-size: 18px;" class="uk-margin-small-left uk-margin-remove-bottom">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    <p style="font-weight: 300; font-size: 16px;" class="uk-margin-small-left uk-margin-remove-top uk-margin-remove-bottom">1990 руб.</p>
-                </div>
-            </div>
-        </li>
-        <li class="uk-width-1 uk-flex">
-            <div style="height: 45vh; width: 24%; margin-right: 2%"  >
-                <div style="height: 70%; " uk-img data-src="https://sun9-13.userapi.com/impg/WdBQX3pTiEevM5-Jq8PbRw3KCpSAt7ViTP1H8g/sdT05rynN9g.jpg?size=349x329&quality=96&sign=4a12051e3d1c4fd061634f112cce627a&type=album"></div>
-                <div>
-                    <p style="font-weight: 300; font-size: 18px;" class="uk-margin-small-left uk-margin-remove-bottom">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    <p style="font-weight: 300; font-size: 16px;" class="uk-margin-small-left uk-margin-remove-top uk-margin-remove-bottom">1990 руб.</p>
-                </div>
-            </div>
-            <div style="height: 45vh; width: 24%; margin-right: 2%">
-                <div style="height: 70%; " uk-img data-src="https://sun9-13.userapi.com/impg/WdBQX3pTiEevM5-Jq8PbRw3KCpSAt7ViTP1H8g/sdT05rynN9g.jpg?size=349x329&quality=96&sign=4a12051e3d1c4fd061634f112cce627a&type=album"></div>
-                <div>
-                    <p style="font-weight: 300; font-size: 18px;" class="uk-margin-small-left uk-margin-remove-bottom">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    <p style="font-weight: 300; font-size: 16px;" class="uk-margin-small-left uk-margin-remove-top uk-margin-remove-bottom">1990 руб.</p>
-                </div>
-            </div>
-            <div style="height: 45vh; width: 24%; margin-right: 2%">
-                <div style="height: 70%; " uk-img data-src="https://sun9-13.userapi.com/impg/WdBQX3pTiEevM5-Jq8PbRw3KCpSAt7ViTP1H8g/sdT05rynN9g.jpg?size=349x329&quality=96&sign=4a12051e3d1c4fd061634f112cce627a&type=album"></div>
-                <div>
-                    <p style="font-weight: 300; font-size: 18px;" class="uk-margin-small-left uk-margin-remove-bottom">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    <p style="font-weight: 300; font-size: 16px;" class="uk-margin-small-left uk-margin-remove-top uk-margin-remove-bottom">1990 руб.</p>
-                </div>
-            </div>
-            <div style="height: 45vh; width: 24%; margin-right: 2%">
-                <div style="height: 70%; " uk-img data-src="https://sun9-13.userapi.com/impg/WdBQX3pTiEevM5-Jq8PbRw3KCpSAt7ViTP1H8g/sdT05rynN9g.jpg?size=349x329&quality=96&sign=4a12051e3d1c4fd061634f112cce627a&type=album"></div>
-                <div>
-                    <p style="font-weight: 300; font-size: 18px;" class="uk-margin-small-left uk-margin-remove-bottom">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    <p style="font-weight: 300; font-size: 16px;" class="uk-margin-small-left uk-margin-remove-top uk-margin-remove-bottom">1990 руб.</p>
-                </div>
-            </div>
-            <div style="height: 45vh; width: 24%; margin-right: 2%">
-                <div style="height: 70%; " uk-img data-src="https://sun9-13.userapi.com/impg/WdBQX3pTiEevM5-Jq8PbRw3KCpSAt7ViTP1H8g/sdT05rynN9g.jpg?size=349x329&quality=96&sign=4a12051e3d1c4fd061634f112cce627a&type=album"></div>
-                <div>
-                    <p style="font-weight: 300; font-size: 18px;" class="uk-margin-small-left uk-margin-remove-bottom">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    <p style="font-weight: 300; font-size: 16px;" class="uk-margin-small-left uk-margin-remove-top uk-margin-remove-bottom">1990 руб.</p>
-                </div>
+
+            </a>
+        </div>
+
+
+        {% endfor %}
+
+
+    </div>
+
+
+    <div style="width: auto; margin: auto;">
+        <div style="margin: auto; width:200px;"><a class="uk-button uk-button-secondary uk-border-pill" style="margin: auto;" href="/goods/">Показать еще</a></div>
+    </div>
+
+
+
+        <div class="uk-grid uk-margin-large-top" style="height: 40vh">
+            <div class="uk-width-1 " style="display: flex; gap: 2%;height: 10px;">
+                <h1>Популярные бренды</h1>
+                <p> <a href="/brands/" class="uk-button uk-button-text"> Смотреть все</a></p>
+
             </div>
             
 
-        </li>
-       
-        
-    </ul>
+            <li class="uk-width-1 ">
+                <div style="height: auto; width: 100%; margin: 0"  uk-grid>
 
-    <a class="uk-position-center-left uk-margin-small-left uk-border-pill" href="#" style="background-color: black; color: white;" uk-slidenav-previous uk-slider-item="previous"></a>
-    <a class="uk-position-center-right uk-margin-small-right uk-border-pill "  style="background-color: black; color: white;" href="#" uk-slidenav-next uk-slider-item="next"></a>
+                    {% for shop in shops %}
+
+                    <a class="uk-link-reset" href="/brands/{{shop.name}}">
+
+
+                    <div class="uk-flex uk-flex-center uk-flex-middle uk-background-cover uk-light" style="height: 100px; width: 100px; border: #0A3644 solid;" uk-img data-src="{{shop.logoImage}}"></div>
+                    </a>
+
+                    {% endfor %}
+                    
+
+                </div>
+
+            </li>
+
+        </div>
+
+
 
 </div>
 
 </div>
 
-
-<script>
-     document.getElementById('search_pole').addEventListener('keyup', function (event) {
-        document.getElementById('searchBtn').href = "/goods/search/" + document.getElementById(
-            'search_pole').value;
-        if (event.keyCode == 13) {
-            document.getElementById('searchBtn').click();
-        }
-    });
-
-      document.getElementById('search_pole1').addEventListener('keyup', function (event) {
-        document.getElementById('searchBtn1').href = "/goods/search/" + document.getElementById(
-            'search_pole1').value;
-        if (event.keyCode == 13) {
-            document.getElementById('searchBtn1').click();
-        }
-    });
-</script>
 
 {% include "footer.html" %}
 

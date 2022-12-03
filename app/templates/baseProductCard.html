@@ -1,35 +1,58 @@
     {% for product in products %}
-    <li data-sex="{{product.sex}}" data-rating="{{product.flooredrating}}" data-duration="{{product.duration}}"
-        data-price="{{product.id}}">
-        <a href="/goods/{{product.id}}" class="uk-text-secondary uk-link-reset">
-            <div class="box-footer">
-                <div style="width:238px;height:443px; margin: auto;">
-                    <img src="{{product.picture1}}" width="200px" height="400px " alt="">
+        <div class="frame">
+            <a class="uk-link-reset" href="/goods/{{product.id}}" style="width: 100%;">
 
-                    <div class="box-down">
-                        <h3 style="font-size:25px; font-weight:bold; margin: 0;">{{product.show_price}} ₽</h3>
+                <div style="height: 70%; background-size: cover" class=" uk-flex uk-flex-center uk-flex-middle uk-background-cover uk-light" uk-img data-src="{{product.picture1}}"></div>
+                <!-- uk-margin-small-left -->
+                <div>
+                    <p style="font-weight: 450; font-size: 30px;" class=" uk-margin-remove-bottom">{{product.show_price}} ₽</p>
+                    <!-- <p style="font-weight: 400; font-size: 20px;" class=" uk-margin-remove-top uk-margin-remove-bottom">{{product.brand}} Brand</p> -->
+                    <p style="font-weight: 300; font-size: 20px;" class=" uk-margin-remove-top uk-margin-remove-bottom uk-panel uk-text-truncate">{{product.brand}} / {{ product.product_name }}</p>
+                    <p style="font-weight: 300; font-size: 20px;" class=" uk-margin-remove-top uk-margin-remove-bottom uk-panel uk-text-truncate">
                         <p class="star">
-                            <strong>&star;</strong>
-                            <strong>&star;</strong>
-                            <strong>&star;</strong>
-                            <strong>&star;</strong>
-                            <strong>&star;</strong>
+
+                        <strong>&star;</strong>
+                        <strong>&star;</strong>
+                        <strong>&star;</strong>
+                        <strong>&star;</strong>
+                        <strong>&star;</strong>
+
                         </p>
-                        <p class="uk-text-truncate" style="font-size:15px; margin: 0;">{{product.product_name}}</p>
-                    </div>
-                    <div class="box-down-drop">
-                        <div style="margin: auto;" class="box-down-drop-img">
-                            <p style="margin: 0;" class="">{{product.brand}}</p>
-                        </div>
-                    </div>
+                    </p>
+                    <p style="font-weight: 300; font-size: 20px; display: none;" class="text_b uk-margin-remove-top uk-panel uk-text-truncate">Доступные размеры: {{product.size}}</p>
                 </div>
 
-            </div>
-        </a>
-    </li>
+            </a>
+        </div>
 
-    <style>
-        
-    </style>
 
     {% endfor %}
+
+    <style>
+    
+        .frame{
+            height: 60vh;
+            width: 25%;
+            /* background-color: #ccc; */
+            color:black;
+            padding: 1%;
+            margin: 1%;
+            border-radius: 10px 10px 10px 10px;
+            transition: 0;
+            
+        }
+
+        .frame:hover {
+            box-shadow: 0px 0px 25px 4px #ccc;
+            animation-name: example;
+            animation-duration: 4s;
+    
+        }
+
+        .frame:hover .text_b {
+            display: block;
+        }
+
+        
+    
+    </style>
