@@ -539,7 +539,25 @@ def becomeCreatorTemplate_page(request, name):
 
 
 def partners_page(request):
-    return render(request, 'showPartner.html')
+    if request.user.is_authenticated:
+
+            if request.method == "POST":
+
+                mail = BePartner.objects.create()
+                mail.brand_name = request.POST['brand_name']
+                mail.name = request.POST['name']
+                mail.phone = request.POST['phone']
+                mail.city = request.POST['city']
+                mail.link = request.POST['link']
+                mail.email = request.user.email
+                mail.save()
+                return HttpResponseRedirect('/')
+
+
+
+            return render(request, 'showPartner.html')
+    else:
+        return HttpResponseRedirect('/')
 
 
 # shop/product sector
@@ -551,7 +569,7 @@ def goodsSearch_page(request, product_name):
     return render(request, 'goods.html', content)
 
 
-def goodsSearch_page_category(request):
+def goodsSearch_page_category(request, category):
     categories = {
     'Clothing':'Одежда',
     'Shoes':'Обувь',

@@ -95,18 +95,6 @@ class Comments_product(models.Model):
     review = models.CharField(max_length=2000, default='')
     rating = models.IntegerField(default='0')
     created_data = models.DateTimeField(auto_now_add=True)
-
-class Task(models.Model):
-    id_creator = models.CharField(max_length=200, default='') #кто создал
-    status1 = models.CharField(max_length=20, default='')
-    id_user_do = models.CharField(max_length=20, default='') #кто делает
-    name = models.CharField(max_length=50, default='anonymous')
-    select = models.CharField(max_length=50, default='')
-    description = models.CharField(max_length=500, default='')
-    price = models.IntegerField(default='')
-    time = models.DateField(max_length=50, default='2000-01-01')
-
-
 class Hashtags(models.Model):
     tag_name = models.CharField(max_length=50, default='')
 
