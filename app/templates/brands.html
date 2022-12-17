@@ -13,48 +13,209 @@
 </style>
 
 <body style="width: 100%; height: 100%;">
-    <div style="width: 80%; margin: 0 auto;">
-        <div class="uk-flex uk-flex-between uk-flex-middle uk-margin-medium-bottom">
-            <h1 style="border-top: 1px solid #0a3644e6; padding: 5% 0;">Бренды</h1>
-            <h3 class="uk-text-left uk-width-2-3 uk-text-light">Здесь ты можешь найти все бренды, которые продают у нас
-                на площадке. В
-                профиле бренда ты найдешь информацию и товары бренда</h3>
+    <div style="width: 85%; margin: auto;">
+
+        <div class="uk-flex" style="margin: 0">
+            <div class="uk-margin-right"><p style="font-weight: 600; font-size: 2.625em; margin-bottom: 0 ">Все бренды</p></div>
+            <div class="uk-margin-right"><p style="font-weight: 400; font-size: 2.625em; margin-bottom: 0">Москва</p></div>
+            <div class="uk-margin-right"><p style="font-weight: 400; font-size: 2.625em; margin-bottom: 0">Питер</p></div>
+            <div class="uk-margin-right"><p style="font-weight: 400; font-size: 2.625em; margin-bottom: 0">Тверь</p></div>
+
         </div>
 
+        <div class="uk-margin">
+            <div class="uk-inline uk-width-1">
+                <a class="uk-form-icon uk-form-icon-flip" href="#" uk-icon="icon: link"></a>
+                <input placeholder="Поиск по брендам" class="uk-input" type="text" aria-label="Clickable icon">
+            </div>
+        </div>
 
-        <div class="uk-flex uk-flex-wrap uk-flex-wrap-middle uk-width-1" style="justify-content: center;">
-
-            {% for shop in brands %}
-            {% if shop.name %}
-            <a href="/brands/{{shop.name}}" class="uk-text-center uk-width-2-5" style="margin: 2%;">
-                <div data-src="{{shop.logoImage}}"
-                    class="uk-height-medium uk-flex uk-flex-center uk-flex-middle uk-background-cover uk-inline-clip uk-transition-toggle"
-                    style="border: 3px solid black;" tabindex="0" uk-img>
-
-                    <div class="uk-transition-fade uk-position-cover uk-overlay uk-overlay-default uk-flex uk-flex-center uk-flex-middle"
-                        style="background-color: #0a3644e6;height: 100%; width: 100%; margin: 0 auto; padding: 10%;">
-
-                        <div class="uk-width-1" style="padding: 1%;">
-                            <h1 style="color: white;" class="uk-article-title">{{shop.name}}</h1>
-
-                            <p style="color: white; font-size: 1.2em;" class="uk-text-center uk-text-break">{{shop.category}}</p>
+        <div class="uk-flex">
+            <div class="uk-margin-right"><p style="font-weight: 400; font-size: 1.5em; margin-bottom: 0 ">0-9</p></div>
+            <div class="uk-margin-right"><p style="font-weight: 400; font-size: 1.5em; margin-bottom: 0 ">A</p></div>
+            <div class="uk-margin-right"><p style="font-weight: 400; font-size: 1.5em; margin-bottom: 0 ">B</p></div>
+            <div class="uk-margin-right"><p style="font-weight: 400; font-size: 1.5em; margin-bottom: 0 ">C</p></div>
+            <div class="uk-margin-right"><p style="font-weight: 400; font-size: 1.5em; margin-bottom: 0 ">D</p></div>
+            <div class="uk-margin-right"><p style="font-weight: 400; font-size: 1.5em; margin-bottom: 0 ">F</p></div>
+            <div class="uk-margin-right"><p style="font-weight: 400; font-size: 1.5em; margin-bottom: 0 ">G</p></div>
+            <div class="uk-margin-right"><p style="font-weight: 400; font-size: 1.5em; margin-bottom: 0 ">H</p></div>
+            <div class="uk-margin-right"><p style="font-weight: 400; font-size: 1.5em; margin-bottom: 0 ">0-9</p></div>
+            <div class="uk-margin-right"><p style="font-weight: 400; font-size: 1.5em; margin-bottom: 0 ">A</p></div>
+            <div class="uk-margin-right"><p style="font-weight: 400; font-size: 1.5em; margin-bottom: 0 ">B</p></div>
+            <div class="uk-margin-right"><p style="font-weight: 400; font-size: 1.5em; margin-bottom: 0 ">C</p></div>
+            <div class="uk-margin-right"><p style="font-weight: 400; font-size: 1.5em; margin-bottom: 0 ">D</p></div>
+            <div class="uk-margin-right"><p style="font-weight: 400; font-size: 1.5em; margin-bottom: 0 ">F</p></div>
+            <div class="uk-margin-right"><p style="font-weight: 400; font-size: 1.5em; margin-bottom: 0 ">G</p></div>
+            <div class="uk-margin-right"><p style="font-weight: 400; font-size: 1.5em; margin-bottom: 0 ">H</p></div>
+            <div class="uk-margin-right"><p style="font-weight: 400; font-size: 1.5em; margin-bottom: 0 ">0-9</p></div>
+            <div class="uk-margin-right"><p style="font-weight: 400; font-size: 1.5em; margin-bottom: 0 ">A</p></div>
+            <div class="uk-margin-right"><p style="font-weight: 400; font-size: 1.5em; margin-bottom: 0 ">B</p></div>
+            <div class="uk-margin-right"><p style="font-weight: 400; font-size: 1.5em; margin-bottom: 0 ">C</p></div>
+            <div class="uk-margin-right"><p style="font-weight: 400; font-size: 1.5em; margin-bottom: 0 ">D</p></div>
+            <div class="uk-margin-right"><p style="font-weight: 400; font-size: 1.5em; margin-bottom: 0 ">F</p></div>
+            <div class="uk-margin-right"><p style="font-weight: 400; font-size: 1.5em; margin-bottom: 0 ">G</p></div>
+            <div class="uk-margin-right"><p style="font-weight: 400; font-size: 1.5em; margin-bottom: 0 ">H</p></div>
+            <div class="uk-margin-right"><p style="font-weight: 400; font-size: 1.5em; margin-bottom: 0 ">0-9</p></div>
+            <div class="uk-margin-right"><p style="font-weight: 400; font-size: 1.5em; margin-bottom: 0 ">A</p></div>
+            <div class="uk-margin-right"><p style="font-weight: 400; font-size: 1.5em; margin-bottom: 0 ">B</p></div>
+            <div class="uk-margin-right"><p style="font-weight: 400; font-size: 1.5em; margin-bottom: 0 ">C</p></div>
+            <div class="uk-margin-right"><p style="font-weight: 400; font-size: 1.5em; margin-bottom: 0 ">D</p></div>
+            <div class="uk-margin-right"><p style="font-weight: 400; font-size: 1.5em; margin-bottom: 0 ">F</p></div>
+            <div class="uk-margin-right"><p style="font-weight: 400; font-size: 1.5em; margin-bottom: 0 ">G</p></div>
+            <div class="uk-margin-right"><p style="font-weight: 400; font-size: 1.5em; margin-bottom: 0 ">H</p></div>
+            
+        </div>
+  
+        <div style="width: 100%; margin: auto">
+                <div class="uk-grid uk-width-1" uk-grid style="margin: auto; width: 100%">
+                    <div style="height: 170px; width: 350px; margin-bottom: 1%; margin-top: 1%;">
+                        <div style="height: 100%" uk-img data-src="https://sun9-13.userapi.com/impg/WdBQX3pTiEevM5-Jq8PbRw3KCpSAt7ViTP1H8g/sdT05rynN9g.jpg?size=349x329&quality=96&sign=4a12051e3d1c4fd061634f112cce627a&type=album">
+                            <a class="uk-align-right" style="margin-top: 2%; margin-right: 2%; width: 30px" href="" uk-icon="heart"></a>
                         </div>
-
                     </div>
+                    <div style="height: 170px; width: 350px; margin-bottom: 1%; margin-top: 1%;">
+                        <div style="height: 100%" uk-img data-src="https://sun9-13.userapi.com/impg/WdBQX3pTiEevM5-Jq8PbRw3KCpSAt7ViTP1H8g/sdT05rynN9g.jpg?size=349x329&quality=96&sign=4a12051e3d1c4fd061634f112cce627a&type=album">
+                            <a class="uk-align-right" style="margin-top: 2%; margin-right: 2%; width: 30px" href="" uk-icon="heart"></a>
+                        </div>
+                    </div>
+                    <div style="height: 170px; width: 350px; margin-bottom: 1%; margin-top: 1%;">
+                        <div style="height: 100%" uk-img data-src="https://sun9-13.userapi.com/impg/WdBQX3pTiEevM5-Jq8PbRw3KCpSAt7ViTP1H8g/sdT05rynN9g.jpg?size=349x329&quality=96&sign=4a12051e3d1c4fd061634f112cce627a&type=album">
+                            <a class="uk-align-right" style="margin-top: 2%; margin-right: 2%; width: 30px" href="" uk-icon="heart"></a>
+                        </div>
+                    </div>
+                    <div style="height: 170px; width: 350px; margin-bottom: 1%; margin-top: 1%;">
+                        <div style="height: 100%" uk-img data-src="https://sun9-13.userapi.com/impg/WdBQX3pTiEevM5-Jq8PbRw3KCpSAt7ViTP1H8g/sdT05rynN9g.jpg?size=349x329&quality=96&sign=4a12051e3d1c4fd061634f112cce627a&type=album">
+                            <a class="uk-align-right" style="margin-top: 2%; margin-right: 2%; width: 30px" href="" uk-icon="heart"></a>
+                        </div>
+                    </div>
+                    <div style="height: 170px; width: 350px; margin-bottom: 1%; margin-top: 1%;">
+                        <div style="height: 100%" uk-img data-src="https://sun9-13.userapi.com/impg/WdBQX3pTiEevM5-Jq8PbRw3KCpSAt7ViTP1H8g/sdT05rynN9g.jpg?size=349x329&quality=96&sign=4a12051e3d1c4fd061634f112cce627a&type=album">
+                            <a class="uk-align-right" style="margin-top: 2%; margin-right: 2%; width: 30px" href="" uk-icon="heart"></a>
+                        </div>
+                    </div>
+                    <div style="height: 170px; width: 350px; margin-bottom: 1%; margin-top: 1%;">
+                        <div style="height: 100%" uk-img data-src="https://sun9-13.userapi.com/impg/WdBQX3pTiEevM5-Jq8PbRw3KCpSAt7ViTP1H8g/sdT05rynN9g.jpg?size=349x329&quality=96&sign=4a12051e3d1c4fd061634f112cce627a&type=album">
+                            <a class="uk-align-right" style="margin-top: 2%; margin-right: 2%; width: 30px" href="" uk-icon="heart"></a>
+                        </div>
+                    </div>
+                    <div style="height: 170px; width: 350px; margin-bottom: 1%; margin-top: 1%;">
+                        <div style="height: 100%" uk-img data-src="https://sun9-13.userapi.com/impg/WdBQX3pTiEevM5-Jq8PbRw3KCpSAt7ViTP1H8g/sdT05rynN9g.jpg?size=349x329&quality=96&sign=4a12051e3d1c4fd061634f112cce627a&type=album">
+                            <a class="uk-align-right" style="margin-top: 2%; margin-right: 2%; width: 30px" href="" uk-icon="heart"></a>
+                        </div>
+                    </div>
+                    <div style="height: 170px; width: 350px; margin-bottom: 1%; margin-top: 1%;">
+                        <div style="height: 100%" uk-img data-src="https://sun9-13.userapi.com/impg/WdBQX3pTiEevM5-Jq8PbRw3KCpSAt7ViTP1H8g/sdT05rynN9g.jpg?size=349x329&quality=96&sign=4a12051e3d1c4fd061634f112cce627a&type=album">
+                            <a class="uk-align-right" style="margin-top: 2%; margin-right: 2%; width: 30px" href="" uk-icon="heart"></a>
+                        </div>
+                    </div>
+                    <div style="height: 170px; width: 350px; margin-bottom: 1%; margin-top: 1%;">
+                        <div style="height: 100%" uk-img data-src="https://sun9-13.userapi.com/impg/WdBQX3pTiEevM5-Jq8PbRw3KCpSAt7ViTP1H8g/sdT05rynN9g.jpg?size=349x329&quality=96&sign=4a12051e3d1c4fd061634f112cce627a&type=album">
+                            <a class="uk-align-right" style="margin-top: 2%; margin-right: 2%; width: 30px" href="" uk-icon="heart"></a>
+                        </div>
+                    </div>
+                    <div style="height: 170px; width: 350px; margin-bottom: 1%; margin-top: 1%;">
+                        <div style="height: 100%" uk-img data-src="https://sun9-13.userapi.com/impg/WdBQX3pTiEevM5-Jq8PbRw3KCpSAt7ViTP1H8g/sdT05rynN9g.jpg?size=349x329&quality=96&sign=4a12051e3d1c4fd061634f112cce627a&type=album">
+                            <a class="uk-align-right" style="margin-top: 2%; margin-right: 2%; width: 30px" href="" uk-icon="heart"></a>
+                        </div>
+                    </div>
+                    <div style="height: 170px; width: 350px; margin-bottom: 1%; margin-top: 1%;">
+                        <div style="height: 100%" uk-img data-src="https://sun9-13.userapi.com/impg/WdBQX3pTiEevM5-Jq8PbRw3KCpSAt7ViTP1H8g/sdT05rynN9g.jpg?size=349x329&quality=96&sign=4a12051e3d1c4fd061634f112cce627a&type=album">
+                            <a class="uk-align-right" style="margin-top: 2%; margin-right: 2%; width: 30px" href="" uk-icon="heart"></a>
+                        </div>
+                    </div>
+                    <div style="height: 170px; width: 350px; margin-bottom: 1%; margin-top: 1%;">
+                        <div style="height: 100%" uk-img data-src="https://sun9-13.userapi.com/impg/WdBQX3pTiEevM5-Jq8PbRw3KCpSAt7ViTP1H8g/sdT05rynN9g.jpg?size=349x329&quality=96&sign=4a12051e3d1c4fd061634f112cce627a&type=album">
+                            <a class="uk-align-right" style="margin-top: 2%; margin-right: 2%; width: 30px" href="" uk-icon="heart"></a>
+                        </div>
+                    </div>
+                    <div style="height: 170px; width: 350px; margin-bottom: 1%; margin-top: 1%;">
+                        <div style="height: 100%" uk-img data-src="https://sun9-13.userapi.com/impg/WdBQX3pTiEevM5-Jq8PbRw3KCpSAt7ViTP1H8g/sdT05rynN9g.jpg?size=349x329&quality=96&sign=4a12051e3d1c4fd061634f112cce627a&type=album">
+                            <a class="uk-align-right" style="margin-top: 2%; margin-right: 2%; width: 30px" href="" uk-icon="heart"></a>
+                        </div>
+                    </div>
+                    <div style="height: 170px; width: 350px; margin-bottom: 1%; margin-top: 1%;">
+                        <div style="height: 100%" uk-img data-src="https://sun9-13.userapi.com/impg/WdBQX3pTiEevM5-Jq8PbRw3KCpSAt7ViTP1H8g/sdT05rynN9g.jpg?size=349x329&quality=96&sign=4a12051e3d1c4fd061634f112cce627a&type=album">
+                            <a class="uk-align-right" style="margin-top: 2%; margin-right: 2%; width: 30px" href="" uk-icon="heart"></a>
+                        </div>
+                    </div>
+                    <div style="height: 170px; width: 350px; margin-bottom: 1%; margin-top: 1%;">
+                        <div style="height: 100%" uk-img data-src="https://sun9-13.userapi.com/impg/WdBQX3pTiEevM5-Jq8PbRw3KCpSAt7ViTP1H8g/sdT05rynN9g.jpg?size=349x329&quality=96&sign=4a12051e3d1c4fd061634f112cce627a&type=album">
+                            <a class="uk-align-right" style="margin-top: 2%; margin-right: 2%; width: 30px" href="" uk-icon="heart"></a>
+                        </div>
+                    </div>
+                    <div style="height: 170px; width: 350px; margin-bottom: 1%; margin-top: 1%;">
+                        <div style="height: 100%" uk-img data-src="https://sun9-13.userapi.com/impg/WdBQX3pTiEevM5-Jq8PbRw3KCpSAt7ViTP1H8g/sdT05rynN9g.jpg?size=349x329&quality=96&sign=4a12051e3d1c4fd061634f112cce627a&type=album">
+                            <a class="uk-align-right" style="margin-top: 2%; margin-right: 2%; width: 30px" href="" uk-icon="heart"></a>
+                        </div>
+                    </div>
+                    <div style="height: 170px; width: 350px; margin-bottom: 1%; margin-top: 1%;">
+                        <div style="height: 100%" uk-img data-src="https://sun9-13.userapi.com/impg/WdBQX3pTiEevM5-Jq8PbRw3KCpSAt7ViTP1H8g/sdT05rynN9g.jpg?size=349x329&quality=96&sign=4a12051e3d1c4fd061634f112cce627a&type=album">
+                            <a class="uk-align-right" style="margin-top: 2%; margin-right: 2%; width: 30px" href="" uk-icon="heart"></a>
+                        </div>
+                    </div>
+                    <div style="height: 170px; width: 350px; margin-bottom: 1%; margin-top: 1%;">
+                        <div style="height: 100%" uk-img data-src="https://sun9-13.userapi.com/impg/WdBQX3pTiEevM5-Jq8PbRw3KCpSAt7ViTP1H8g/sdT05rynN9g.jpg?size=349x329&quality=96&sign=4a12051e3d1c4fd061634f112cce627a&type=album">
+                            <a class="uk-align-right" style="margin-top: 2%; margin-right: 2%; width: 30px" href="" uk-icon="heart"></a>
+                        </div>
+                    </div>
+                    <div style="height: 170px; width: 350px; margin-bottom: 1%; margin-top: 1%;">
+                        <div style="height: 100%" uk-img data-src="https://sun9-13.userapi.com/impg/WdBQX3pTiEevM5-Jq8PbRw3KCpSAt7ViTP1H8g/sdT05rynN9g.jpg?size=349x329&quality=96&sign=4a12051e3d1c4fd061634f112cce627a&type=album">
+                            <a class="uk-align-right" style="margin-top: 2%; margin-right: 2%; width: 30px" href="" uk-icon="heart"></a>
+                        </div>
+                    </div>
+                    <div style="height: 170px; width: 350px; margin-bottom: 1%; margin-top: 1%;">
+                        <div style="height: 100%" uk-img data-src="https://sun9-13.userapi.com/impg/WdBQX3pTiEevM5-Jq8PbRw3KCpSAt7ViTP1H8g/sdT05rynN9g.jpg?size=349x329&quality=96&sign=4a12051e3d1c4fd061634f112cce627a&type=album">
+                            <a class="uk-align-right" style="margin-top: 2%; margin-right: 2%; width: 30px" href="" uk-icon="heart"></a>
+                        </div>
+                    </div>
+                  
                 </div>
-            </a>
-            {% endif %}
-            {% endfor %}
-
         </div>
 
     </div>
+
+
+
+
+
+<!-- 
+    <div class="uk-width-1 uk-flex uk-flex-center uk-flex-middle">
+        <div style="margin-top: 20%">
+            
+            <p style="font-weight: 600; font-size: 45px; margin: 0;">Нет аккаунта?</p>
+            <button id="signup"
+                style=" border: solid black 2px;"
+                class="uk-button uk-button-secondary uk-width-2-5 uk-border-pill" type="button">Регистрация</button>
+
+            <p style="font-weight: 600; font-size: 45px; margin: 0; margin-top: 3%;">Уже есть аккаунт?</p>
+            <button id="signin"
+                style=" border: solid black 2px;"
+                class="uk-button uk-button-secondary uk-width-2-5 uk-border-pill" type="button">Вход</button>
+        </div> -->
+    
+    
+    
+    
+    
+    
     {% include "footer.html" %}
-
-
 </body>
 
+<script>
+    $(document).ready(function () {
+		$("#signup").click(function () {
+			$("#signin-form").css("display", "none");
+			$("#signup-form").css("display", "");
+		});
 
+		$("#signin").click(function () {
+			$("#signup-form").css("display", "none");
+			$("#signin-form").css("display", "");
+		});
+	});
+</script>
 
 
 {% endblock %}
+
+
