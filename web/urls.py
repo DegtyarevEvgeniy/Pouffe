@@ -23,46 +23,46 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     # technical links
-    path('admin/', views.admin_page),
+    path('admin/', views.admin_page, name='admin_page'),
     path('restorePassword/', views.forgot_password_page),
 
     # enterance links
-    path('logout/', views.logout_view),
+    path('logout/', views.logout_view, name='logout'),
     path('login/', views.login_page, name='signup'),
     # main page lnk
-    path('', views.index_page),
+    path('', views.index_page, name='main_page'),
 
     # user account links
-    path('accounts/', include('django.contrib.auth.urls')),
-    path('edit/', views.edit_profile),
+    path('accounts/', include('django.contrib.auth.urls'), name='account'),
+    path('edit/', views.edit_profile, name='edit_profile'),
 
     # chat links
-    path('chats/', views.chat_page_list),
-    path('chat/<room_id>/', views.chat_page),
+    path('chats/', views.chat_page_list, name='chat_page_list'),
+    path('chat/<room_id>/', views.chat_page, name='chat_page'),
 
     # document links
-    path('documents/', views.documents_page),
-    path('documents/documentsTemplates/<name>/', views.documentTemplates_page),
+    path('documents/', views.documents_page, name='documents_page'),
+    path('documents/documentsTemplates/<name>/', views.documentTemplates_page, name='documentTemplates_page'),
 
     #  brand links
-    path('brands/', views.brands_page),
-    path('brands/<shopnmae>', views.sertCardBrend_page),
+    path('brands/', views.brands_page, name='brands_page'),
+    path('brands/<shopnmae>', views.sertCardBrend_page, name='sertCardBrend_page'),
 
 
     # partner links
-    path('partners/', views.partners_page),
-    path('becomeCreator/', views.becomeCreator_page),
-    path('becomeCreator/becomeCreatorTemplates/<name>/', views.becomeCreatorTemplate_page),
+    path('partners/', views.partners_page, name='partners_page'),
+    path('becomeCreator/', views.becomeCreator_page, name='becomeCreator_page'),
+    path('becomeCreator/becomeCreatorTemplates/<name>/', views.becomeCreatorTemplate_page, name='becomeCreatorTemplate_page'),
     
     # goods links
-    path('goods/', views.goods_page),
-    path('goods/<product_id>/', views.cardProduct_page),
-    path('goods/category/<category>', views.goodsSearch_page_category),
-    path('goods/search/<product_name>', views.goodsSearch_page),
+    path('goods/', views.goods_page, name='goods_page'),
+    path('goods/<product_id>/', views.cardProduct_page, name='cardProduct_page'),
+    path('goods/category/<category>', views.goodsSearch_page_category, name='goodsSearch_page_category'),
+    path('goods/search/<product_name>', views.goodsSearch_page, name='goodsSearch_page'),
 
     # shop links
-    path('orders/', views.orders_page),
-    path('cart/', views.cart_page),
+    path('orders/', views.orders_page, name='orders_page'),
+    path('cart/', views.cart_page, name='cart_page'),
 
     # path('addTask/', views.addTask_page, name='AddTask'),
     # path('addTask/', views.addTask_page),
