@@ -689,30 +689,30 @@ def cardProduct_page(request, product_id):
 
 # brand sector
 def brands_page(request):
-    # creators = Shop.objects.all()
-    # persons = Account.objects.all()
-    # brands = Shop.objects.all()
-    # content['brands'] = [{
-    #     'name': brand.name,
-    #     'logoImage': brand.logoImage,
-    #     'bgImage': brand.bgImage,
-    #     'description': brand.description,
-    #     'category': brand.category,
-    #     'status': brand.status,
-    #     'email': brand.email,
-    #     'phone': brand.phone,
-    # }for brand in brands]
-    # content['creators'] = [{'name': creator.name,
-    #                         'logoImage': creator.logoImage,
-    #                         'bgImage': creator.bgImage,
-    #                         'description': creator.description,
-    #                         'category': creator.category,
-    #                         'status': creator.status,
-    #                         'email': creator.email,
-    #                         'phone': creator.phone,
-    #                         }
-    #                        for creator, person in zip(creators, persons)]
-    return render(request, 'brands.html')
+    creators = Shop.objects.all()
+    persons = Account.objects.all()
+    brands = Shop.objects.all()
+    content['brands'] = [{
+        'name': brand.name,
+        'logoImage': brand.logoImage,
+        'bgImage': brand.bgImage,
+        'description': brand.description,
+        'category': brand.category,
+        'status': brand.status,
+        'email': brand.email,
+        'phone': brand.phone,
+    }for brand in brands]
+    content['creators'] = [{'name': creator.name,
+                            'logoImage': creator.logoImage,
+                            'bgImage': creator.bgImage,
+                            'description': creator.description,
+                            'category': creator.category,
+                            'status': creator.status,
+                            'email': creator.email,
+                            'phone': creator.phone,
+                            }
+                           for creator, person in zip(creators, persons)]
+    return render(request, 'brands.html', content)
 
 
 def sertCardBrend_page(request, shopnmae):
