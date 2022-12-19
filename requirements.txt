@@ -5,3 +5,26 @@ Pillow==9.1.0
 mysqlclient==2.1.1
 requests==2.25.1
 
+# IF error:
+#
+# FOR linux
+# 
+# -debian-
+# sudo apt-get install python3-dev default-libmysqlclient-dev build-essential
+# -arch-
+# sudo yum install python3-devel mysql-devel
+#
+# FOR macOs(Homebrew)
+#
+# brew install mysql
+# pip install mysqlclient
+#
+# -or-
+#
+# brew install mysql-client
+# echo 'export PATH="/usr/local/opt/mysql-client/bin:$PATH"' >> ~/.bash_profile
+# export PATH="/usr/local/opt/mysql-client/bin:$PATH"
+# pip install mysqlclient
+#
+# FOR windows
+# pip install mysqlclient
