@@ -569,7 +569,10 @@ def goodsSearch_page(request, product_name):
     return render(request, 'goods.html', content)
 
 
+
+
 def goodsSearch_page_category(request, category):
+
     categories = {
     'Clothing':'Одежда',
     'Shoes':'Обувь',
@@ -577,10 +580,20 @@ def goodsSearch_page_category(request, category):
     'Interior':'Интерьер',
     'Accessories':'Аксессуары',
     }
+    
+    def get_key(d, value):
+        for k, v in d.items():
+            if v == value:
+                return k
+
+    
     print(category)
     products = Product_creator.objects.filter( Q(category__icontains=categories[category]) )
 
     content['category'] = categories[category]
+
+    content['link'] = get_key(categories,categories[category])
+
     content['products'] = products
     return render(request, 'goods.html', content)
 
