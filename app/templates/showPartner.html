@@ -1,935 +1,108 @@
-<html lang="en">
+{% extends "base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <link rel="shortcut icon" type="image/x-icon" href="../../../media/logoImage/Befreed.png" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BeFreela</title>
+{% block content %}
 
-    <!-- <link rel="stylesheet" href="style.css">
-    <script defer src="app.js"></script> -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.15.10/dist/css/uikit.min.css" />
 
-</head>
+{% load static %}
 
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
-
-    body {
-        background-color: #ffffff;
-        color: black;
-        font-family: 'Roboto', sans-serif;
-        padding: 0;
-        margin: 0;
+    .section1 {
+        height: 760px;
+        background-color: #ccc;
+        margin: 0 auto;
     }
-
-    section {
-        display: grid;
-        place-items: center;
-        align-items: center;
-        place-content: center;
-        min-height: 100vh;
+    .center-text-section1{
+        width: auto;
+        padding: 8%;
+    }
+    .first-text-section1{
+        font-size: 100px;
+        font-weight: 400;
+        line-height: 1.00;
+    }
+    .second-text-section1{
+        font-size: 40px;
+        font-weight: 400;
+        line-height: 1.10;
     }
 
     .section2 {
-        display: grid;
-        place-items: center;
-        align-items: center;
-        place-content: center;
-        min-height: 200vh;
+        height: 500px;
+        background-color: #ccc;
+        margin: 0 auto;
     }
-
-    .hidden {
-        opacity: 0;
-        filter: blur(5px);
-        transform: translateX(-100%);
-        transition: all 1s;
-    }
-
-    /* @media(prefers-reduced-motion) {
-    .hidden {
-        transition: none;
-    }
-} */
-
-    .show {
-        opacity: 1;
-        filter: blur(0);
-        transform: translateX(0);
-    }
-
-    #logo {
-        animation: fill 0.5s ease forwards 4.1s;
-    }
-
-    #logo mask {
-        animation: fill 0.5s ease forwards 4.0s;
-    }
-
-    /* #logo mask rect{
-    animation: fill_black 0.5s ease forwards 3.3s;
-}   */
-
-    .logos {
-        width: 80vw;
-        height: 50vh;
-        display: flex;
-    }
-
-    .logo:nth-child(2) {
-        transition-delay: 400ms;
-    }
-
-    .container1 {
-        color: white;
-        background-color: #688e9b;
-        width: 40%;
-        height: 40%;
-        margin: auto;
-        /* border: 1px solid black; */
-        box-shadow: 0px 5px 15px 2px rgba(0, 0, 0, 0.5);
-        border-radius: 10px;
-    }
-
-    .container2 {
-        background-color: rgb(101, 59, 59);
-        width: 40%;
-        height: 40%;
-        margin: auto;
-        border: 2px solid black;
-        box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2);
-    }
-
-
-    /* MAIN PAGE DESIGN ANIMATION */
-
-
-
-
-    #logo path:nth-child(2) {
-
-        stroke-dasharray: 800;
-        stroke-dashoffset: 0;
-        animation: line-anim 2s ease forwards;
-
-    }
-
-    #logo path:nth-child(3) {
-        stroke-dasharray: 800;
-        stroke-dashoffset: 800;
-        animation: line-anim 2s ease forwards 0.3s;
-    }
-
-    #logo path:nth-child(4) {
-        stroke-dasharray: 800;
-        stroke-dashoffset: 800;
-        animation: line-anim 2s ease forwards 0.6s;
-
-    }
-
-    #logo path:nth-child(5) {
-        stroke-dasharray: 800;
-        stroke-dashoffset: 800;
-        animation: line-anim 2s ease forwards 0.9s;
-    }
-
-    #logo path:nth-child(6) {
-        stroke-dasharray: 800;
-        stroke-dashoffset: 800;
-        animation: line-anim 2s ease forwards 1.2s;
-    }
-
-    #logo path:nth-child(7) {
-        stroke-dasharray: 800;
-        stroke-dashoffset: 800;
-        animation: line-anim 2s ease forwards 1.5s;
-    }
-
-    #logo path:nth-child(8) {
-        stroke-dasharray: 800;
-        stroke-dashoffset: 800;
-        animation: line-anim 2s ease forwards 1.8s;
-    }
-
-    #logo path:nth-child(9) {
-        stroke-dasharray: 800;
-        stroke-dashoffset: 800;
-        animation: line-anim 2s ease forwards 2.1s;
-    }
-
-    #logo path:nth-child(10) {
-        stroke-dasharray: 800;
-        stroke-dashoffset: 800;
-        animation: line-anim 2s ease forwards 2.4s;
-    }
-
-    #logo path:nth-child(11) {
-        stroke-dasharray: 800;
-        stroke-dashoffset: 800;
-        animation: line-anim 2s ease forwards 2.7s;
-    }
-
-    #logo path:nth-child(12) {
-        stroke-dasharray: 800;
-        stroke-dashoffset: 800;
-        animation: line-anim 2s ease forwards 3.0s;
-    }
-
-    #logo path:nth-child(13) {
-        stroke-dasharray: 800;
-        stroke-dashoffset: 800;
-        animation: line-anim 2s ease forwards 3.3s;
-    }
-
-    #logo path:nth-child(14) {
-        stroke-dasharray: 800;
-        stroke-dashoffset: 800;
-        animation: line-anim 2s ease forwards 3.6s;
-    }
-
-    #logo path:nth-child(15) {
-        stroke-dasharray: 800;
-        stroke-dashoffset: 800;
-        animation: line-anim 2s ease forwards 3.9s;
-    }
-
-    #logo path:nth-child(16) {
-        stroke-dasharray: 800;
-        stroke-dashoffset: 800;
-        animation: line-anim 2s ease forwards 4.1s;
-    }
-
-
-
-    @keyframes line-anim {
-        to {
-            stroke-dasharray: 0;
-        }
-
-    }
-
-    @keyframes fill {
-        from {
-            /* fill: transparent; */
-        }
-
-        to {
-            fill: white;
-        }
-    }
-
-    @keyframes fill_black {
-        from {
-            /* fill: transparent; */
-        }
-
-        to {
-            fill: black;
-        }
-    }
-
-    .line-container {
-        position: fixed;
-        top: 0;
-        left: 5%;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-    }
-
-    #svg1 {
-        display: inline-block;
-        height: 100%;
-    }
-
-    .textM {
-        color: white;
-
-    }
-
-
-    /* The element to apply the animation to */
-    .one {
-        background-image: linear-gradient(to bottom, #ac866a, #787752, #46654d, #1c4e4c, #0a3644);
-        animation-duration: 4s;
-        z-index: 1000;
-
-
-    }
-
-    .container {
-        margin-left: 75%;
-        overflow: hidden;
-        width: 500px;
-        height: 700px;
-    }
-
-    .bar {
-        position: absolute;
-        height: 85%;
-        width: 3px;
-        left: 7%;
-        top: 7.5%;
-        background: black;
-    }
-
-    .circle {
-        width: 10px;
-        height: 10px;
-        position: absolute;
-        border-radius: 50%;
-        left: -5px;
-        border: 1px solid black;
-        box-shadow: 0px 0px 7px rgba(black, 100%);
-    }
-
-
-
-    .bold {
-        color: black;
-        position: absolute;
-        top: -7%;
-        left: -17px;
-    }
-
-    .creamy {
-        color: black;
-        position: absolute;
-        bottom: -7%;
-        left: -27px;
-    }
-
-    .info {
-        width: 55%;
-        height: 100%;
-        position: absolute;
-        left: 43%;
-    }
-
-
-    .coffee-cups {
-        width: 40%;
-        height: 100%;
-        position: absolute;
-        left: 10%;
-        top: 3%;
-    }
-
-    .handle {
-        position: absolute;
-        height: 20px;
-        width: 15px;
-        background: transparent;
-        border-radius: 50% 30%;
-        left: 95%;
-        top: 10%;
-        z-index: -1;
-        border: 2px solid black;
-    }
-
-    .cup {
-        position: absolute;
-        width: 70px;
-        height: 55px;
-        background: #B54F00;
-        border: 2px solid black;
-        border-radius: 0 0 5rem 5rem;
-        left: 20%;
-    }
-
-    .cup-small {
-        position: absolute;
-        width: 55px;
-        height: 40px;
-        background: #B54F00;
-        border: 2px solid black;
-        border-radius: 0 0 5rem 5rem;
-        left: 23%;
-    }
-
-    .cup-long {
-        position: absolute;
-        width: 60px;
-        height: 70px;
-        background: #B54F00;
-        border: 2px solid black;
-        border-radius: 10% 10% 50% 50%;
-        left: 22%;
-    }
-
-    .doppio {
-        top: 5%;
-        background: linear-gradient(to bottom, #ccc 40%, $brown 40%, $coffee 70%);
-    }
-
-    .americano {
-        top: 18.5%;
-        background: linear-gradient(to bottom, #ccc 13%, $water 13%, $water 50%, $coffee 50%);
-    }
-
-    .macchiato {
-        top: 35%;
-        background: linear-gradient(to bottom, #ccc 20%, #ffffff 20%, #ffffff 40%, $coffee 40%);
-    }
-
-    .flatwhite {
-        top: 50%;
-        background: linear-gradient(to bottom, #ccc 10%, #ffffff 10%, $tan 60%, $coffee 65%, $brown 90%);
-    }
-
-    .cappuccino {
-        top: 64%;
-        background: linear-gradient(to bottom, #ffffff 50%, $tan 50%, $tan 55%, $coffee 60%);
+    .center-text-section2{
+        width: fit-content;
+        padding: 4%;
+        margin: 0 auto;
     }
-
-    .latte {
-        top: 81%;
-        background: linear-gradient(to bottom, #ccc 5%, #ffffff 5%, #ffffff 30%, $tan 30%, $tan 70%, $coffee 70%);
-    }
-
-
-
-
-    .small {
-        margin-left: 20px;
-        margin-top: -1px;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-    }
-
-    .key {
-        position: relative;
-        margin: auto;
-        width: 500px;
-        height: 200px;
-    }
-
-    .espresso {
-        position: absolute;
-        left: 17%;
-    }
-
-    .milk {
-        position: absolute;
-        left: 40%;
-    }
-
-    .foam {
-        background: #ffffff;
-        position: absolute;
-        left: 63%;
-    }
-
-    .textName {
-        width: 60vw;
-        margin-left: 60%;
-        font-size: 650%;
-    }
-
-
-    .shape1 {
-        width: 40vw;
-        position: absolute;
-        right: 10%;
-        top: 10%;
-        z-index: -10;
+    .first-text-section2{
+        font-size: 80px;
+        font-weight: 400;
+        line-height: 1.00;
     }
-
-    .textIn1 {
-
-        position: absolute;
-        right: 10%;
-        top: 40%;
-        font-size: 160%;
-        width: 70%;
-        color: white;
-    }
-
-    .shape2 {
-        width: 40vw;
-        position: absolute;
-        right: 50%;
-        top: 40%;
-    }
-
-    .textIn2 {
-
-        position: absolute;
-        right: 10%;
-        top: 40%;
-        font-size: 160%;
-        width: 70%;
-        color: white;
-    }
-
-    .shape3 {
-        width: 40vw;
-        position: absolute;
-        right: 10%;
-        top: 80%;
+    .center-img-section2{
+        width: fit-content;
+        padding: 4%;
+        margin: 0 auto;
     }
 
-    .textIn3 {
 
-        position: absolute;
-        right: 10%;
-        top: 40%;
-        font-size: 160%;
-        width: 70%;
-        color: white;
-    }
-
-    .interText1 {
-        font-size: 650%;
-        position: absolute;
-        left: 30%;
-        top: 10%;
-
-    }
-
-    .interText2 {
-        font-size: 650%;
-        position: absolute;
-        left: 65%;
-        top: 45%;
-
-    }
-
-    .interText3 {
-        font-size: 650%;
-        position: absolute;
-        left: 30%;
-        top: 80%;
-
-    }
 </style>
 
-<body>
 
-    <div class="line-container">
+<section class="uk-section uk-width-4-5 section1">
 
-        <svg viewBox="0 0 6 2091" fill="none" xmlns="http://www.w3.org/2000/svg" id="svg1">
-            <path d="M3 0.5V2092.5" stroke="#B54F00" stroke-width="5" />
-        </svg>
+    <div class="center-text-section1">
+        <h1 class="first-text-section1">
+            Развивайте <br> бизнес с Freela
+        </h1>
+        <br>
+        <p class="second-text-section1">
+            Поможем найти новых покупателей, <br> провести аналитику
+        </p>
+        <br>
+
+        <a class="uk-button uk-button-secondary" href="#">Присоединиться</a>
 
     </div>
 
+</section>
+
+<br>
+<br>
+<br>
 
 
-    <section class="one ">
-        <div class=" scroll">
+<section class="uk-section section2">
 
-            <svg width="977" height="119" viewBox="0 0 977 119" fill="none" xmlns="http://www.w3.org/2000/svg"
-                id="logo">
-                <mask id="path-1-outside-1_628_11" maskUnits="userSpaceOnUse" x="0.101562" y="0" width="977"
-                    height="119" fill="black">
-                    <rect fill="white" x="0.101562" width="977" height="119" />
-                    <path
-                        d="M5.10156 114V9H50.4016C62.1016 9 71.1516 11.35 77.5516 16.05C84.0516 20.75 87.3016 27.4 87.3016 36C87.3016 41.7 85.9516 46.5 83.2516 50.4C80.6516 54.3 77.0516 57.25 72.4516 59.25C67.9516 61.25 63.0016 62.25 57.6016 62.25L60.1516 58.65C66.8516 58.65 72.6016 59.7 77.4016 61.8C82.3016 63.8 86.1016 66.85 88.8016 70.95C91.5016 74.95 92.8516 79.95 92.8516 85.95C92.8516 94.85 89.5516 101.75 82.9516 106.65C76.4516 111.55 66.6016 114 53.4016 114H5.10156ZM16.2016 104.85H53.2516C62.4516 104.85 69.5016 103.3 74.4016 100.2C79.3016 97 81.7516 91.95 81.7516 85.05C81.7516 78.25 79.3016 73.3 74.4016 70.2C69.5016 67 62.4516 65.4 53.2516 65.4H15.0016V56.25H49.6516C58.0516 56.25 64.5516 54.65 69.1516 51.45C73.8516 48.25 76.2016 43.5 76.2016 37.2C76.2016 30.8 73.8516 26.05 69.1516 22.95C64.5516 19.75 58.0516 18.15 49.6516 18.15H16.2016V104.85Z" />
-                    <path
-                        d="M152.087 55.95H207.587V65.4H152.087V55.95ZM153.287 104.4H216.438V114H142.188V9H214.188V18.6H153.287V104.4Z" />
-                    <path
-                        d="M276.429 59.85H331.929V69.45H276.429V59.85ZM277.629 114H266.529V9H338.529V18.6H277.629V114Z" />
-                    <path
-                        d="M385.451 114V9H424.751C433.651 9 441.301 10.45 447.701 13.35C454.101 16.15 459.001 20.25 462.401 25.65C465.901 30.95 467.651 37.4 467.651 45C467.651 52.4 465.901 58.8 462.401 64.2C459.001 69.5 454.101 73.6 447.701 76.5C441.301 79.3 433.651 80.7 424.751 80.7H391.601L396.551 75.6V114H385.451ZM457.151 114L430.151 75.9H442.151L469.301 114H457.151ZM396.551 76.5L391.601 71.25H424.451C434.951 71.25 442.901 68.95 448.301 64.35C453.801 59.75 456.551 53.3 456.551 45C456.551 36.6 453.801 30.1 448.301 25.5C442.901 20.9 434.951 18.6 424.451 18.6H391.601L396.551 13.35V76.5Z" />
-                    <path
-                        d="M527.75 55.95H583.25V65.4H527.75V55.95ZM528.95 104.4H592.1V114H517.85V9H589.85V18.6H528.95V104.4Z" />
-                    <path
-                        d="M652.091 55.95H707.591V65.4H652.091V55.95ZM653.291 104.4H716.441V114H642.191V9H714.191V18.6H653.291V104.4Z" />
-                    <path d="M766.533 114V9H777.633V104.4H836.433V114H766.533Z" />
-                    <path
-                        d="M862.063 114L910.063 9H921.013L969.013 114H957.313L913.213 15.45H917.713L873.613 114H862.063ZM880.963 85.95L884.263 76.95H945.313L948.613 85.95H880.963Z" />
-                </mask>
-                <path
-                    d="M5.10156 114V9H50.4016C62.1016 9 71.1516 11.35 77.5516 16.05C84.0516 20.75 87.3016 27.4 87.3016 36C87.3016 41.7 85.9516 46.5 83.2516 50.4C80.6516 54.3 77.0516 57.25 72.4516 59.25C67.9516 61.25 63.0016 62.25 57.6016 62.25L60.1516 58.65C66.8516 58.65 72.6016 59.7 77.4016 61.8C82.3016 63.8 86.1016 66.85 88.8016 70.95C91.5016 74.95 92.8516 79.95 92.8516 85.95C92.8516 94.85 89.5516 101.75 82.9516 106.65C76.4516 111.55 66.6016 114 53.4016 114H5.10156ZM16.2016 104.85H53.2516C62.4516 104.85 69.5016 103.3 74.4016 100.2C79.3016 97 81.7516 91.95 81.7516 85.05C81.7516 78.25 79.3016 73.3 74.4016 70.2C69.5016 67 62.4516 65.4 53.2516 65.4H15.0016V56.25H49.6516C58.0516 56.25 64.5516 54.65 69.1516 51.45C73.8516 48.25 76.2016 43.5 76.2016 37.2C76.2016 30.8 73.8516 26.05 69.1516 22.95C64.5516 19.75 58.0516 18.15 49.6516 18.15H16.2016V104.85Z"
-                    stroke="white" stroke-width="10" mask="url(#path-1-outside-1_628_11)" />
-                <path
-                    d="M152.087 55.95H207.587V65.4H152.087V55.95ZM153.287 104.4H216.438V114H142.188V9H214.188V18.6H153.287V104.4Z"
-                    stroke="white" stroke-width="10" mask="url(#path-1-outside-1_628_11)" />
-                <path d="M276.429 59.85H331.929V69.45H276.429V59.85ZM277.629 114H266.529V9H338.529V18.6H277.629V114Z"
-                    stroke="white" stroke-width="10" mask="url(#path-1-outside-1_628_11)" />
-                <path
-                    d="M385.451 114V9H424.751C433.651 9 441.301 10.45 447.701 13.35C454.101 16.15 459.001 20.25 462.401 25.65C465.901 30.95 467.651 37.4 467.651 45C467.651 52.4 465.901 58.8 462.401 64.2C459.001 69.5 454.101 73.6 447.701 76.5C441.301 79.3 433.651 80.7 424.751 80.7H391.601L396.551 75.6V114H385.451ZM457.151 114L430.151 75.9H442.151L469.301 114H457.151ZM396.551 76.5L391.601 71.25H424.451C434.951 71.25 442.901 68.95 448.301 64.35C453.801 59.75 456.551 53.3 456.551 45C456.551 36.6 453.801 30.1 448.301 25.5C442.901 20.9 434.951 18.6 424.451 18.6H391.601L396.551 13.35V76.5Z"
-                    stroke="white" stroke-width="10" mask="url(#path-1-outside-1_628_11)" />
-                <path
-                    d="M527.75 55.95H583.25V65.4H527.75V55.95ZM528.95 104.4H592.1V114H517.85V9H589.85V18.6H528.95V104.4Z"
-                    stroke="white" stroke-width="10" mask="url(#path-1-outside-1_628_11)" />
-                <path
-                    d="M652.091 55.95H707.591V65.4H652.091V55.95ZM653.291 104.4H716.441V114H642.191V9H714.191V18.6H653.291V104.4Z"
-                    stroke="white" stroke-width="10" mask="url(#path-1-outside-1_628_11)" />
-                <path d="M766.533 114V9H777.633V104.4H836.433V114H766.533Z" stroke="white" stroke-width="10"
-                    mask="url(#path-1-outside-1_628_11)" />
-                <path
-                    d="M862.063 114L910.063 9H921.013L969.013 114H957.313L913.213 15.45H917.713L873.613 114H862.063ZM880.963 85.95L884.263 76.95H945.313L948.613 85.95H880.963Z"
-                    stroke="white" stroke-width="10" mask="url(#path-1-outside-1_628_11)" />
-            </svg>
+    <div class="uk-flex">
 
+        <div class="center-text-section2">
+        <h1 class="first-text-section2">
+            Развивайте <br> бизнес с Freela
+        </h1>
 
-        </div>
-        <br>
         <br>
 
+        <a class="uk-button uk-button-secondary" href="#">Присоединиться</a>
 
-        <div class="">
-            <p class="textM">Маркетплейс российских брендов</p>
-        </div>
+    </div>
 
+    <div class="center-img-section2">
 
-    </section>
+    </div>
 
+    </div>
+    
 
+</section>
 
-    <section class="hidden section2">
-        <p class="interText1">01</p>
 
-        <div class="shape1">
-            <svg viewBox="0 0 863 605" fill="#0A3644" xmlns="http://www.w3.org/2000/svg">
-                <path
-                    d="M309 3.49998C175 0.999985 245.5 136.5 138 148.5C30.4997 160.5 -37.5003 299.5 30.4997 358C98.4997 416.5 160.5 529.5 335.5 537C510.499 544.5 614.5 698 785.5 506.5C956.499 315 792 171 698 102C603.999 32.9999 443 5.99998 309 3.49998Z"
-                    stroke="#000000" stroke-width="0" />
-            </svg>
 
-            <p class="textIn1">Онлайн-система платформы позволяет не хранить товары на отдельном складе.</p>
+<br>
 
-        </div>
+{% include "footer.html" %}
 
-        <p class="interText2">02</p>
 
-        <div class="shape2">
-            <svg viewBox="0 0 863 605" fill="#0A3644" xmlns="http://www.w3.org/2000/svg">
-                <path
-                    d="M309 3.49998C175 0.999985 245.5 136.5 138 148.5C30.4997 160.5 -37.5003 299.5 30.4997 358C98.4997 416.5 160.5 529.5 335.5 537C510.499 544.5 614.5 698 785.5 506.5C956.499 315 792 171 698 102C603.999 32.9999 443 5.99998 309 3.49998Z"
-                    stroke="#000000" stroke-width="0" />
-            </svg>
-
-            <p class="textIn2">Бренду нужно лишь подтвердить заказ в личном кабинете и передать его в курьерскую службу
-                для доставки покупателю.</p>
-
-        </div>
-
-        <p class="interText3">03</p>
-
-        <div class="shape3">
-            <svg viewBox="0 0 863 605" fill="#0A3644" xmlns="http://www.w3.org/2000/svg">
-                <path
-                    d="M309 3.49998C175 0.999985 245.5 136.5 138 148.5C30.4997 160.5 -37.5003 299.5 30.4997 358C98.4997 416.5 160.5 529.5 335.5 537C510.499 544.5 614.5 698 785.5 506.5C956.499 315 792 171 698 102C603.999 32.9999 443 5.99998 309 3.49998Z"
-                    stroke="#000000" stroke-width="0" />
-            </svg>
-
-            <p class="textIn3">Мы обеспечиваем полный цикл взаимодействия между покупателем и брендом.</p>
-
-        </div>
-
-
-    </section>
-
-
-
-
-
-    <section class="hidden" style="margin-top: 20vh">
-
-        <h1 class="textName">Условия сотрудничества</h1>
-
-        <div class="container">
-
-            <div class="bar">
-                <div class="bold">
-                    <!-- <h3>Bold</h3> -->
-                </div>
-                <!-- <div class="circle top"></div> -->
-                <!-- <div class="circle middle"></div> -->
-                <!-- <div class="circle bottom"></div> -->
-                <div class="creamy">
-                    <!-- <h3>Creamy</h3> -->
-                </div>
-            </div>
-
-            <div class="coffee-cups">
-                <div class="cup-small doppio">
-                    <!-- <div class="handle"></div> -->
-                </div>
-                <div class="cup americano">
-                    <!-- <div class="handle"></div> -->
-                </div>
-                <div class="cup-small macchiato">
-                    <!-- <div class="handle"></div> -->
-                </div>
-                <div class="cup-small flatwhite">
-                    <!-- <div class="handle"></div> -->
-                </div>
-                <div class="cup cappuccino">
-                    <!-- <div class="handle"></div> -->
-                </div>
-                <div class="cup-long latte">
-                    <!-- <div class="handle"></div> -->
-                    <div class="bottom-handle"></div>
-                </div>
-            </div>
-
-            <div class="info">
-                <br>
-                <div class="first">
-                    <h1>1. Регистрация в налоговых органах</h1>
-                    <p>Бренд должены быть зарегистрирован в налоговых органах</p>
-                </div>
-                <div class="second">
-                    <h1>2. Категории товаров</h1>
-                    <p>
-                        В приоритете: <br>
-                        Одежда, дизайнерская одежда, обувь, дизайнерская обувь, аксессуары, <br>
-                        интерьер, сумки
-                    </p>
-                </div>
-                <div class="third">
-                    <h1>3. Кол-во подписчиков в соц сетях</h1>
-                    <p>
-                        <b>Inst</b> - от 1млн
-                        /
-                        <b>VK</b> - от 1млн
-                        /
-                        <b>TenChat</b> - от 1млн
-                    </p>
-                </div>
-                <div class="fourth">
-                    <h1>4. Репутация</h1>
-                    <p>
-                        Мы ответственно подходим к анализу бренда, отзывам покупателей, <br>
-                        а также управляющих бренда
-                    </p>
-                </div>
-                <div class="fourth">
-                    <h1>5. Качественные изображения</h1>
-                    <p>
-                        BeFreela предоставляет возмоджность загружать изображения товаров, логотипа и фона<br>
-                        некачественные материалы повлияют как на продажи вашего товара, так и на рейтинг платформы.
-                        Требуемыое качество - HD
-                    </p>
-                </div>
-
-
-            </div>
-        </div>
-
-
-
-
-
-
-    </section>
-
-    <section>
-
-        <h1>Торгуйте без взносов</h1>
-
-        <div class="logos">
-            <div style="margin: auto;">
-
-                <h1 style="
-                        font-size: 610%;
-                        margin: auto;
-                        text-align: center;" class="logo hidden" style="margin: auto;">Комиссия</h1>
-
-                <p>
-                    Вы платите комиссию с каждой продажи. <br>
-                    Вам нужен только товар. Не требуется никаких взносов.
-                </p>
-            </div>
-
-            <h1 style="
-                    text-transform: lowercase;
-                    font-size: 300%;
-                    margin: auto;
-                    text-align: center;" class="logo hidden" style="margin: auto;">Или</h1>
-
-            <div style="margin: auto;">
-
-                <h1 style="
-                        font-size: 610%;
-                        margin: auto;
-                        text-align: center;" class="logo hidden" style="margin: auto;">Подписка</h1>
-
-                <p>
-                    Вы не платите комиссию. <br>
-                    Подписка = Комиссия 0%.
-                </p>
-            </div>
-
-
-        </div>
-
-
-
-    </section>
-
-
-
-
-
-
-    <section class="hidden">
-
-        <h1 style="font-size: 450%;">Станьте нашим партнером</h1>
-        <h2></h2>
-
-        <br>
-        <br>
-        <div
-            style="padding-top: 10%; padding-bottom: 5%; width: 80vw; border-radius: 100px; background-image: linear-gradient(to left bottom, #88aebb, #688e9b,#4a6f7d, #2b5260, #0a3644);">
-
-
-            <div class="uk-width-1 uk-flex uk-flex-center uk-flex-around" style="margin: 0 auto; display: flex; ">
-
-                <div class="uk-width-1-3@s"
-                    style=" height:40vh; background-image: url(../../../media/logoImage/logo.svg); background-repeat: no-repeat; background-size: 100% 100%;">
-
-                </div>
-
-                <div class="uk-width-2-3@s" style="width: 40%;">
-
-                    <form class="uk-form-horizontal uk-margin-large" method="post">
-
-                        <div class="uk-margin">
-                            <label class="uk-form-label uk-text-bold" for="form-horizontal-text">Название бренда</label>
-                            <div class="uk-form-controls">
-                                <!-- uk-form-blank -->
-                                <input maxlength="100" name="brand_name" class="uk-input uk-form-width-large uk-border-rounded"
-                                    id="form-horizontal-text" type="text" placeholder="Супер-пупер бренд"
-                                    style="box-shadow: 1px;">
-                            </div>
-                        </div>
-
-                        <div class="uk-margin">
-                            <label class="uk-form-label uk-text-bold" for="form-horizontal-text">Имя</label>
-                            <div class="uk-form-controls">
-                                <input maxlength="100" name="name" class="uk-input uk-form-width-large uk-border-rounded"
-                                    id="form-horizontal-text" type="text" style="box-shadow: 1px;"
-                                    placeholder="Евгений">
-                            </div>
-                        </div>
-
-                        <div class="uk-margin">
-                            <label class="uk-form-label uk-text-bold" for="form-horizontal-text">Телефон</label>
-                            <div class="uk-form-controls">
-                                <input maxlength="15" name="phone" class="uk-input uk-form-width-large uk-border-rounded"
-                                    id="form-horizontal-text" type="tel" pattern="+[0-9]{1}[0-9]{3}[0-9]{3}[0-9]{4}"
-                                    placeholder="+12345678900" style="box-shadow: 1px;" id="phoneNumber">
-                            </div>
-                        </div>
-
-                        <div class="uk-margin">
-                            <label class="uk-form-label uk-text-bold" for="form-horizontal-text">Город</label>
-                            <div class="uk-form-controls">
-                                <input maxlength="50" name="city" class="uk-input uk-form-width-large uk-border-rounded"
-                                    id="form-horizontal-text" type="text" style="box-shadow: 1px;" placeholder="Москва">
-                            </div>
-                        </div>
-
-                        <div class="uk-margin">
-                            <label class="uk-form-label uk-text-bold" for="form-horizontal-text">Ссылки на соц сети</label>
-                            <div class="uk-form-controls">
-                                <input maxlength="50" name="link" class="uk-input uk-form-width-large uk-border-rounded"
-                                    id="form-horizontal-text" type="text" style="box-shadow: 1px;"
-                                    placeholder="@befreela">
-                            </div>
-                        </div>
-
-                        <div class="uk-margin">
-                           <label class="uk-form-label uk-text-bold" for="form-horizontal-text">Расскажите о себе</label>
-                              <div class="uk-form-controls">
-                              <!--  <textarea name="info" class="uk-input uk-form-width-large uk-border-rounded"
-                                    id="form-horizontal-text" type="text" style="box-shadow: 1px;"
-                                    placeholder="info"> -->
-                                    <textarea class="uk-textarea" rows="5" placeholder="Info"
-                                    name="info" style="border-radius: 5px; box-shadow: 1px;" ></textarea>
-                            </div> 
-                        </div>
-                        <br>
-                        <div class="uk-width-1 uk-flex uk-flex-center uk-flex-middle">
-                            {% if user.is_authenticated %}
-                            <button class="uk-button uk-button-secondary uk-width-3-5" name="partRegBtn"
-                                style="margin: 0 auto" type="submit" onclick="UIkit.notification({message: '<span uk-icon=\'icon: check\'></span> Message with an icon'})">Отправить</button>
-                                <!-- <button class="uk-button uk-button-default demo" type="button" onclick="UIkit.notification({message: '<span uk-icon=\'icon: check\'></span> Message with an icon'})">With icon</button> -->
-                                {% else %}
-                                <button class="uk-button uk-button-secondary uk-width-3-5" name="partRegBtn"
-                                style="margin: 0 auto" type="button">Отправить</button>
-                                
-                                {% endif %}
-                        </div>
-                        {% csrf_token %}
-
-                    </form>
-                </div>
-
-
-            </div>
-
-
-    </section>
-
-    <br>
-    {% include "footer.html" %}
-
-
-
-</body>
-
-<script src="https://cdn.jsdelivr.net/npm/uikit@3.15.10/dist/js/uikit.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/uikit@3.15.10/dist/js/uikit-icons.min.js"></script>
-
-<script>
-    // Pop scroll elements
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            // console.log(entry)
-            if (entry.isIntersecting) {
-                entry.target.classList.add('show');
-            } else {
-                entry.target.classList.remove('show');
-            }
-        });
-
-    });
-
-    const hiddenElements = document.querySelectorAll('.hidden');
-    hiddenElements.forEach((el) => observer.observe(el));
-
-
-    // Logo animation
-
-    const logo = document.querySelectorAll('#logo path');
-
-    // for (let i = 0; i < logo.length; i++) {
-    // console.log(`Letter ${i} is ${logo[i].getTotalLength()}`);
-    // }
-
-    // Line animation
-
-
-    let path = document.querySelector('#svg1 path')
-    let pathLength = path.getTotalLength();
-
-
-    path.style.strokeDasharray = pathLength + ' ' + pathLength;
-
-    path.style.strokeDashoffset = pathLength;
-
-    window.addEventListener('scroll', () => {
-
-        var scrollPercentage = (document.documentElement.scrollTop + document.body.scrollTop) / (document
-            .documentElement.clientHeight);
-
-        var drawLength = pathLength * scrollPercentage;
-        // console.log(document.documentElement.scrollTop + document.body.scrollTop);
-        // console.log(document.documentElement.clientHeight);
-
-
-
-        path.style.strokeDashoffset = pathLength - drawLength;
-
-    });
-</script>
-
-</html>
+{% endblock %}
