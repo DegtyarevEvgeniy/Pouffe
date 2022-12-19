@@ -28,7 +28,7 @@ urlpatterns = [
 
     # enterance links
     path('logout/', views.logout_view, name='logout'),
-    path('login/', views.login_page, name='signup'),
+    path('login/', views.login_page, name='login'),
     # main page lnk
     path('', views.index_page, name='main_page'),
 

@@ -46,9 +46,32 @@
                         </a>
                         <div class="uk-navbar-dropdown">
                             <ul class="uk-nav uk-navbar-dropdown-nav">
-                                <li class="uk-active"><a href="#">Active</a></li>
-                                <li><a href="#">Item</a></li>
-                                <li><a href="#">Item</a></li>
+                                {% if user.is_partner %}
+                                <li>
+                                    <a href="/partners/" class="uk-button uk-button-link"
+                                        style="text-transform: none;">Вы уже партнер</a>
+                                </li>
+                                {% else %}
+                                <li class="uk-active">
+                                    <a href="/partners/" class="uk-button uk-button-link uk-text-normal"
+                                        style="text-transform: none;">Стать партнером</a>
+                                </li>
+                                {% endif %}
+                                <li class="uk-nav-divider"></li>
+                                <li class="uk-active"><a href="/edit/">Настройки профиля</a></li>
+                                {% if user.is_partner %}
+                                <li class="uk-active">
+                                    <a href="/becomeCreator/" uk-icon="icon: database">Магазин</a>
+                                </li>
+                                {% endif %}
+                                {% if user.is_admin and user.is_superuser and user.is_staff and user.is_active %}
+                                <li class="uk-active"><a href="/admin/">Админка</a></li>
+                                {% endif %}
+                                {% if user.is_authenticated == 0 %}
+                                <li><a href="/login/">Войти</a></li>
+                                {% else %}
+                                <li><a href="/logout/">Выйти</a></li>
+                                {% endif %}
                             </ul>
                         </div>
                     </li>
@@ -63,20 +86,24 @@
         <nav class="uk-navbar-container uk-navbar-transparent" uk-navbar>
             <div class="uk-navbar-left">
                 <ul class="uk-navbar-nav">
-                    <li class="uk-active"><a class="uk-link-revert uk-text-capitalize" style="padding-left: 0" href="">Новинки</a></li>
+                    <li class="uk-active"><a class="uk-link-revert uk-text-capitalize" style="padding-left: 0"
+                            href="">Новинки</a></li>
                     <li class="uk-active"><a class="uk-link-revert uk-text-capitalize" href="">Одежда</a></li>
                     <li class="uk-active"><a class="uk-link-revert uk-text-capitalize" href="">Обувь</a></li>
                     <li class="uk-active"><a class="uk-link-revert uk-text-capitalize" href="">Интерьер</a></li>
                     <li class="uk-active"><a class="uk-link-revert uk-text-capitalize" href="">Аксессуары</a></li>
                     <li class="uk-active"><a class="uk-link-revert uk-text-capitalize" href="/brands/">Бренды</a></li>
-                    <li class="uk-active"><a class="uk-link-revert uk-text-capitalize uk-text-danger" href="">Sale%</a></li>
+                    <li class="uk-active"><a class="uk-link-revert uk-text-capitalize uk-text-danger" href="">Sale%</a>
+                    </li>
                 </ul>
             </div>
             <div class="uk-navbar-right uk-width-2-5 uk-flex uk-flex-right">
                 <ul class="uk-navbar-nav uk-width-2-3">
                     <form class="uk-search uk-search-default uk-width-1">
-                        <span class="uk-border-rounded uk-search-icon-flip" style="background-color: black; color: white; width: 20%" uk-search-icon></span>
-                        <input class="uk-border-rounded uk-search-input" type="search" placeholder="Search" aria-label="Search">
+                        <span class="uk-border-rounded uk-search-icon-flip"
+                            style="background-color: black; color: white; width: 20%" uk-search-icon></span>
+                        <input class="uk-border-rounded uk-search-input" type="search" placeholder="Search"
+                            aria-label="Search">
                     </form>
                 </ul>
             </div>
