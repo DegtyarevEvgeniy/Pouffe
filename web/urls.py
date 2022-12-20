@@ -70,8 +70,8 @@ urlpatterns = [
     # path('yourTasks/infoTask/', views.infoTask_page),
 
     # static link
-    *static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-]
+    
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 # error events
 handler400 = views.pageNotAccess
 handler403 = views.pageMistakeServ
