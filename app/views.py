@@ -731,10 +731,10 @@ def brands_page(request):
 def sertCardBrend_page(request, shopnmae):
     profile = Shop.objects.get(name=shopnmae)
     content['profile'] = profile
-    products = Product_creator.objects.all()
+    products = Product_creator.objects.filter(brand=shopnmae)
     content['products'] = [{'id': product.id,
                             'product_name': product.product_name,
-                            'cost': product.price,
+                            'cost': product.show_price,
                             'availability': product.availability,
                             'picture1': product.picture1,
                             'picture2': product.picture2,

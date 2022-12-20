@@ -36,6 +36,8 @@ class Account(AbstractBaseUser):
     last_name = models.CharField(max_length=1000, default='')
     phone = models.IntegerField(default='1')
     city = models.CharField(max_length=1000, default='')
+    # liked_brands = models.CharField(max_length=10000, default='')
+    # liked_products = models.CharField(max_length=10000, default='')
     userImage = models.ImageField(default='https://i.ibb.co/s3QmZrw/default.png')
     prevUserImage = models.ImageField(default='')
     is_admin = models.BooleanField(default=False)

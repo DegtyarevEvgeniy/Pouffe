@@ -5,6 +5,7 @@ from datetime import datetime
 
 class Shop(models.Model):
     name = models.CharField(max_length=50, default='')
+    # country = models.CharField(max_length=50, default='')
     logoImage = models.CharField(max_length=500, default='https://i.ibb.co/z7zmCKn/2022-08-28-10-00-15.png')
     prevLogoImage = models.CharField(max_length=500, default='')
     bgImage = models.CharField(max_length=500, default='https://i.ibb.co/z7zmCKn/2022-08-28-10-00-15.png')
